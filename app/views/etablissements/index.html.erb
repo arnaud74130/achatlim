@@ -1,0 +1,39 @@
+<h1>Listing etablissements</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Code adherent</th>
+      <th>Telephone</th>
+      <th>Fax</th>
+      <th>Adresse ligne1</th>
+      <th>Adresse ligne2</th>
+      <th>Code postal</th>
+      <th>Ville</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @etablissements.each do |etablissement| %>
+      <tr>
+        <td><%= etablissement.nom %></td>
+        <td><%= etablissement.code_adherent %></td>
+        <td><%= etablissement.telephone %></td>
+        <td><%= etablissement.fax %></td>
+        <td><%= etablissement.adresse_ligne1 %></td>
+        <td><%= etablissement.adresse_ligne2 %></td>
+        <td><%= etablissement.code_postal %></td>
+        <td><%= etablissement.ville %></td>
+        <td><%= link_to 'Show', etablissement %></td>
+        <td><%= link_to 'Edit', edit_etablissement_path(etablissement) %></td>
+        <td><%= link_to 'Destroy', etablissement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Etablissement', new_etablissement_path %>

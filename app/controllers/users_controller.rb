@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
   after_action :verify_authorized
+ 
 
   def index
     @users = User.all
@@ -28,7 +29,7 @@ class UsersController < ApplicationController
     user.destroy
     redirect_to users_path, :notice => "User deleted."
   end
-
+  
   private
 
   def secure_params

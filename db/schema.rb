@@ -11,7 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140812154332) do
+ActiveRecord::Schema.define(version: 20140813134630) do
+
+  create_table "etablissements", force: true do |t|
+    t.string   "nom"
+    t.string   "code_adherent"
+    t.string   "telephone"
+    t.string   "fax"
+    t.string   "adresse_ligne1"
+    t.string   "adresse_ligne2"
+    t.string   "code_postal"
+    t.string   "ville"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "fournisseurs", force: true do |t|
+    t.string   "nom"
+    t.string   "telephone"
+    t.string   "fax"
+    t.string   "adresse_ligne1"
+    t.string   "adresse_ligne2"
+    t.string   "code_postal"
+    t.string   "ville"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -26,8 +51,11 @@ ActiveRecord::Schema.define(version: 20140812154332) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name"
+    t.string   "nom"
     t.integer  "role"
+    t.integer  "entreprise_id"
+    t.string   "entreprise_type"
+    t.string   "prenom"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

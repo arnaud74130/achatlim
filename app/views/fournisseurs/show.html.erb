@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nom:</strong>
+  <%= @fournisseur.nom %>
+</p>
+
+<p>
+  <strong>Telephone:</strong>
+  <%= @fournisseur.telephone %>
+</p>
+
+<p>
+  <strong>Fax:</strong>
+  <%= @fournisseur.fax %>
+</p>
+
+<p>
+  <strong>Adresse ligne1:</strong>
+  <%= @fournisseur.adresse_ligne1 %>
+</p>
+
+<p>
+  <strong>Adresse ligne2:</strong>
+  <%= @fournisseur.adresse_ligne2 %>
+</p>
+
+<p>
+  <strong>Code postal:</strong>
+  <%= @fournisseur.code_postal %>
+</p>
+
+<p>
+  <strong>Ville:</strong>
+  <%= @fournisseur.ville %>
+</p>
+
+<%= link_to 'Edit', edit_fournisseur_path(@fournisseur) %> |
+<%= link_to 'Back', fournisseurs_path %>
