@@ -8,8 +8,8 @@ module DevisePermittedParameters
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) << :name
-    devise_parameter_sanitizer.for(:account_update) << :name
+    devise_parameter_sanitizer.for(:sign_up) << :nom << :prenom << :role << :entreprise_id << :entreprise_type
+    devise_parameter_sanitizer.for(:account_update) << :nom << :prenom << :role << :entreprise_id << :entreprise_type
   end
 
 end

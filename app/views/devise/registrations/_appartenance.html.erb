@@ -1,0 +1,12 @@
+
+<div class="form-group">
+  <%= f.label :role, "Rôle" %>
+  <%= f.select(:role, User.roles.keys.map {|role| [role.titleize,role]}) %>
+</div>
+  <div class="form-group">
+    <%= f.label :entreprise %>
+    <%= f.autocomplete_field :entreprise_nom,  autocomplete_user_entreprise_users_path, :update_elements => {:id => '#user_entreprise_id', :entreprise_type => '#user_entreprise_type'}, size: 75, class: 'form-control'%>
+  <%= f.hidden_field :entreprise_id, id: "user_entreprise_id" %>
+  <%= f.hidden_field :entreprise_type, id: "user_entreprise_type" %>
+  </div>
+

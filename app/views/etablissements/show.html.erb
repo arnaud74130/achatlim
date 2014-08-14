@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nom:</strong>
+  <%= @etablissement.nom %>
+</p>
+
+<p>
+  <strong>Code adherent:</strong>
+  <%= @etablissement.code_adherent %>
+</p>
+
+<p>
+  <strong>Telephone:</strong>
+  <%= @etablissement.telephone %>
+</p>
+
+<p>
+  <strong>Fax:</strong>
+  <%= @etablissement.fax %>
+</p>
+
+<p>
+  <strong>Adresse ligne1:</strong>
+  <%= @etablissement.adresse_ligne1 %>
+</p>
+
+<p>
+  <strong>Adresse ligne2:</strong>
+  <%= @etablissement.adresse_ligne2 %>
+</p>
+
+<p>
+  <strong>Code postal:</strong>
+  <%= @etablissement.code_postal %>
+</p>
+
+<p>
+  <strong>Ville:</strong>
+  <%= @etablissement.ville %>
+</p>
+
+<%= link_to 'Edit', edit_etablissement_path(@etablissement) %> |
+<%= link_to 'Back', etablissements_path %>

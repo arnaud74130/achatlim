@@ -1,0 +1,45 @@
+<%= form_for(@fournisseur) do |f| %>
+  <% if @fournisseur.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@fournisseur.errors.count, "error") %> prohibited this fournisseur from being saved:</h2>
+
+      <ul>
+      <% @fournisseur.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nom %><br>
+    <%= f.text_field :nom %>
+  </div>
+  <div class="field">
+    <%= f.label :telephone %><br>
+    <%= f.text_field :telephone %>
+  </div>
+  <div class="field">
+    <%= f.label :fax %><br>
+    <%= f.text_field :fax %>
+  </div>
+  <div class="field">
+    <%= f.label :adresse_ligne1 %><br>
+    <%= f.text_field :adresse_ligne1 %>
+  </div>
+  <div class="field">
+    <%= f.label :adresse_ligne2 %><br>
+    <%= f.text_field :adresse_ligne2 %>
+  </div>
+  <div class="field">
+    <%= f.label :code_postal %><br>
+    <%= f.text_field :code_postal %>
+  </div>
+  <div class="field">
+    <%= f.label :ville %><br>
+    <%= f.text_field :ville %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

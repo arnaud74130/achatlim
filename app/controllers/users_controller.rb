@@ -1,6 +1,15 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!
-  after_action :verify_authorized
+  before_filter :authenticate_user!, :except => [:autocomplete_user_entreprise]
+  after_action :verify_authorized,  except: :autocomplete_user_entreprise
+  #autocomplete :user, :entreprise, :full => true
+
+  def autocomplete_user_entreprise
+    term = params[:term]
+    entreprises_etb = Etablissement.where('nom LIKE ?', "%#{term}%").order(:nom).all.to_a
+    entreprises_f = Fournisseur.where('nom LIKE ?', "%#{term}%").order(:nom).all.to_a
+    entreprises = entreprises_etb + entreprises_f
+    render :json => entreprises.map { |entreprise| {id: entreprise.id, label: entreprise.nom, value: entreprise.nom, entreprise_type: entreprise.class.name} }
+  end
 
   def index
     @users = User.all
