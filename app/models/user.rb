@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   # :validatable, enlever car sinon on ne peut pas ajouter des validations supplémentaires...
   devise :database_authenticatable, :registerable,
-    :recoverable, :rememberable, :trackable
+    :recoverable, :rememberable, :trackable, :confirmable
   def entreprise_nom
     entreprise.nom if entreprise
   end
