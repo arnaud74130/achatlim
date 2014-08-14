@@ -1,4 +1,5 @@
 class Fournisseur < ActiveRecord::Base
+
   before_save :pretty_name
   validate :nom, presence: true
   

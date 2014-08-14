@@ -53,9 +53,15 @@ ActiveRecord::Schema.define(version: 20140814085334) do
     t.datetime "updated_at"
     t.string   "nom"
     t.integer  "role"
+<<<<<<< HEAD
     t.string   "prenom"
     t.integer  "entreprise_id"
     t.string   "entreprise_type"
+=======
+    t.integer  "entreprise_id"
+    t.string   "entreprise_type"
+    t.string   "prenom"
+>>>>>>> bdd0d7a8a817e05bb251b82ed1debc061c53b92c
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

@@ -1,4 +1,5 @@
 class Etablissement < ActiveRecord::Base
+
   validate :nom, presence: true
   has_many :users, as: :entreprise, dependent: :delete_all
   before_save :pretty_name
