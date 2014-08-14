@@ -1,4 +1,5 @@
-
+<fieldset>
+   <% if current_user && current_user.admin? %>
 <div class="form-group">
   <%= f.label :role, "Rôle" %>
   <%= f.select(:role, User.roles.keys.map {|role| [role.titleize,role]}) %>
@@ -9,4 +10,9 @@
   <%= f.hidden_field :entreprise_id, id: "user_entreprise_id" %>
   <%= f.hidden_field :entreprise_type, id: "user_entreprise_type" %>
   </div>
-
+<% else %>
+  Rôle : <strong> <%= current_user.role if current_user%></strong><br/>
+  Entreprise : <strong> <%= current_user.entreprise.nom if current_user && current_user.entreprise %></strong><br/>
+<i>Le rôle ainsi que l'entreprise sont créé par le groupement régional de commande afin de vous permettre d'accéder aux modules </i>
+<% end %>
+</fieldset>

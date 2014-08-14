@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  enum role: [:etablissement, :fournisseur, :admin]
+  enum role: [:visiteur, :etablissement, :fournisseur, :admin]
   after_initialize :set_default_role, :if => :new_record?
   belongs_to :entreprise, polymorphic: true
 
@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   validates_length_of :password, :within => Devise.password_length, :allow_blank => true
 
   def set_default_role
-    self.role ||= :etablissement
+    self.role ||= :visiteur
   end
 
   # Include default devise modules. Others available are:
