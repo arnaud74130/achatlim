@@ -15,7 +15,7 @@ gem 'bootstrap-sass'
 gem 'devise'
 gem 'devise-i18n'
 gem 'high_voltage'
-gem 'pundit'
+gem 'pundit', github: 'elabs/pundit'
 gem 'rails4-autocomplete', '~> 1.1.0'
 group :development do
   gem 'better_errors'

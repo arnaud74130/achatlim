@@ -13,7 +13,11 @@
       <%= render 'layouts/navigation' %>
     </header>
     <main role="main">
+
+
        <%= render 'layouts/messages' %>
+       <strong><%= current_user.nom if current_user %></strong><br/>
+      <strong><%= current_user.role if current_user %></strong><br/>
        <%= yield %>
     </main>
   </body>
