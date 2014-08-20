@@ -1,12 +1,23 @@
+<% entreprise_id = SecureRandom.uuid %>
+<% entreprise_type = SecureRandom.uuid %>
 <td>
   <%= link_to user.email, user %>
 </td>
 <td>
-  <%= form_for(user) do |f| %>
-    <%= f.select(:role, User.roles.keys.map {|role| [role.titleize,role]}) %>
-    <%= f.submit 'Change Role', :class => 'button-xs' %>
+  <%= form_for(user, :html => { :role => 'form'}) do |f| %>
+    <div class="form-group">
+      <%= f.label :role, "Rôle" %>
+      <%= f.select(:role, User.roles.keys.map {|role| [role.titleize,role]},{}, id: "select_entreprise_#{user.id}") %>
+    </div>
+    <div class="form-group">
+      <%= f.label :entreprise %>
+      <%= f.autocomplete_field :entreprise_nom,  autocomplete_user_entreprise_users_path, :update_elements => {:id => "##{entreprise_id}", :entreprise_type => "##{entreprise_type}"}, size: 75, class: 'form-control'%>
+      <%= f.hidden_field :entreprise_id, id: "#{entreprise_id}" %>
+      <%= f.hidden_field :entreprise_type, id: "#{entreprise_type}" %>
+    </div>
+    <%= f.submit 'Change Role', :class => 'btn btn-primary btn-xs', id: "submit_btn_user_#{user.id}" %>
   <% end %>
 </td>
 <td>
-  <%= link_to("Delete user", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button-xs') unless user == current_user %>
+  <%= link_to("Delete user", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-danger btn-xs') unless user == current_user %>
 </td>

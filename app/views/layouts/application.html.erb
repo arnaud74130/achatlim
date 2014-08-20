@@ -3,7 +3,7 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "Achatlim" %></title>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Achatlim" %>">
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "AchatLim" %>">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
@@ -13,12 +13,8 @@
       <%= render 'layouts/navigation' %>
     </header>
     <main role="main">
-
-
-       <%= render 'layouts/messages' %>
-       <strong><%= current_user.nom if current_user %></strong><br/>
-      <strong><%= current_user.role if current_user %></strong><br/>
-       <%= yield %>
+      <%= render 'layouts/messages' %>
+      <%= yield %>
     </main>
   </body>
 </html>

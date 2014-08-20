@@ -9,7 +9,7 @@ feature 'Sign in', :devise do
   #   When I sign in with valid credentials
   #   Then I see an invalid credentials message
   scenario 'user cannot sign in if not registered' do
-    user = FactoryGirl.create(:user)
+    user = create(:user)
     signin('test@example.com', 'no_password')
     expect(page).to have_content 'Email ou mot de passe invalide.'
   end
@@ -20,7 +20,7 @@ feature 'Sign in', :devise do
   #   When I sign in with valid credentials
   #   Then I see a success message
   scenario 'user can sign in with valid credentials' do
-    user = FactoryGirl.create(:user)
+    user = create :user
     signin(user.email, user.password)
     expect(page).to have_content 'Connecté.'
   end
@@ -46,5 +46,4 @@ feature 'Sign in', :devise do
     signin(user.email, 'invalidpass')
     expect(page).to have_content 'Email ou mot de passe invalide.'
   end
-
 end
