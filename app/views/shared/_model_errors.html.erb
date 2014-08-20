@@ -1,0 +1,11 @@
+<% if modele.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(modele.errors.count, "erreur") %> empêche la sauvegarde:</h2>
+
+    <ul>
+    <% modele.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>

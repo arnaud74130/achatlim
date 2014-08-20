@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   after_initialize :set_default_role, :if => :new_record?
   belongs_to :entreprise, polymorphic: true
 
-  validates_presence_of :nom, :telephone
+  validates :nom, :telephone,  presence: true
   validates_uniqueness_of    :email,     :case_sensitive => false, :allow_blank => true, :if => :email_changed?
   validates_format_of :email, :with  => Devise.email_regexp, :allow_blank => true, :if => :email_changed?
   validates_presence_of   :password, :on=>:create

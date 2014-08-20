@@ -51,4 +51,12 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+   # ajout pour alléger la console
+  # config.logger   
+  # config.action_controller.logger
+  # config.action_view.logger
+  # config.action_mailer.logger
+  # config.active_resource.logger
+  config.active_record.logger = nil
 end

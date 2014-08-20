@@ -1,56 +1,17 @@
 
-<div class="authform">
-<%= form_for(@etablissement, :html => { :role => 'form'}) do |f| %>
-  <% if @etablissement.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@etablissement.errors.count, "erreur") %> empêche la sauvegarde de l'établissement:</h2>
-      <ul>
-      <% @etablissement.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
- <fieldset>
-  <div class="form-group">
-    <%= f.label :nom %><br>
-    <%= f.text_field :nom, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :code_adherent %><br>
-    <%= f.text_field :code_adherent, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :telephone %><br>
-    <%= f.telephone_field :telephone, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :fax %><br>
-    <%= f.telephone_field :fax, class: 'form-control' %>
-  </div>
-   </fieldset>
- <fieldset>
-  <div class="form-group">
-    <%= f.label :adresse_ligne1 %><br>
-    <%= f.text_field :adresse_ligne1, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :adresse_ligne2 %><br>
-    <%= f.text_field :adresse_ligne2, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :code_postal %><br>
-    <%= f.text_field :code_postal, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :ville %><br>
-    <%= f.text_field :ville, class: 'form-control' %>
-  </div>
-   </fieldset>
-  <div class="actions">
-    <%= f.submit 'Enregistrer', :class => 'button right'%>
-  </div>
+<%= bootstrap_form_for(@etablissement) do |f| %>
+    <%= render 'shared/model_errors', modele: @etablissement %>
+
+    <%= f.text_field :nom %>
+    <%= f.text_field :code_adherent %>
+    <%= f.telephone_field :telephone %>
+    <%= f.telephone_field :fax %>
+    <%= f.text_field :adresse_ligne1 %>
+    <%= f.text_field :adresse_ligne2 %>
+    <%= f.text_field :code_postal %>
+    <%= f.text_field :ville %>
+    <%= f.submit %>
+
 <% end %>
-</div>
 

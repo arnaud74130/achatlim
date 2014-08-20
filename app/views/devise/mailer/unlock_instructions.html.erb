@@ -1,0 +1,7 @@
+<p>Bonjour <%= @resource.email %>!</p>
+
+<p>Votre compte a été verrouillé à la suite d'un trop grand nombre de tentatives d'authentification.</p>
+
+<p>Cliquez sur le lien ci-dessous pour déverrouiller votre compte :</p>
+
+<p><%= link_to 'Déverrouiller mon compte', unlock_url(@resource, unlock_token: @token) %></p>
