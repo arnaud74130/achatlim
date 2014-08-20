@@ -1,5 +1,7 @@
-<p id="notice"><%= notice %></p>
+<%= render "shared/bandeau", titre: "Informations de l'établissement", texte: "Liste des informations associées." %>
 
+<p id="notice"><%= notice %></p>
+<div class="container">
 <p>
   <strong>Nom:</strong>
   <%= @etablissement.nom %>
@@ -39,6 +41,6 @@
   <strong>Ville:</strong>
   <%= @etablissement.ville %>
 </p>
-
-<%= link_to 'Edit', edit_etablissement_path(@etablissement) %> |
-<%= link_to 'Back', etablissements_path %>
+ <%= back etablissement_path(@etablissement) %>
+  <%= edit edit_etablissement_path(@etablissement) %>
+</div>

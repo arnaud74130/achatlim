@@ -1,5 +1,4 @@
 
-
 <%= bootstrap_form_for(@etablissement) do |f| %>
     <%= render 'shared/model_errors', modele: @etablissement %>
 
@@ -11,7 +10,6 @@
     <%= f.text_field :adresse_ligne2 %>
     <%= f.text_field :code_postal %>
     <%= f.text_field :ville %>
-    <%= f.submit %>
+   <%= hf_cancel_submit(f, etablissements_path) %>
 
 <% end %>
-

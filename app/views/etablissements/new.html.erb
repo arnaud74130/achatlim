@@ -1,3 +1,5 @@
-<h1>New etablissement</h1>
-<%= render 'form' %>
-<%= link_to 'Back', etablissements_path %>
+<%= render "shared/bandeau", titre: "Nouvel Etablissement", texte: "Création d'un nouvel établissement" %>
+<div class="container">
+  <%= render 'form' %>
+</div>
+

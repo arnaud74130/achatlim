@@ -1,8 +1,12 @@
-<h1>Listing etablissements</h1>
-
-<table>
+<%= render "shared/bandeau_new",
+ titre: "Etablissements",
+ texte: "Module d'administration de l'ensemble des établissements de la région.",
+ path: new_etablissement_path%>
+<div class="container">
+<table class="table table-hover">
   <thead>
     <tr>
+      <th>ID</th>
       <th>Nom</th>
       <th>Code adherent</th>
       <th>Telephone</th>
@@ -11,13 +15,14 @@
       <th>Adresse ligne2</th>
       <th>Code postal</th>
       <th>Ville</th>
-      <th colspan="3"></th>
+      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @etablissements.each do |etablissement| %>
       <tr>
+        <td><%= link_to etablissement.id, etablissement_path(etablissement) %> </td>
         <td><%= etablissement.nom %></td>
         <td><%= etablissement.code_adherent %></td>
         <td><%= etablissement.telephone %></td>
@@ -26,14 +31,10 @@
         <td><%= etablissement.adresse_ligne2 %></td>
         <td><%= etablissement.code_postal %></td>
         <td><%= etablissement.ville %></td>
-        <td><%= link_to 'Show', etablissement %></td>
-        <td><%= link_to 'Edit', edit_etablissement_path(etablissement) %></td>
-        <td><%= link_to 'Destroy', etablissement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= edit_small edit_etablissement_path(etablissement) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Etablissement', new_etablissement_path %>
+</div>
