@@ -11,7 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140819114938) do
+ActiveRecord::Schema.define(version: 20140822152306) do
+
+  create_table "consultations", force: true do |t|
+    t.string   "code"
+    t.string   "libelle"
+    t.date     "debut"
+    t.date     "fin"
+    t.integer  "etablissement_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "consultations", ["etablissement_id"], name: "index_consultations_on_etablissement_id"
+
+  create_table "consultations_etablissements", id: false, force: true do |t|
+    t.integer "etablissement_id", null: false
+    t.integer "consultation_id",  null: false
+  end
 
   create_table "etablissements", force: true do |t|
     t.string   "nom"
@@ -37,6 +54,17 @@ ActiveRecord::Schema.define(version: 20140819114938) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "markets", force: true do |t|
+    t.string   "code"
+    t.integer  "fournisseur_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "consultation_id"
+  end
+
+  add_index "markets", ["consultation_id"], name: "index_markets_on_consultation_id"
+  add_index "markets", ["fournisseur_id"], name: "index_markets_on_fournisseur_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
