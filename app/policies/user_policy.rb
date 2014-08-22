@@ -6,6 +6,10 @@ class UserPolicy
     @user = model
   end
 
+  def autocomplete_user_entreprise?
+    @current_user.admin?
+  end
+
   def index?
     @current_user.admin?
   end

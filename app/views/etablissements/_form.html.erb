@@ -10,6 +10,7 @@
     <%= f.text_field :adresse_ligne2 %>
     <%= f.text_field :code_postal %>
     <%= f.text_field :ville %>
-   <%= hf_cancel_submit(f, etablissements_path) %>
+    <%= f.submit nil, class: 'btn btn-primary' %>
+   <!-- %= hf_cancel_submit(f, etablissements_path) % -->
 
 <% end %>

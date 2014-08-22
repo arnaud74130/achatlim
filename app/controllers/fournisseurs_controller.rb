@@ -1,25 +1,20 @@
 class FournisseursController < ApplicationController
   before_action :set_fournisseur, only: [:show, :edit, :update, :destroy]
 
-  # GET /fournisseurs
   def index
     @fournisseurs = Fournisseur.all
   end
 
-  # GET /fournisseurs/1
   def show
   end
 
-  # GET /fournisseurs/new
   def new
     @fournisseur = Fournisseur.new
   end
 
-  # GET /fournisseurs/1/edit
   def edit
   end
 
-  # POST /fournisseurs
   def create
     @fournisseur = Fournisseur.new(fournisseur_params)
 
@@ -32,7 +27,6 @@ class FournisseursController < ApplicationController
     end
   end
 
-  # PATCH/PUT /fournisseurs/1
   def update
     respond_to do |format|
       if @fournisseur.update(fournisseur_params)
@@ -43,7 +37,6 @@ class FournisseursController < ApplicationController
     end
   end
 
-  # DELETE /fournisseurs/1
   def destroy
     @fournisseur.destroy
     respond_to do |format|

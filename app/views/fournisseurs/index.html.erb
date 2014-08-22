@@ -1,8 +1,13 @@
-<h1>Listing fournisseurs</h1>
+<%= render "shared/bandeau_new",
+ titre: "Fournisseurs",
+ texte: "Module d'administration de l'ensemble des fournisseurs de la région.",
+ path: new_fournisseur_path %>
 
-<table>
+<div class="container">
+<table class="table table-hover">
   <thead>
     <tr>
+      <th>ID</th>
       <th>Nom</th>
       <th>Telephone</th>
       <th>Fax</th>
@@ -10,13 +15,14 @@
       <th>Adresse ligne2</th>
       <th>Code postal</th>
       <th>Ville</th>
-      <th colspan="3"></th>
+      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @fournisseurs.each do |fournisseur| %>
       <tr>
+        <td><%= link_to fournisseur.id, fournisseur_path(fournisseur) %></td>
         <td><%= fournisseur.nom %></td>
         <td><%= fournisseur.telephone %></td>
         <td><%= fournisseur.fax %></td>
@@ -24,14 +30,10 @@
         <td><%= fournisseur.adresse_ligne2 %></td>
         <td><%= fournisseur.code_postal %></td>
         <td><%= fournisseur.ville %></td>
-        <td><%= link_to 'Show', fournisseur %></td>
-        <td><%= link_to 'Edit', edit_fournisseur_path(fournisseur) %></td>
-        <td><%= link_to 'Destroy', fournisseur, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= edit_small edit_fournisseur_path(fournisseur) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+</div>
 
-<br>
-
-<%= link_to 'New Fournisseur', new_fournisseur_path %>

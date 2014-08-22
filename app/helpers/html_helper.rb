@@ -1,4 +1,4 @@
-#     EPSILIM - Suivi Financier
+#     EPSILIM - AchatLim
 #     Copyright (C) 2014  Arnaud GARCIA - GCS EPSILIM
 #
 #     This program is free software: you can redistribute it and/or modify
@@ -36,13 +36,11 @@ module HtmlHelper
     link_button(path, {:class => 'btn btn-warning'}, options, "edit")
   end
 
-  def edit_small(path, options={})
-    options=options.reverse_merge({roles: [:direction]}) unless options[:roles]
+  def edit_small(path, options={})    
     link_button(path, {:class =>'btn btn-warning btn-small'}, options, "edit")
   end
 
-  def new(path, options={})
-    options=options.reverse_merge({roles: [:direction]}) unless options[:roles]
+  def new(path, options={})    
     link_button(path, {:class => 'btn btn-primary btn-lg'}, options, "new_html")
   end
 
@@ -50,8 +48,7 @@ module HtmlHelper
     link_button(path, {:class => 'btn btn-default'}, options, "cancel")
   end
 
-  def destroy (path, options = {})
-    options=options.reverse_merge({roles: [:direction]}) unless options[:roles]
+  def destroy (path, options = {})    
     default_options = {:method => :delete,
                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                        :class => 'btn btn-danger btn-lg btn-block' }

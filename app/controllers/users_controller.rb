@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
 
-  before_filter :authenticate_user!, :except => [:autocomplete_user_entreprise]
-  after_action :verify_authorized,  except: :autocomplete_user_entreprise
-  #autocomplete :user, :entreprise, :full => true
+  before_filter :authenticate_user!
+  after_action :verify_authorized
 
   def autocomplete_user_entreprise
+    authorize current_user
     term = params[:term]
     entreprises_etb = Etablissement.where('nom LIKE ?', "%#{term}%").order(:nom).all.to_a
     entreprises_f = Fournisseur.where('nom LIKE ?', "%#{term}%").order(:nom).all.to_a
