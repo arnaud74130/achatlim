@@ -5,11 +5,11 @@
 # par défaut, 5 établissements et 4 marchés
 # consultation=FactoryGirl.create(:consultation)
 FactoryGirl.define do
-	factory :consultation do
-		code {Faker::Code.ean}
-		libelle {Faker::Lorem.sentence}
-		debut {Date.today-rand(2500)}
-		fin {Date.today+rand(2500)}
+	factory :consultation do |c|
+		c.code {Faker::Code.ean}
+		c.libelle {Faker::Lorem.sentence}
+		c.debut {Date.today-rand(2500)}
+		c.fin {Date.today+rand(2500)}
 		ignore do
 			nbr_etablissements 5
 			nbr_marches 4

@@ -1,0 +1,5 @@
+Entreprise : <%= @entreprise.nom %>
+<% @consultations.each do |consultation| %>
+<br/>
+<%= consultation.code %>
+<% end %>

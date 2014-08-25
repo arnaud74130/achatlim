@@ -1,3 +1,4 @@
+# rake db:populate
 namespace :db do
     desc "Erase and fill database"
     task :populate => :environment do
@@ -5,34 +6,29 @@ namespace :db do
 
         Rake::Task['db:reset'].invoke
 
-        # Create admin_user account
+        #  3 Administrateur (sans compter le compte par défaut rake db:seed)
         Rake::Task['db:seed'].invoke
-        4.times do |f|
-            FactoryGirl.create(:user, :admin)
-        end
-        10.times do |f|
-            FactoryGirl.create(:user)
-        end
-
-        # Création des fournisseurs
-        # 400.times do |f|
-        #     FactoryGirl.create(:fournisseur)
+        # 3.times do |f|
+        #     FactoryGirl.create(:user, :admin)
         # end
-        60.times do |f|
-            entreprise = FactoryGirl.create(:etablissement)
-            utilisateur = FactoryGirl.create(:user, :etablissement)
-            utilisateur.entreprise = entreprise
-            utilisateur.save
+
+        # # 10 visisteurs
+        # 10.times do |f|
+        #     FactoryGirl.create(:user)
+        # end
+
+        # # x Etablissements avec 3 u
+        # 60.times do |f|
+        #     entreprise = FactoryGirl.create(:etablissement, nbr_users: 3)
+        # end
+
+        # 300.times do |f|
+        #     entreprise = FactoryGirl.create(:fournisseur) # par défaut 1 utilisateur
+        # end
+
+        10.times do |f|
+            FactoryGirl.create(:consultation)
         end
-
-        300.times do |f|
-            entreprise = FactoryGirl.create(:fournisseur)
-            utilisateur = FactoryGirl.create(:user, :fournisseur)
-            utilisateur.entreprise = entreprise
-            utilisateur.save
-        end
-
-
 
     end
 end
