@@ -1,0 +1,13 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Marché et fournisseur associé</h3>
+  </div>
+  <div class="panel-body">
+<% market_fournisseur_id = SecureRandom.uuid %>
+<%= f.text_field :code, label: "Code du marché" %>
+<%= render 'shared/fournisseur_autocomplete_field', f: f %>
+
+<br/>
+<%= f.link_to_remove "Supprimer le marché" %>
+</div>
+</div>

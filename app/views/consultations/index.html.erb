@@ -1,5 +1,37 @@
-Entreprise : <%= @entreprise.nom %>
-<% @consultations.each do |consultation| %>
-<br/>
-<%= consultation.code %>
+<% if policy(Consultation.new).create? %>
+<%= render "shared/bandeau_new",
+ titre: "Consultations",
+ texte: "Module d'administration des consultations",
+ path: new_consultation_path %>
+
+<% else %>
+<%= render "shared/bandeau",
+ titre: "Consultations",
+ texte: "Liste des consultations associées à votre entreprise" %>
 <% end %>
+
+<div class="container">
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Libelle</th>
+      <th>Debut</th>
+      <th>Fin</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @consultations.each do |consultation| %>
+      <tr>
+        <td><%= link_to consultation.code, consultation %></td>
+        <td><%= consultation.libelle %></td>
+        <td><%= consultation.debut %></td>
+        <td><%= consultation.fin %></td>
+        <td><%= edit edit_consultation_path(consultation) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

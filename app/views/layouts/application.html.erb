@@ -13,6 +13,10 @@
       <%= render 'layouts/navigation' %>
     </header>
     <main role="main">
+      <% if current_user %>
+        <%= current_user.email %><br/>
+        <%= current_user.entreprise.nom %>, (<%= current_user.entreprise_type.upcase %>)<br/>
+      <% end %>
       <%= render 'layouts/messages' %>
       <%= yield %>
     </main>

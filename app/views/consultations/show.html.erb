@@ -1,0 +1,21 @@
+<%= render "shared/bandeau", titre: "Consultation", texte: "Liste des informations associées." %>
+<div class="container">
+  <p>
+    <strong>Code:</strong>
+    <%= @consultation.code %>
+  </p>
+  <p>
+    <strong>Libelle:</strong>
+    <%= @consultation.libelle %>
+  </p>
+  <p>
+    <strong>Debut:</strong>
+    <%= @consultation.debut %>
+  </p>
+  <p>
+    <strong>Fin:</strong>
+    <%= @consultation.fin %>
+  </p>
+  <%= back consultations_path %>
+  <%= edit edit_consultation_path(@consultation) %>
+</div>

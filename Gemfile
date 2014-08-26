@@ -18,6 +18,7 @@ gem 'high_voltage'
 gem 'pundit', github: 'elabs/pundit'
 gem 'rails4-autocomplete', '~> 1.1.0'
 gem 'bootstrap_form'
+gem 'nested_form'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]

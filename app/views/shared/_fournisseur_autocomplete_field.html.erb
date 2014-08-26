@@ -1,0 +1,8 @@
+<% entreprise_id = SecureRandom.uuid %>
+<% entreprise_type = SecureRandom.uuid %>
+<div class="form-group">
+  <%= f.label :entreprise %>
+  <%= f.autocomplete_field :entreprise_nom,  autocomplete_user_entreprise_users_path, :update_elements => {:id => "##{entreprise_id}", :entreprise_type => "##{entreprise_type}"}, size: 75, class: 'form-control'%>
+  <%= f.hidden_field :entreprise_id, id: "#{entreprise_id}" %>
+  <%= f.hidden_field :entreprise_type, id: "#{entreprise_type}" %>
+</div>
