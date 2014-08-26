@@ -9,7 +9,9 @@ class UserPolicy
   def autocomplete_user_entreprise?
     @current_user.admin? ||  @current_user.etablissement?
   end
-
+  def autocomplete_user_fournisseur?
+    @current_user.admin? ||  @current_user.etablissement?
+  end
   def index?
     @current_user.admin?
   end

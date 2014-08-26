@@ -2,7 +2,7 @@ class ConsultationsController < ApplicationController
 	before_filter :authenticate_user!
 	
 
-	before_action :set_entreprise
+	before_action :set_entreprises
 	before_action :set_consultation, only: [:show, :edit, :update, :destroy]
 	
 	after_action :verify_authorized
@@ -21,12 +21,11 @@ class ConsultationsController < ApplicationController
 
 	def new
 		@consultation = current_user.entreprise.consultations.build
-		@consultation.markets.first_or_initialize
-		@etablissements=Etablissement.all
+		@consultation.markets.first_or_initialize		
 		authorize @consultation
 	end
 
-	def create
+	def create		
 		@consultation = Consultation.new(consultation_params)
 		authorize @consultation
 		respond_to do |format|
@@ -42,8 +41,7 @@ class ConsultationsController < ApplicationController
 		authorize @consultation
 	end
 
-	def edit		
-		@etablissements=Etablissement.all
+	def edit			
 		authorize @consultation
 	end
 
@@ -79,7 +77,8 @@ class ConsultationsController < ApplicationController
 	end
 
 
-	def set_entreprise
+	def set_entreprises
 		@entreprise = current_user.entreprise
+		@etablissements= Etablissement.all
 	end
 end

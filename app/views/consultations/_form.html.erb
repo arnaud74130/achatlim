@@ -1,5 +1,6 @@
 
 <%= bootstrap_nested_form_for(@consultation) do |f| %>
+<%= render 'shared/model_errors', modele: @consultation %>
   <%= f.text_field :code %>
   <%= f.date_field :debut %>
   <%= f.date_field :fin %>

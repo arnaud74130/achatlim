@@ -7,7 +7,7 @@
       <%= f.label :role, "Rôle" %>
       <%= f.select(:role, User.roles.keys.map {|role| [role.titleize,role]},{}, id: "select_entreprise_#{user.id}") %>
     </div>
-    <%= render 'shared/fournisseur_autocomplete_field', f: f %>
+    <%= render 'fournisseur_autocomplete_field', f: f %>
 
     <%= f.submit 'Change Role', :class => 'btn btn-primary btn-xs', id: "submit_btn_user_#{user.id}" %>
   <% end %>

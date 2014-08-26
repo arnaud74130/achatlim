@@ -10,5 +10,6 @@ Rails.application.routes.draw do
 
   resources :users do
   	get :autocomplete_user_entreprise, :on => :collection
+  	get :autocomplete_user_fournisseur, :on => :collection
   end
 end

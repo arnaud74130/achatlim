@@ -11,6 +11,14 @@ class UsersController < ApplicationController
     entreprises = entreprises_etb + entreprises_f
     render :json => entreprises.map { |entreprise| {id: entreprise.id, label: entreprise.nom, value: entreprise.nom, entreprise_type: entreprise.class.name} }
   end
+  
+  def autocomplete_user_fournisseur
+    authorize current_user
+    term = params[:term]    
+    entreprises = Fournisseur.where('nom LIKE ?', "%#{term}%").order(:nom).all.to_a    
+    render :json => entreprises.map { |entreprise| {id: entreprise.id, label: entreprise.nom, value: entreprise.nom} }
+  end
+
 
 
   def index
