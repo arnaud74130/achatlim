@@ -5,10 +5,6 @@ class ConsultationPolicy
 		@consultation = consultation
 	end
 
-	def add_marche
-		@user.admin? || @user.etablissement?
-	end
-
 	def index?
 		true #all authenticate users can access index page
 	end
@@ -24,7 +20,7 @@ class ConsultationPolicy
 	def edit?
 		@user.admin? || @user.etablissement?
 	end
-	
+
 	def create?
 		@user.admin? || @user.etablissement?
 	end

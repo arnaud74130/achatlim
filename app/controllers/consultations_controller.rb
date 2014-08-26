@@ -7,13 +7,6 @@ class ConsultationsController < ApplicationController
 	
 	after_action :verify_authorized
 
-	def add_marche
-		respond_to do |format|
-			format.js
-		end
-	end
-
-
 	def index
 		@consultations = current_user.entreprise.consultations
 		authorize Consultation
