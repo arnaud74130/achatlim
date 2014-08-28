@@ -5,7 +5,7 @@ module Features
       fill_in 'Email', with: email
       fill_in 'Password', with: password
       fill_in 'Password confirmation', :with => confirmation
-      click_button 'Sign up'
+      click_button 'Connection'
     end
 
     def signin(email, password)

@@ -13,9 +13,9 @@ class ConsultationsController < ApplicationController
 	end
 
 	def new
+		authorize Consultation
 		@consultation = current_user.entreprise.consultations.build
-		@consultation.markets.first_or_initialize		
-		authorize @consultation
+		@consultation.markets.first_or_initialize				
 	end
 
 	def create		
