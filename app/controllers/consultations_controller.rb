@@ -23,7 +23,7 @@ class ConsultationsController < ApplicationController
 		authorize @consultation
 		respond_to do |format|
 			if @consultation.save
-				format.html { redirect_to @consultation, notice: 'Consultation was successfully created.' }
+				format.html { redirect_to @consultation, notice: 'La consultation a été créé avec succès.' }
 			else
 				format.html { render :new }
 			end

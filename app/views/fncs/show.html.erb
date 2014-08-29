@@ -1,0 +1,124 @@
+<%= render "shared/bandeau", titre: "Consultation #{@fnc.market.consultation.code}, marché #{@fnc.market.code}", texte: "Liste des informations associées à la fiche de non conformité" %>
+<p id="notice"><%= notice %></p>
+<div class="container">
+<p>
+  <strong>Date creation:</strong>
+  <%= @fnc.date_creation %>
+</p>
+
+<p>
+  <strong>Raison litige:</strong>
+  <%= @fnc.raison_litige %>
+</p>
+
+<p>
+  <strong>Numero commande:</strong>
+  <%= @fnc.numero_commande %>
+</p>
+
+<p>
+  <strong>Produits:</strong>
+  <%= @fnc.produits %>
+</p>
+
+<p>
+  <strong>Commande passee:</strong>
+  <%= @fnc.commande_passee %>
+</p>
+
+<p>
+  <strong>Livraison demandee:</strong>
+  <%= @fnc.livraison_demandee %>
+</p>
+
+<p>
+  <strong>Lot ou dlc:</strong>
+  <%= @fnc.lot_ou_dlc %>
+</p>
+
+<p>
+  <strong>Instruction avoir:</strong>
+  <%= @fnc.instruction_avoir %>
+</p>
+
+<p>
+  <strong>Instruction facture:</strong>
+  <%= @fnc.instruction_facture %>
+</p>
+
+<p>
+  <strong>Instruction surv prepa:</strong>
+  <%= @fnc.instruction_surv_prepa %>
+</p>
+
+<p>
+  <strong>Instruction reprendre:</strong>
+  <%= @fnc.instruction_reprendre %>
+</p>
+
+<p>
+  <strong>Instruction relivrer:</strong>
+  <%= @fnc.instruction_relivrer %>
+</p>
+
+<p>
+  <strong>Instruction autre:</strong>
+  <%= @fnc.instruction_autre %>
+</p>
+
+
+
+<p>
+  <strong>Respect delais:</strong>
+  <%= @fnc.respect_delais %>
+</p>
+
+<p>
+  <strong>Proprete camion:</strong>
+  <%= @fnc.proprete_camion %>
+</p>
+
+<p>
+  <strong>Etat emballage:</strong>
+  <%= @fnc.etat_emballage %>
+</p>
+
+<p>
+  <strong>Conformite produit:</strong>
+  <%= @fnc.conformite_produit %>
+</p>
+
+<p>
+  <strong>Respect dlc:</strong>
+  <%= @fnc.respect_dlc %>
+</p>
+
+<p>
+  <strong>Temperature produit:</strong>
+  <%= @fnc.temperature_produit %>
+</p>
+
+<p>
+  <strong>Abs tracabilite:</strong>
+  <%= @fnc.abs_tracabilite %>
+</p>
+
+<p>
+  <strong>Tarification:</strong>
+  <%= @fnc.tarification %>
+</p>
+
+<p>
+  <strong>Observations:</strong>
+  <% @fnc.observations.each do |obs| %>
+  <p>
+  <%= obs.message %><br/>
+  <i><%= l(obs.created_at) %>, <%= obs.user.nom %>, (<%= obs.user.entreprise.nom %>, <%= obs.user.entreprise_type %>) </i>
+  </p>
+
+
+  <% end %>
+</p>
+ <%= back fnc_path(@fnc) %>
+  <%= edit edit_fnc_path(@fnc) %>
+</div>

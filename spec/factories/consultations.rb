@@ -17,6 +17,18 @@ FactoryGirl.define do
 		after(:create) do |consultation, evaluator|
 			consultation.etablissements = create_list(:etablissement, evaluator.nbr_etablissements)
 			consultation.markets = create_list(:market, evaluator.nbr_marches)
+			consultation.markets.each do |marche|
+				2.times do
+					fnc = create(:fnc)
+					marche.fncs << fnc
+					observation_etb = create(:observation)
+					observation_fourn = create(:observation)
+					observation_etb.user = consultation.etablissements.first.users.first
+					observation_fourn.user = marche.fournisseur.users.first
+					fnc.observations << observation_etb
+					fnc.observations << observation_fourn					
+				end
+			end
 		end
 	end
 end

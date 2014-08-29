@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :observations
+
+  resources :fncs
+
   resources :fournisseurs
 
   resources :etablissements

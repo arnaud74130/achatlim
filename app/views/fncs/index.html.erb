@@ -1,0 +1,32 @@
+<%= render "shared/bandeau_new",
+ titre: "Fiche de non conformité",
+ texte: "Liste des fiches de non conformité associées à votre entreprise",
+ path: new_fnc_path %>
+<div class="container">
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Numéro</th>
+      <th>Date creation</th>
+      <th>Raison litige</th>
+      <th>Numero commande</th>
+      <th>Produits</th>
+      <th>Commande passee</th>
+ </tr>
+  </thead>
+
+  <tbody>
+    <% @fncs.each do |fnc| %>
+      <tr>
+         <td><%=link_to fnc.id, fnc_path(fnc) %></td>
+        <td><%= fnc.date_creation %></td>
+        <td><%= fnc.raison_litige %></td>
+        <td><%= fnc.numero_commande %></td>
+        <td><%= fnc.produits %></td>
+        <td><%= fnc.commande_passee %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+

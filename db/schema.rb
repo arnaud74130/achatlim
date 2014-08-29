@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140822152306) do
+ActiveRecord::Schema.define(version: 20140829130310) do
 
   create_table "consultations", force: true do |t|
     t.string   "code"
@@ -43,6 +43,37 @@ ActiveRecord::Schema.define(version: 20140822152306) do
     t.datetime "updated_at"
   end
 
+  create_table "fncs", force: true do |t|
+    t.date     "date_creation"
+    t.string   "raison_litige"
+    t.string   "numero_commande"
+    t.string   "produits"
+    t.date     "commande_passee"
+    t.date     "livraison_demandee"
+    t.string   "lot_ou_dlc"
+    t.boolean  "instruction_avoir"
+    t.boolean  "instruction_facture"
+    t.boolean  "instruction_surv_prepa"
+    t.boolean  "instruction_reprendre"
+    t.boolean  "instruction_relivrer"
+    t.string   "instruction_autre"
+    t.string   "respect_delais"
+    t.string   "proprete_camion"
+    t.string   "etat_emballage"
+    t.string   "conformite_produit"
+    t.string   "respect_dlc"
+    t.string   "temperature_produit"
+    t.string   "abs_tracabilite"
+    t.string   "tarification"
+    t.integer  "market_id"
+    t.integer  "observation_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "fncs", ["market_id"], name: "index_fncs_on_market_id"
+  add_index "fncs", ["observation_id"], name: "index_fncs_on_observation_id"
+
   create_table "fournisseurs", force: true do |t|
     t.string   "nom"
     t.string   "telephone"
@@ -65,6 +96,17 @@ ActiveRecord::Schema.define(version: 20140822152306) do
 
   add_index "markets", ["consultation_id"], name: "index_markets_on_consultation_id"
   add_index "markets", ["fournisseur_id"], name: "index_markets_on_fournisseur_id"
+
+  create_table "observations", force: true do |t|
+    t.string   "message"
+    t.integer  "fnc_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "observations", ["fnc_id"], name: "index_observations_on_fnc_id"
+  add_index "observations", ["user_id"], name: "index_observations_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

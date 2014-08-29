@@ -21,7 +21,7 @@ feature 'Consultation', :devise do
 		fill_in 'consultation[markets_attributes][0][code]', with: "M1"
 		fill_in 'consultation[markets_attributes][0][fournisseur_nom]', with: "#{@fournisseur1.nom}"
 		click_button 'Créer'
-		expect(page).to have_content 'Consultation was successfully created'
+		expect(page).to have_content 'La consultation a été créé avec succès.'
 	end
 
 	scenario 'Fournisseur cannot create' do

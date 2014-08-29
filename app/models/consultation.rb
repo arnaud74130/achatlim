@@ -3,8 +3,7 @@ class Consultation < ActiveRecord::Base
 	before_destroy {|consultation| consultation.etablissements.clear}
 	has_many :markets, :dependent => :delete_all
 
-
 	accepts_nested_attributes_for :markets, allow_destroy: true
-
 	validates :code, presence: true
+	
 end

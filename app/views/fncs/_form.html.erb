@@ -1,0 +1,33 @@
+<%= bootstrap_nested_form_for(@fnc) do |f| %>
+<%= render 'shared/model_errors', modele: @fnc %>
+
+    <%= f.date_field :date_creation %>
+    <%= f.text_field :raison_litige, label: 'Raison du litige' %>
+    <%= f.text_field :numero_commande, label: 'Numéro de commande' %>
+    <%= f.text_field :produits %>
+    <%= f.date_field :commande_passee, label: 'Commande passée le' %>
+    <%= f.date_field :livraison_demandee, label: 'Livraison demandée le' %>
+    <%= f.text_field :lot_ou_dlc, label: 'Préciser le numéro de lot et la D.L.C' %>
+
+    <%= f.check_box :instruction_avoir, label: 'Faire un avoir' %>
+    <%= f.check_box :instruction_facture, label: 'Faire une facture' %>
+    <%= f.check_box :instruction_surv_prepa, label: 'Surveiller les préparations' %>
+    <%= f.check_box :instruction_reprendre, label: 'Marchandise à reprendre' %>
+    <%= f.check_box :instruction_relivrer, label: 'Marchandise à relivrer' %>
+    <%= f.text_field :instruction_autre, label: 'Autre' %>
+
+    <%= f.collection_select :respect_delais, %w[A B C], :to_s, :to_s, include_blank: false, label: 'Respect des délais' %>
+    <%= f.collection_select :proprete_camion, %w[A B C], :to_s, :to_s, include_blank: false, label: 'Propreté du camion' %>
+    <%= f.collection_select :etat_emballage, %w[A B C], :to_s, :to_s, include_blank: false, label: 'Etat des emballages' %>
+    <%= f.collection_select :conformite_produit, %w[A B C], :to_s, :to_s, include_blank: false, label: 'Conformite produits/poids' %>
+    <%= f.collection_select :respect_dlc, %w[A B C], :to_s, :to_s, include_blank: false, label: 'Respect des D.L.C' %>
+    <%= f.collection_select :temperature_produit, %w[A B C], :to_s, :to_s, include_blank: false, label: 'Temperature produit' %>
+    <%= f.collection_select :abs_tracabilite, %w[A B C], :to_s, :to_s, include_blank: false, label: 'Absence de tracabilité' %>
+    <%= f.collection_select :tarification, %w[A B C], :to_s, :to_s, include_blank: false, label: 'Tarification' %>
+
+    <%= f.fields_for :observations %>
+    <span class="glyphicon glyphicon-plus"></span>
+  <%= f.link_to_add "Observation supplémentaire", :observations %>
+  <br/>
+    <%= f.submit %>
+<% end %>
