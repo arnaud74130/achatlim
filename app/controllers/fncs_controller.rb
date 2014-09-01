@@ -5,12 +5,15 @@ class FncsController < ApplicationController
   # GET /fncs
   # GET /fncs.json
   def index
-    @fncs = Fnc.all
+    @fncs = current_user.fiches
   end
 
   # GET /fncs/1
   # GET /fncs/1.json
   def show
+    @etablissement = current_user.entreprise
+    @consultation = @fnc.market.consultation
+    @marche = @fnc.market
   end
 
   # GET /fncs/new
@@ -67,13 +70,13 @@ class FncsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_fnc
-      @fnc = Fnc.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_fnc
+    @fnc = current_user.fiches.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def fnc_params
-      params.require(:fnc).permit(:date_creation, :raison_litige, :numero_commande, :produits, :commande_passee, :livraison_demandee, :lot_ou_dlc, :observation_id, :instruction_avoir, :instruction_facture, :instruction_surv_prepa, :instruction_reprendre, :instruction_relivrer, :instruction_autre, :market_id, :respect_delais, :proprete_camion, :etat_emballage, :conformite_produit, :respect_dlc, :temperature_produit, :abs_tracabilite, :tarification,:observations_attributes => [:id, :etablissement, :fournisseur, :_destroy])
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def fnc_params
+    params.require(:fnc).permit(:date_creation, :raison_litige, :numero_commande, :produits, :commande_passee, :livraison_demandee, :lot_ou_dlc, :observation_id, :instruction_avoir, :instruction_facture, :instruction_surv_prepa, :instruction_reprendre, :instruction_relivrer, :instruction_autre, :market_id, :respect_delais, :proprete_camion, :etat_emballage, :conformite_produit, :respect_dlc, :temperature_produit, :abs_tracabilite, :tarification,:observations_attributes => [:id, :etablissement, :fournisseur, :_destroy])
+  end
 end

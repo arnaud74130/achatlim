@@ -114,31 +114,6 @@
 </tr>
 </table>
 
-<% @fnc.observations.each do |obser| %>
-  <% if obser.user.entreprise_type=="Etablissement"  %>
-    <div class="panel panel-info">
-      <div class="panel-heading">
-        <h3 class="panel-title">Etablissement</h3>
-      </div>
-      <div class="panel-body">
-        <%= obser.message %>
-      </div>
-      <div class="panel-footer"><%= l(obser.created_at) %> </div>
-    </div>
-
-  <% else %>
-    <div class="panel panel-success">
-      <div class="panel-heading">
-        <h3 class="panel-title">Titulaire du marché</h3>
-      </div>
-      <div class="panel-body">
-        <%= obser.message %>
-      </div>
-      <div class="panel-footer"><%= l(obser.created_at) %> </div>
-    </div>
-  <% end %>
-<% end %>
-
 <table class="table table-bordered">
   <tr>
     <td rowspan="3">NON CONFORMITÉ</td>
@@ -189,10 +164,3 @@
     <td><%= @fnc.abs_tracabilite %> </td>
   </tr>
 </table>
-
-
-
-
-
-
-
