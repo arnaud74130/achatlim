@@ -1,4 +1,5 @@
 class FncsController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_fnc, only: [:show, :edit, :update, :destroy]
 
   # GET /fncs
@@ -19,6 +20,10 @@ class FncsController < ApplicationController
 
   # GET /fncs/1/edit
   def edit
+    @etablissement = current_user.entreprise
+    @consultation = @fnc.market.consultation
+    @marche = @fnc.market
+
   end
 
   # POST /fncs

@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   validates_presence_of   :password, :on=>:create
   validates_confirmation_of   :password, :on=>:create
   validates_length_of :password, :within => Devise.password_length, :allow_blank => true
+  before_save :pretty_records
 
   def set_default_role
     self.role ||= :visiteur
@@ -22,5 +23,19 @@ class User < ActiveRecord::Base
     :recoverable, :rememberable, :trackable, :confirmable
   def entreprise_nom
     entreprise.nom if entreprise
+  end
+
+  def full_name
+    if prenom
+      self.nom+" "+self.prenom
+    else
+      self.nom
+    end
+
+  end
+
+  def pretty_records
+    self.nom= nom.upcase
+    self.prenom=prenom.titleize if self.prenom    
   end
 end

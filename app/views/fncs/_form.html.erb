@@ -1,5 +1,7 @@
 <%= bootstrap_nested_form_for(@fnc) do |f| %>
 <%= render 'shared/model_errors', modele: @fnc %>
+<% if @fnc.new_record? %>
+
 
     <%= f.date_field :date_creation %>
     <%= f.text_field :raison_litige, label: 'Raison du litige' %>
@@ -30,4 +32,7 @@
   <%= f.link_to_add "Observation supplémentaire", :observations %>
   <br/>
     <%= f.submit %>
+    <% else %>
+        <%= render 'form_update', f: f %>
+    <% end %>
 <% end %>

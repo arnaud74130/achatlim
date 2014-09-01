@@ -14,7 +14,7 @@ FactoryGirl.define do
     instruction_surv_prepa {[false,true].sample}
     instruction_reprendre {[false,true].sample}
     instruction_relivrer {[false,true].sample}
-    instruction_autre {["A","B","C"].sample}
+    instruction_autre {Faker::Lorem.sentence}
     respect_delais {["A","B","C"].sample}
     proprete_camion {["A","B","C"].sample}
     etat_emballage {["A","B","C"].sample}

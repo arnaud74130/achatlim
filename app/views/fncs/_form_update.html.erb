@@ -1,0 +1,198 @@
+<table class="table table-bordered">
+  <tr class="danger">
+    <td><strong>CONSULTATION CONCERNEE</strong></td>
+    <td><%=@consultation.libelle  %> <br/> <i>(code: <%= @consultation.code %>)</i></td>
+  </tr>
+  <tr>
+    <td>Date d'émission</td>
+    <td><%= l(@fnc.created_at) %> </td>
+  </tr>
+ </table>
+
+<table class="table table-bordered">
+  <tr>
+    <td>ETABLISSEMENT</td>
+    <td><%= @etablissement.nom %> </td>
+  </tr>
+  <tr>
+    <td>TEL</td>
+    <td><%= @etablissement.telephone %> </td>
+  </tr>
+  <tr>
+    <td>FAX</td>
+    <td><%= @etablissement.fax %></td>
+  </tr>
+  <tr>
+    <td rowspan="2">EMETTEUR</td>
+    <td><%= current_user.full_name %></td>
+  </tr>
+  <tr>
+    <td><%= current_user.email %></td>
+  </tr>
+</table>
+
+
+
+<table class="table table-bordered">
+   </tr>
+    <tr>
+    <td><strong>TITUTLAIRE DU MARCHÉ</strong></td>
+    <td><%= @marche.fournisseur.nom %> <br/> <i>(tel: <%=  @marche.fournisseur.telephone %>)</i></td>
+  </tr>
+  <tr>
+    <td><strong>RAISON DU LITIGE</strong></td>
+    <td><%= @fnc.raison_litige %></td>
+  </tr>
+</table>
+
+<table class="table table-bordered">
+    <tr class="info">
+    <td>Numéro de marché</td>
+    <td>Numéro de commande</td>
+    <td>Produit(s) concerné(s)</td>
+  </tr>
+  <tr>
+    <td><%= @marche.code %></td>
+    <td><%= @fnc.numero_commande %> </td>
+    <td><%= @fnc.produits %> </td>
+  </tr>
+  <tr class="info">
+    <td>Commande passée le</td>
+    <td>Livraison demandée le</td>
+    <td>Préciser le numéro de lot et la DLC</td>
+  </tr>
+  <tr>
+    <td><%= @fnc.commande_passee %></td>
+    <td><%= @fnc.livraison_demandee %></td>
+    <td><%= @fnc.lot_ou_dlc %></td>
+  </tr>
+</table>
+
+<table class="table table-bordered">
+  <tr>
+    <td rowspan="4"><strong>INSTRUCTIONS</strong></td>
+    <td>Faire un avoir</td>
+    <td>
+      <% if @fnc.instruction_avoir %>
+        <span class="glyphicon glyphicon-ok"></span>
+      <% end %>
+    </td>
+    <td>Surveiller les preparations</td>
+    <td>
+      <% if @fnc.instruction_surv_prepa %>
+        <span class="glyphicon glyphicon-ok"></span>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td>Faire une facture</td>
+    <td>
+      <% if @fnc.instruction_facture %>
+        <span class="glyphicon glyphicon-ok"></span>
+      <% end %>
+    </td>
+    <td>Marchandise à reprendre</td>
+    <td>
+      <% if @fnc.instruction_reprendre %>
+        <span class="glyphicon glyphicon-ok"></span>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td>Marchandise à relivrer</td>
+    <td>
+      <% if @fnc.instruction_relivrer %>
+        <span class="glyphicon glyphicon-ok"></span>
+      <% end %>
+    </td>
+  </tr>
+<tr>
+  <td>Autre</td>
+  <td colspan="3"><%= @fnc.instruction_autre %></td>
+</tr>
+</table>
+
+<% @fnc.observations.each do |obser| %>
+  <% if obser.user.entreprise_type=="Etablissement"  %>
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">Etablissement</h3>
+      </div>
+      <div class="panel-body">
+        <%= obser.message %>
+      </div>
+      <div class="panel-footer"><%= l(obser.created_at) %> </div>
+    </div>
+
+  <% else %>
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h3 class="panel-title">Titulaire du marché</h3>
+      </div>
+      <div class="panel-body">
+        <%= obser.message %>
+      </div>
+      <div class="panel-footer"><%= l(obser.created_at) %> </div>
+    </div>
+  <% end %>
+<% end %>
+
+<table class="table table-bordered">
+  <tr>
+    <td rowspan="3">NON CONFORMITÉ</td>
+    <td>"A"</td>
+    <td>Non conformité à faible impact sur l'activité</td>
+  </tr>
+  <tr>
+    <td>"B"</td>
+    <td>Non conformité à impact moyen sur l'activité</td>
+  </tr>
+  <tr>
+    <td>"C"</td>
+    <td>Non conformité à fort impact sur l'activité</td>
+  </tr>
+</table>
+
+<table class="table table-bordered">
+  <tr>
+    <td>Respect des délais</td>
+    <td><%= @fnc.respect_delais %> </td>
+  </tr>
+  <tr>
+    <td>Propreté du camion</td>
+    <td><%= @fnc.proprete_camion %> </td>
+  </tr>
+  <tr>
+    <td>Etat des emballages</td>
+    <td><%= @fnc.etat_emballage %> </td>
+  </tr>
+  <tr>
+    <td>Conformité produits/poids</td>
+    <td><%= @fnc.conformite_produit %> </td>
+  </tr>
+  <tr>
+    <td>Respect des D.L.C</td>
+    <td><%= @fnc.respect_dlc %> </td>
+  </tr>
+  <tr>
+    <td>Température produit</td>
+    <td><%= @fnc.temperature_produit %> </td>
+  </tr>
+  <tr>
+    <td>Tarification</td>
+    <td><%= @fnc.tarification %> </td>
+  </tr>
+ <tr>
+    <td>Absence traçabilité</td>
+    <td><%= @fnc.abs_tracabilite %> </td>
+  </tr>
+</table>
+
+
+
+
+
+
+
