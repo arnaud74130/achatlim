@@ -2,23 +2,27 @@ class FncsController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_fnc, only: [:show, :edit, :update, :destroy]
 
-  # GET /fncs
-  # GET /fncs.json
+
   def index
-    @fncs = current_user.fiches
+    if current_user.entreprise_type=='Etablissement'
+      @fncs = Fnc.fiches_pour_etablissement(current_user.entreprise, "ALL")
+    else
+      @fncs = Fnc.fiches_pour_fournisseur(current_user.entreprise, "ALL")
+    end
+    
   end
 
-  # GET /fncs/1
-  # GET /fncs/1.json
   def show
     @etablissement = current_user.entreprise
     @consultation = @fnc.market.consultation
     @marche = @fnc.market
   end
 
-  # GET /fncs/new
   def new
     @fnc = Fnc.new
+    market = Market.find(params[:market_id])
+    @fnc.market = market
+    @fnc.observations.build
   end
 
   # GET /fncs/1/edit
@@ -29,8 +33,6 @@ class FncsController < ApplicationController
 
   end
 
-  # POST /fncs
-  # POST /fncs.json
   def create
     @fnc = Fnc.new(fnc_params)
 
@@ -45,8 +47,6 @@ class FncsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /fncs/1
-  # PATCH/PUT /fncs/1.json
   def update
     respond_to do |format|
       if @fnc.update(fnc_params)
@@ -59,8 +59,6 @@ class FncsController < ApplicationController
     end
   end
 
-  # DELETE /fncs/1
-  # DELETE /fncs/1.json
   def destroy
     @fnc.destroy
     respond_to do |format|
@@ -72,11 +70,11 @@ class FncsController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_fnc
-    @fnc = current_user.fiches.find(params[:id])
+    @fnc = Fnc.find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def fnc_params
-    params.require(:fnc).permit(:date_creation, :raison_litige, :numero_commande, :produits, :commande_passee, :livraison_demandee, :lot_ou_dlc, :observation_id, :instruction_avoir, :instruction_facture, :instruction_surv_prepa, :instruction_reprendre, :instruction_relivrer, :instruction_autre, :market_id, :respect_delais, :proprete_camion, :etat_emballage, :conformite_produit, :respect_dlc, :temperature_produit, :abs_tracabilite, :tarification,:observations_attributes => [:id, :etablissement, :fournisseur, :_destroy])
+    params.require(:fnc).permit(:date_creation, :raison_litige, :numero_commande, :produits, :commande_passee, :livraison_demandee, :lot_ou_dlc, :observation_id, :instruction_avoir, :instruction_facture, :instruction_surv_prepa, :instruction_reprendre, :instruction_relivrer, :instruction_autre, :market_id, :respect_delais, :proprete_camion, :etat_emballage, :conformite_produit, :respect_dlc, :temperature_produit, :abs_tracabilite, :tarification, :market_id, :observations_attributes => [:id, :etablissement, :fournisseur, :_destroy])
   end
 end

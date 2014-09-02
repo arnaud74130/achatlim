@@ -1,4 +1,4 @@
-<%= render "shared/bandeau", titre: "Fiche de non conformité", texte: "Création d'une nouvelle fiche. Veuillez renseigner les différents champs." %>
+<%= render "shared/bandeau", titre: "Fiche de non conformité", texte: "Création d'une nouvelle fiche pour la consultation #{@fnc.consultation.libelle}, concernant le marché porté par #{@fnc.market.fournisseur.nom} (#{@fnc.market.code})" %>
 <div class="container">
   <%= render 'form' %>
 </div>

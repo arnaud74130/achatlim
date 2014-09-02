@@ -3,7 +3,7 @@
 <% if @fnc.new_record? %>
 
 
-    <%= f.date_field :date_creation %>
+    <!-- %= f.date_field :date_creation % -->
     <%= f.text_field :raison_litige, label: 'Raison du litige' %>
     <%= f.text_field :numero_commande, label: 'Numéro de commande' %>
     <%= f.text_field :produits %>
@@ -18,14 +18,14 @@
     <%= f.check_box :instruction_relivrer, label: 'Marchandise à relivrer' %>
     <%= f.text_field :instruction_autre, label: 'Autre' %>
 
-    <%= f.collection_select :respect_delais, %w[A B C], :to_s, :to_s, include_blank: false, label: 'Respect des délais' %>
-    <%= f.collection_select :proprete_camion, %w[A B C], :to_s, :to_s, include_blank: false, label: 'Propreté du camion' %>
-    <%= f.collection_select :etat_emballage, %w[A B C], :to_s, :to_s, include_blank: false, label: 'Etat des emballages' %>
-    <%= f.collection_select :conformite_produit, %w[A B C], :to_s, :to_s, include_blank: false, label: 'Conformite produits/poids' %>
-    <%= f.collection_select :respect_dlc, %w[A B C], :to_s, :to_s, include_blank: false, label: 'Respect des D.L.C' %>
-    <%= f.collection_select :temperature_produit, %w[A B C], :to_s, :to_s, include_blank: false, label: 'Temperature produit' %>
-    <%= f.collection_select :abs_tracabilite, %w[A B C], :to_s, :to_s, include_blank: false, label: 'Absence de tracabilité' %>
-    <%= f.collection_select :tarification, %w[A B C], :to_s, :to_s, include_blank: false, label: 'Tarification' %>
+    <%= f.collection_select :respect_delais, %w[A B C], :to_s, :to_s, include_blank: true, label: 'Respect des délais' %>
+    <%= f.collection_select :proprete_camion, %w[A B C], :to_s, :to_s, include_blank: true, label: 'Propreté du camion' %>
+    <%= f.collection_select :etat_emballage, %w[A B C], :to_s, :to_s, include_blank: true, label: 'Etat des emballages' %>
+    <%= f.collection_select :conformite_produit, %w[A B C], :to_s, :to_s, include_blank: true, label: 'Conformite produits/poids' %>
+    <%= f.collection_select :respect_dlc, %w[A B C], :to_s, :to_s, include_blank: true, label: 'Respect des D.L.C' %>
+    <%= f.collection_select :temperature_produit, %w[A B C], :to_s, :to_s, include_blank: true, label: 'Temperature produit' %>
+    <%= f.collection_select :abs_tracabilite, %w[A B C], :to_s, :to_s, include_blank: true, label: 'Absence de tracabilité' %>
+    <%= f.collection_select :tarification, %w[A B C], :to_s, :to_s, include_blank: true, label: 'Tarification' %>
 
     <%= f.fields_for :observations %>
     <span class="glyphicon glyphicon-plus"></span>

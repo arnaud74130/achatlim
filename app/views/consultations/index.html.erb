@@ -21,16 +21,35 @@
       <th></th>
     </tr>
   </thead>
-
   <tbody>
     <% @consultations.each do |consultation| %>
-      <tr>
+      <tr class="danger">
         <td><%= link_to consultation.code, consultation %></td>
         <td><%= consultation.libelle %></td>
         <td><%= consultation.debut %></td>
         <td><%= consultation.fin %></td>
         <td><%= edit edit_consultation_path(consultation) %></td>
       </tr>
+      <% premier_passage=true %>
+      <% consultation.markets.each do |marche| %>
+      <% if premier_passage %>
+      <tr class="info">
+        <td></td>
+        <td><strong>Marchés associés</strong></td>
+        <td><strong>Code</strong></td>
+        <td><strong>Titulaire</strong></td>
+        <td><strong>Déclaration</strong></td>
+      </tr>
+      <% premier_passage=false %>
+      <% end %>
+      <tr class="info">
+        <td></td>
+        <td></td>
+        <td><%= marche.code %> </td>
+        <td><%= marche.fournisseur.nom %> </td>
+        <td><%= link_to "FNC", new_marche_fnc_path(marche), class: "btn btn-primary" %> </td>
+      </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>

@@ -58,5 +58,5 @@ Rails.application.configure do
   # config.action_view.logger
   # config.action_mailer.logger
   # config.active_resource.logger
-  #config.active_record.logger = nil
+  config.active_record.logger = nil
 end
