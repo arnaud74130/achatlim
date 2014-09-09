@@ -1,10 +1,11 @@
 <% if f.object.new_record? %>
   <div class="panel panel-primary">
     <div class="panel-heading">
-      <h3 class="panel-title">Observations</h3>
+      <h3 class="panel-title">Information complémentaire</h3>
     </div>
     <div class="panel-body">
       <%= f.text_area :message %>
+      <%= f.hidden_field :user_id, value: "#{current_user.id}" %>
     <br/>
     <%= f.link_to_remove "Supprimer l'observation" %>
     </div>

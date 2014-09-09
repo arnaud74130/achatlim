@@ -1,9 +1,6 @@
 <%= bootstrap_nested_form_for(@fnc) do |f| %>
 <%= render 'shared/model_errors', modele: @fnc %>
 <% if @fnc.new_record? %>
-
-
-    <!-- %= f.date_field :date_creation % -->
     <%= f.text_field :raison_litige, label: 'Raison du litige' %>
     <%= f.text_field :numero_commande, label: 'Numéro de commande' %>
     <%= f.text_field :produits %>
@@ -28,11 +25,14 @@
     <%= f.collection_select :tarification, %w[A B C], :to_s, :to_s, include_blank: true, label: 'Tarification' %>
   <br/>
     <% else %>
-        <%= render 'form_update', f: f %>
+        <%= render 'fixed_elements'%>
     <% end %>
     <%= f.fields_for :observations %>
     <span class="glyphicon glyphicon-plus"></span>
     <%= f.link_to_add "Observation supplémentaire", :observations %>
     <br/>
+    <br/>
+    <br/>
+     <%= f.hidden_field :market_id, value: "#{@fnc.market.id}" %>
     <%= f.submit %>
 <% end %>

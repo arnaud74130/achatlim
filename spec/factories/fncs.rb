@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :fnc do
-    date_creation {Date.today-rand(2500)}
+   created_at {Date.today-rand(2500)}
     raison_litige {Faker::Lorem.sentence}
     numero_commande {Faker::Number.number(8)}
     produits {Faker::Commerce.product_name}
@@ -23,7 +23,7 @@ FactoryGirl.define do
     temperature_produit {["A","B","C"].sample}
     abs_tracabilite {["A","B","C"].sample}
     tarification {["A","B","C"].sample}
-
+    
     #market
     #observations nil
   end

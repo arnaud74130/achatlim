@@ -24,7 +24,7 @@
           <% end %>
         </td>
         <td><%=link_to fnc.id, fnc_path(fnc) %></td>
-        <td><%= fnc.date_creation %></td>
+        <td><%= l fnc.created_at, format: :short %></td>
         <td><%= fnc.raison_litige %></td>
         <td><%= fnc.produits %></td>
         <td><%= fnc.fournisseur.nom %></td>

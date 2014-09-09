@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140901134427) do
+ActiveRecord::Schema.define(version: 20140909124437) do
 
   create_table "consultations", force: true do |t|
     t.string   "code"
@@ -44,7 +44,6 @@ ActiveRecord::Schema.define(version: 20140901134427) do
   end
 
   create_table "fncs", force: true do |t|
-    t.date     "date_creation"
     t.string   "raison_litige"
     t.string   "numero_commande"
     t.string   "produits"
@@ -66,14 +65,12 @@ ActiveRecord::Schema.define(version: 20140901134427) do
     t.string   "abs_tracabilite"
     t.string   "tarification"
     t.integer  "market_id"
-    t.integer  "observation_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "etat",                   default: true
   end
 
   add_index "fncs", ["market_id"], name: "index_fncs_on_market_id"
-  add_index "fncs", ["observation_id"], name: "index_fncs_on_observation_id"
 
   create_table "fournisseurs", force: true do |t|
     t.string   "nom"
