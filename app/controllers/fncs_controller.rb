@@ -29,8 +29,8 @@ class FncsController < ApplicationController
   def edit
     @etablissement = current_user.entreprise
     @consultation = @fnc.market.consultation
-    @marche = @fnc.market
-
+    @marche = @fnc.market    
+    @fnc.observations.build
   end
 
   def create

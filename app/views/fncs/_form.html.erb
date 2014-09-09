@@ -26,13 +26,13 @@
     <%= f.collection_select :temperature_produit, %w[A B C], :to_s, :to_s, include_blank: true, label: 'Temperature produit' %>
     <%= f.collection_select :abs_tracabilite, %w[A B C], :to_s, :to_s, include_blank: true, label: 'Absence de tracabilité' %>
     <%= f.collection_select :tarification, %w[A B C], :to_s, :to_s, include_blank: true, label: 'Tarification' %>
-
-    <%= f.fields_for :observations %>
-    <span class="glyphicon glyphicon-plus"></span>
-  <%= f.link_to_add "Observation supplémentaire", :observations %>
   <br/>
-    <%= f.submit %>
     <% else %>
         <%= render 'form_update', f: f %>
     <% end %>
+    <%= f.fields_for :observations %>
+    <span class="glyphicon glyphicon-plus"></span>
+    <%= f.link_to_add "Observation supplémentaire", :observations %>
+    <br/>
+    <%= f.submit %>
 <% end %>

@@ -9,7 +9,7 @@ class Fnc < ActiveRecord::Base
 	has_one :fournisseur, through: :market
 
 	validates :raison_litige, :numero_commande,
-	:produits, :commande_passee, :livraison_demandee, :lot_ou_dlc, presence: true
+		:produits, :commande_passee, :livraison_demandee, :lot_ou_dlc, presence: true
 
 	accepts_nested_attributes_for :observations, allow_destroy: true
 

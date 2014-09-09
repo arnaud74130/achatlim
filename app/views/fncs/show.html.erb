@@ -1,29 +1,8 @@
 <%= render "shared/bandeau", titre: "Fiche de non conformité", texte: "Liste des informations associées à la fiche de non conformité" %>
 <%= render 'fixed_elements' %>
 <% @fnc.observations.each do |obser| %>
-  <% if obser.user.entreprise_type=="Etablissement"  %>
-    <div class="panel panel-info">
-      <div class="panel-heading">
-        <h3 class="panel-title">Etablissement</h3>
-      </div>
-      <div class="panel-body">
-        <%= obser.message %>
-      </div>
-      <div class="panel-footer"><%= l(obser.created_at) %> </div>
-    </div>
-
-  <% else %>
-    <div class="panel panel-success">
-      <div class="panel-heading">
-        <h3 class="panel-title">Titulaire du marché</h3>
-      </div>
-      <div class="panel-body">
-        <%= obser.message %>
-      </div>
-      <div class="panel-footer"><%= l(obser.created_at) %> </div>
-    </div>
-  <% end %>
+  <%= render 'obs_etb_titulaire', obser: obser %>
 <% end %>
  <%= back fncs_path %>
-  <%= edit edit_fnc_path(@fnc) %>
+ <%= link_to "Répondre", edit_fnc_path(@fnc), class: "btn btn-warning" %>
 </div>
