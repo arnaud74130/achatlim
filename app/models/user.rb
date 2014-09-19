@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   enum role: [:visiteur, :etablissement, :fournisseur, :admin]
   after_initialize :set_default_role, :if => :new_record?
   belongs_to :entreprise, polymorphic: true
+  has_one :consultation
   has_many :observations
 
   validates :nom, :telephone,  presence: true

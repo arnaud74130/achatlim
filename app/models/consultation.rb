@@ -2,6 +2,7 @@ class Consultation < ActiveRecord::Base
 	has_and_belongs_to_many :etablissements
 	before_destroy {|consultation| consultation.etablissements.clear}
 	has_many :markets, :dependent => :delete_all
+	belongs_to :user
 
 	
 	accepts_nested_attributes_for :markets, allow_destroy: true

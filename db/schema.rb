@@ -11,19 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140909124437) do
+ActiveRecord::Schema.define(version: 20140919154057) do
 
   create_table "consultations", force: true do |t|
     t.string   "code"
     t.string   "libelle"
     t.date     "debut"
     t.date     "fin"
-    t.integer  "etablissement_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.boolean  "statut",     default: true
   end
-
-  add_index "consultations", ["etablissement_id"], name: "index_consultations_on_etablissement_id"
 
   create_table "consultations_etablissements", id: false, force: true do |t|
     t.integer "etablissement_id", null: false
