@@ -18,17 +18,24 @@
       <th>Libelle</th>
       <th>Debut</th>
       <th>Fin</th>
+      <th>Créé par</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
     <% @consultations.each do |consultation| %>
+    <% user = User.find(consultation.user_id) %>
       <tr class="danger">
         <td><%= link_to consultation.code, consultation %></td>
         <td><%= consultation.libelle %></td>
         <td><%= consultation.debut %></td>
         <td><%= consultation.fin %></td>
-        <td><%= edit edit_consultation_path(consultation) %></td>
+        <td><%= user.full_name %> <small><i>(<%= user.entreprise.nom %>)</i></small></td>
+        <td>
+           <% if consultation.user_id == current_user.id %>
+          <%= edit edit_consultation_path(consultation) %>
+          <% end %>
+        </td>
       </tr>
       <% premier_passage=true %>
       <% consultation.markets.each do |marche| %>
@@ -47,7 +54,11 @@
         <td></td>
         <td><%= marche.code %> </td>
         <td><%= marche.fournisseur.nom %> </td>
-        <td><%= link_to "FNC", new_marche_fnc_path(marche), class: "btn btn-primary" %> </td>
+        <td>
+        <% if current_user.etablissement? || current_user.admin? %>
+          <%= link_to "FNC", new_marche_fnc_path(marche), class: "btn btn-primary" %>
+        <% end %>
+        </td>
       </tr>
       <% end %>
     <% end %>

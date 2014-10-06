@@ -1,8 +1,16 @@
-<%= render "shared/bandeau", titre: "Fiche de non conformité", texte: "Liste des informations associées à la fiche de non conformité" %>
+<% if @fnc.etat %>
+<%= render "shared/bandeau", titre: "Fiche de non conformité Cloturée", texte: "La fiche étant cloturée, vous ne pouvez plus interagir." %>
+  <% else %>
+  <%= render "shared/bandeau", titre: "Fiche de non conformité", texte: "Liste des informations associées à la fiche de non conformité. Pour compléter, veuillez cliquer sur répondre" %>
+
+<% end %>
+
 <%= render 'fixed_elements' %>
 <% @fnc.observations.each do |obser| %>
   <%= render 'obs_etb_titulaire', obser: obser %>
 <% end %>
  <%= back fncs_path %>
- <%= link_to "Répondre", edit_fnc_path(@fnc), class: "btn btn-warning" %>
+<% unless @fnc.etat %>
+  <%= link_to "Répondre", edit_fnc_path(@fnc), class: "btn btn-warning" %>
+<% end %>
 </div>

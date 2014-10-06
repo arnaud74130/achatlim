@@ -14,11 +14,11 @@ class ConsultationPolicy
 	end
 
 	def show?
-		@user.admin? || @user.etablissement?
+		true		
 	end
 
 	def edit?
-		@user.admin? || @user.etablissement?
+		true if @consultation.user_id == @user.id
 	end
 
 	def create?
@@ -26,10 +26,10 @@ class ConsultationPolicy
 	end
 
 	def update?
-		@user.admin? || @user.etablissement?
+		true if @consultation.user_id == @user.id
 	end
 
 	def destroy?
-		@user.admin? || @user.etablissement?
+		true if @consultation.user_id == @user.id
 	end
 end

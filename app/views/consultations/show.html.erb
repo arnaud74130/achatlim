@@ -16,6 +16,16 @@
     <strong>Fin:</strong>
     <%= @consultation.fin %>
   </p>
+  <p><strong>Etablissements:</strong></p>
+  <ul>
+  <% @consultation.etablissements.each do |etb| %>
+      <li><%= etb.nom %> </li>
+  <% end %>
+  </ul>
+
   <%= back consultations_path %>
-  <%= edit edit_consultation_path(@consultation) %>
+  <% if @consultation.user_id == current_user.id %>
+     <%= edit edit_consultation_path(@consultation) %>
+  <% end %>
+
 </div>
