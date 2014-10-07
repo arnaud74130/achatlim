@@ -15,26 +15,31 @@
 #     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class EtablissementsController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_etablissement, only: [:show, :edit, :update, :destroy]
+  after_action :verify_authorized
+
   def index
     @etablissements = Etablissement.all
+    authorize Etablissement
   end
 
   def show
+    authorize @etablissement
   end
 
-  # GET /etablissements/new
   def new
     @etablissement = Etablissement.new
+    authorize @etablissement
   end
 
-  # GET /etablissements/1/edit
   def edit
+    authorize @etablissement
   end
 
   def create
     @etablissement = Etablissement.new(etablissement_params)
-
+    authorize @etablissement
     respond_to do |format|
       if @etablissement.save
         format.html { redirect_to @etablissement, notice: 'Etablissement was successfully created.' }        
@@ -44,6 +49,7 @@ class EtablissementsController < ApplicationController
     end
   end
   def update
+    authorize @etablissement
     respond_to do |format|
       if @etablissement.update(etablissement_params)
         format.html { redirect_to @etablissement, notice: 'Etablissement was successfully updated.' }
@@ -54,6 +60,7 @@ class EtablissementsController < ApplicationController
   end
 
   def destroy
+    authorize @etablissement
     @etablissement.destroy
     respond_to do |format|
       format.html { redirect_to etablissements_url, notice: 'Etablissement was successfully destroyed.' }

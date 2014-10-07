@@ -15,25 +15,31 @@
 #     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class FournisseursController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_fournisseur, only: [:show, :edit, :update, :destroy]
+  after_action :verify_authorized
 
   def index
     @fournisseurs = Fournisseur.all
+    authorize Fournisseur
   end
 
   def show
+    authorize @fournisseur    
   end
 
   def new
     @fournisseur = Fournisseur.new
+    authorize @fournisseur 
   end
 
   def edit
+    authorize @fournisseur 
   end
 
   def create
     @fournisseur = Fournisseur.new(fournisseur_params)
-
+    authorize @fournisseur 
     respond_to do |format|
       if @fournisseur.save
         format.html { redirect_to @fournisseur, notice: 'Fournisseur was successfully created.' }
@@ -44,6 +50,7 @@ class FournisseursController < ApplicationController
   end
 
   def update
+    authorize @fournisseur 
     respond_to do |format|
       if @fournisseur.update(fournisseur_params)
         format.html { redirect_to @fournisseur, notice: 'Fournisseur was successfully updated.' }
@@ -54,6 +61,7 @@ class FournisseursController < ApplicationController
   end
 
   def destroy
+    authorize @fournisseur 
     @fournisseur.destroy
     respond_to do |format|
       format.html { redirect_to fournisseurs_url, notice: 'Fournisseur was successfully destroyed.' }

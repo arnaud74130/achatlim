@@ -1,10 +1,22 @@
-<h3>Plateforme d'achat</h3>
+<h3>AchatLim</h3>
 
-<p>Bienvenu sur la plateforme achat du groupement régional de commande (GRC)</p>
-<p>Veuillez-vous inscrire pour bénéficier du service</p>
-<p>Une fois votre compte validé, le GRC prendra contact avec vous afin de vérifier votre identité.</p>
-
+<% if current_user && current_user.visiteur? %>
+  <p>Veuillez prendre contact avec le Groupement Régional de Commande pour qu'il active vos droits d'accès</p>
+  <p>tel: 05.44.00.00.47</p>
+<% end %>
+<% unless current_user %>
+<p>Bienvenu sur la plateforme collaborative achat du Limousin.</p>
+<p>Dévelopée par le GCS EPSILIM avec l'appui métier du Groupement Régional de Commande, cette plateforme achat a pour objectif de simplifier les échanges entre fournisseurs et établissements</p>
+<p>Les premiers services en production sont :</p>
+<ul>
+    <li>Gestion des fiches de non conformité</li>
+    <li>Fiches logistiques</li>
+</ul>
+<p></p>
+<p>Pour rejoindre la plateforme régional, veuillez simplement renseigner vos coordonnées que nous validerons avec vous une fois que vous aurez confirmé votre email lors de l'inscription</p>
+<p>Ce service porté par le GCS EPSILIM est gratuit !</p>
 
 <p>
     <%= link_to "S'inscrire", new_user_registration_path, class: "btn btn-primary" %>
 </p>
+<% end %>

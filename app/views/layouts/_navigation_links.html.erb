@@ -1,15 +1,23 @@
 <%# add navigation links to this file %>
-<% if user_signed_in? %>
-  <li><%= link_to 'Consultations', consultations_path %></li>
-  <li><%= link_to 'Fiches', fncs_path %></li>
-  <li><%= link_to 'Mon compte', edit_user_registration_path %></li>
-  <li><%= link_to 'Quitter', destroy_user_session_path, :method=>'delete' %></li>
-<% else %>
+<% unless user_signed_in? %>
   <li><%= link_to 'Connection', new_user_session_path %></li>
   <li><%= link_to "S'inscrire", new_user_registration_path %></li>
 <% end %>
-<% if user_signed_in? %>
+
+
+<% if user_signed_in? && !current_user.visiteur? %>
+  <li><%= link_to 'Consultations', consultations_path %></li>
+  <li><%= link_to 'Fiches', fncs_path %></li>
+  <li><%= link_to 'Fournisseurs', fournisseurs_path %></li>
+  <li><%= link_to 'Etablissements', etablissements_path %></li>
   <% if current_user.admin? %>
-    <li><%= link_to 'Users', users_path %></li>
+    <li><%= link_to 'Utilisateurs', users_path %></li>
   <% end %>
+  <li><%= link_to 'Mon compte', edit_user_registration_path %></li>
 <% end %>
+<% if user_signed_in? %>
+   <li><%= link_to 'Quitter', destroy_user_session_path, :method=>'delete' %></li>
+<% end %>
+
+
+

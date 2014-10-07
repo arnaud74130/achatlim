@@ -42,14 +42,20 @@
       <% if premier_passage %>
       <tr class="info">
         <td></td>
+        <td></td>
         <td><strong>Marchés associés</strong></td>
         <td><strong>Code</strong></td>
         <td><strong>Titulaire</strong></td>
-        <td><strong>Déclaration</strong></td>
+        <td>
+          <% if current_user.etablissement? || current_user.admin? %>
+          <strong>Déclaration</strong>
+          <% end %>
+        </td>
       </tr>
       <% premier_passage=false %>
       <% end %>
       <tr class="info">
+        <td></td>
         <td></td>
         <td></td>
         <td><%= marche.code %> </td>
