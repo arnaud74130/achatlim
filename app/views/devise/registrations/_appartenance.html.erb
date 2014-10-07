@@ -13,6 +13,6 @@
 <% else %>
   Rôle : <strong> <%= current_user.role if current_user%></strong><br/>
   Entreprise : <strong> <%= current_user.entreprise.nom if current_user && current_user.entreprise %></strong><br/><br/>
-<i>Le rôle ainsi que l'entreprise sont créé par le groupement régional de commande afin de vous permettre d'accéder aux modules </i>
+<i>Le rôle ainsi que l'entreprise sont créés par le groupement régional de commande afin de vous permettre d'accéder aux modules </i>
 <% end %>
 </fieldset>

@@ -30,6 +30,7 @@ class ConsultationPolicy
 	end
 
 	def destroy?
-		true if @consultation.user_id == @user.id
+		#true if @consultation.user_id == @user.id
+		false
 	end
 end

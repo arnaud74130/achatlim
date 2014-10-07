@@ -26,7 +26,9 @@ class FncPolicy
 	end
 
 	def update?
-		true
+		 unless @fnc.etat
+		 	true
+		 end
 	end
 
 	def destroy?

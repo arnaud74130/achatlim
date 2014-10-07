@@ -6,7 +6,6 @@ module DevisePermittedParameters
   end
 
   protected
-
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << :nom << :prenom << :telephone
     devise_parameter_sanitizer.for(:account_update) << :nom << :prenom << :telephone
