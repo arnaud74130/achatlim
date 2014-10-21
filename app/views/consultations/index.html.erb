@@ -62,7 +62,7 @@
         <td><%= marche.fournisseur.nom %> </td>
         <td>
         <% if current_user.etablissement? || current_user.admin? %>
-          <%= link_to "FNC", new_marche_fnc_path(marche), class: "btn btn-primary" %>
+          <%= link_to "FNC", new_market_fnc_path(marche), class: "btn btn-primary" %>
         <% end %>
         </td>
       </tr>

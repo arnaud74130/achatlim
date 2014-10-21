@@ -17,7 +17,7 @@
 class FncsController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_fnc, only: [:show, :edit, :update, :destroy]
-  
+  before_action :set_market, only: [:new, :create]  
   after_action :verify_authorized
 
   def index
@@ -36,12 +36,11 @@ class FncsController < ApplicationController
     @consultation = @fnc.market.consultation
     @marche = @fnc.market    
   end
-
+ 
+ # GET fnc/marches/:market_id
   def new
-    authorize Fnc
-    @fnc = Fnc.new
-    market = Market.find(params[:market_id])
-    @fnc.market = market
+    authorize Fnc  
+    @fnc=@marche.fncs.new        
     @fnc.observations.build
   end
 
@@ -54,14 +53,14 @@ class FncsController < ApplicationController
     @fnc.observations.build
   end
 
-  def create
-    puts "=====> paramètres  = #{fnc_params.inspect}"
-    @fnc = Fnc.new(fnc_params) 
-    puts "===== END ====" 
+  # POST fncs/marches/:market_id
+  def create    
+    @fnc = @marche.fncs.new(fnc_params) 
+    
     authorize @fnc
     respond_to do |format|
       if @fnc.save
-        format.html { redirect_to @fnc, notice: 'Fnc was successfully created.' }
+        format.html { redirect_to @fnc, notice: 'La fiche de non confirmité a été créé avec succès.' }
         format.json { render :show, status: :created, location: @fnc }
       else
         format.html { render :new }
@@ -74,7 +73,7 @@ class FncsController < ApplicationController
     authorize @fnc
     respond_to do |format|
       if @fnc.update(fnc_params)
-        format.html { redirect_to @fnc, notice: 'Fnc was successfully updated.' }
+        format.html { redirect_to @fnc, notice: 'La fiche de non confirmité a été modifié avec succès.' }
         format.json { render :show, status: :ok, location: @fnc }
       else
         format.html { render :edit }
@@ -87,7 +86,7 @@ class FncsController < ApplicationController
     authorize @fnc
     @fnc.destroy
     respond_to do |format|
-      format.html { redirect_to fncs_url, notice: 'Fnc was successfully destroyed.' }
+      format.html { redirect_to fncs_url, notice: 'La fiche de non confirmité a été détruite avec succès.' }
       format.json { head :no_content }
     end
   end
@@ -98,6 +97,9 @@ class FncsController < ApplicationController
     @fnc = Fnc.find(params[:id])
   end
 
+  def set_market
+    @marche = Market.find(params[:market_id])    
+  end
   # Never trust parameters from the scary internet, only allow the white list through.
   def fnc_params
     params.require(:fnc).permit(:date_creation, :raison_litige, :numero_commande, :produits, :commande_passee, :livraison_demandee, :lot_ou_dlc, :observation_id, :instruction_avoir, :instruction_facture, :instruction_surv_prepa, :instruction_reprendre, :instruction_relivrer, :instruction_autre, :market, :respect_delais, :proprete_camion, :etat_emballage, :conformite_produit, :respect_dlc, :temperature_produit, :abs_tracabilite, :tarification, :market_id, :etat,:observations_attributes => [:id, :message, :user_id, :_destroy])

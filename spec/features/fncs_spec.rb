@@ -11,7 +11,7 @@ feature 'Fnc', :devise do
 
 	# Un établissement peut créer une fnc sur ses consultations
 
-	scenario 'User Etablissement can create' do
+	scenario 'Un etablissement peut creer' do
 		visit root_path
 		signin(@user_etb.email, @user_etb.password)
 		visit consultations_path
@@ -19,7 +19,7 @@ feature 'Fnc', :devise do
 		expect(page).to have_content "Fiche de non conformité"
 
 		# via l'url
-		visit new_marche_fnc_path(@marche)
+		visit new_market_fnc_path(@marche)
 		expect(page).to have_content "Fiche de non conformité"
 
 		# Remplissage
@@ -44,14 +44,14 @@ feature 'Fnc', :devise do
 
 	# Un fournisseur ne peut pas créer de fnc sur les consultations ou il a un marché
 
-	scenario 'User Fournisseur cannot create' do
+	scenario 'Un fournisseur ne peut pas creer' do
 		visit root_path
 		signin(@user_fourn.email, @user_fourn.password)
 		visit consultations_path
 		expect(page).not_to have_content 'FNC'
 
 		# via l'url
-		visit new_marche_fnc_path(@marche)
+		visit new_market_fnc_path(@marche)
 		expect(page).to have_content "Accès interdit."
 	end
 
