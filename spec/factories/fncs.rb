@@ -23,7 +23,7 @@ FactoryGirl.define do
     temperature_produit {["A","B","C"].sample}
     abs_tracabilite {["A","B","C"].sample}
     tarification {["A","B","C"].sample}
-    
+    etat {false}
     #market
     #observations nil
   end

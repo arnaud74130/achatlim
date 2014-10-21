@@ -1,6 +1,6 @@
 #     AchatLim - Plateforme Collaborative Achat du Limousin
 #     Copyright (C) 2014  Arnaud GARCIA - GCS EPSILIM
-#                         
+#
 #     This program is free software: you can redistribute it and/or modify
 #     it under the terms of the GNU General Public License as published by
 #     the Free Software Foundation, either version 3 of the License, or
@@ -39,7 +39,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :confirmable
   def entreprise_nom
-    entreprise.nom if entreprise
+    if entreprise
+      self.entreprise.nom=entreprise.nom.mb_chars.upcase.to_s unless self.nom.blank?
+      self.entreprise.nom
+    end
   end
 
   def full_name
@@ -52,7 +55,8 @@ class User < ActiveRecord::Base
   end
 
   def pretty_records
-    self.nom= nom.upcase
-    self.prenom=prenom.titleize if self.prenom    
+    self.nom=nom.mb_chars.upcase.to_s unless self.nom.blank?
+    #self.nom= nom.upcase
+    self.prenom=prenom.titleize if self.prenom
   end
 end

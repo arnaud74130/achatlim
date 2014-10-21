@@ -56,7 +56,7 @@ class FncsController < ApplicationController
   # POST fncs/marches/:market_id
   def create    
     @fnc = @marche.fncs.new(fnc_params) 
-    
+    @fnc.etat=false
     authorize @fnc
     respond_to do |format|
       if @fnc.save

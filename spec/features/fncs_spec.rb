@@ -11,7 +11,7 @@ feature 'Fnc', :devise do
 
 	# Un établissement peut créer une fnc sur ses consultations
 
-	scenario 'Un etablissement peut creer' do
+	scenario 'Un etablissement peut créer' do
 		visit root_path
 		signin(@user_etb.email, @user_etb.password)
 		visit consultations_path
@@ -23,7 +23,7 @@ feature 'Fnc', :devise do
 		expect(page).to have_content "Fiche de non conformité"
 
 		# Remplissage
-		
+
 		fill_in 'fnc[raison_litige]', :with => 'Un litige'
 		fill_in 'fnc[numero_commande]', :with => '1234'
 		fill_in 'fnc[produits]', :with => 'Produit'
@@ -35,7 +35,7 @@ feature 'Fnc', :devise do
 		check 'fnc[instruction_surv_prepa]'
 		check 'fnc[instruction_reprendre]'
 		check 'fnc[instruction_relivrer]'
-		
+
 		select 'A', from: 'fnc[respect_delais]'
 
 		find('input[type="submit"]').click
@@ -44,7 +44,7 @@ feature 'Fnc', :devise do
 
 	# Un fournisseur ne peut pas créer de fnc sur les consultations ou il a un marché
 
-	scenario 'Un fournisseur ne peut pas creer' do
+	scenario 'Un fournisseur ne peut pas créer' do
 		visit root_path
 		signin(@user_fourn.email, @user_fourn.password)
 		visit consultations_path
@@ -56,11 +56,49 @@ feature 'Fnc', :devise do
 	end
 
 	# Un fournisseur peut répondre à une fnc et si son statut est ouvert
+	scenario 'Un fournisseur peut répondre sauf si la fiche est cloturée' do
+		visit root_path
+		signin(@user_fourn.email, @user_fourn.password)
+		reponse_si_non_cloturee
+	end
 
 	# Un établissement peut répondre à une fnc et si sont statut est ouver
+	scenario 'Un etablissement peut répondre sauf si la fiche est cloturée' do
+		visit root_path
+		signin(@user_etb.email, @user_etb.password)
+		reponse_si_non_cloturee
+	end
 
-	# Un établissement peut cloturer une fnc (et changer par conséquent son statut)
+	# Un utilisateur de l'établissement créateur peut cloturer
+	
+	# Un utilisateur de l'établissement non créateur ne peut pas cloturer" 
 
 	# Un fournisseur ne peut pas cloturer une fnc
 
+	private
+	def reponse_si_non_cloturee
+		visit fncs_path
+		fnc_id=first(:xpath, "//tr/td/a").text 
+		fnc=Fnc.find(fnc_id)
+		all(:xpath, "//tr/td/a")[0].click #1er lien
+
+		# --  par défaut le statut est ouvert (etat = false) => cloturé = false
+		expect(page).to have_content "Répondre" 
+
+		# entrer une réponse
+		visit edit_fnc_path(fnc)
+		fill_in "Message", with: "Une réponse"
+		click_button 'Enregistrer'
+		expect(page).to have_content "La fiche de non confirmité a été modifié avec succès."
+
+
+		# --- Cloture de la fiche ---
+		
+		fnc.etat=true # on cloture la fncs_path
+		fnc.save
+
+		visit fncs_path
+		find(:xpath, "//tr/td/a[@href='/fncs/#{fnc_id}']").click
+		expect(page).not_to have_content 'Répondre'
+	end
 end

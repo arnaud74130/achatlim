@@ -6,8 +6,9 @@ Rails.application.routes.draw do
   #
   #resources :users, :except => [:new, :edit]
   resources :fncs, except: [:new, :create]
-  get 'fncs/marches/:market_id/new', to: 'fncs#new', as: :new_market_fnc
-  post 'fncs/marches/:market_id', to: 'fncs#create', as: :market_fncs
+  get 'marches/:market_id/fncs/new', to: 'fncs#new', as: :new_market_fnc
+  post 'marches/:market_id/fncs', to: 'fncs#create', as: :market_fncs
+  patch 'marches/:market_id/fncs/:id', to: 'fncs#update', as: :market_fnc
 
   resources :fournisseurs
 
