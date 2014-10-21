@@ -55,7 +55,9 @@ class FncsController < ApplicationController
   end
 
   def create
-    @fnc = Fnc.new(fnc_params)
+    puts "=====> paramètres  = #{fnc_params.inspect}"
+    @fnc = Fnc.new(fnc_params) 
+    puts "===== END ====" 
     authorize @fnc
     respond_to do |format|
       if @fnc.save

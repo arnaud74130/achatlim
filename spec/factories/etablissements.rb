@@ -12,7 +12,7 @@ FactoryGirl.define do
 		e.code_postal {Faker::Address.zip_code}
 		e.ville {Faker::Address.city}
 		ignore do
-			nbr_users 1
+			nbr_users 2
 		end
 		after(:create) do |etablissement, evaluator|
 			etablissement.users = create_list(:user, evaluator.nbr_users, :etablissement)			
