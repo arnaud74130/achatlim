@@ -42,8 +42,6 @@ feature 'Fnc', :devise do
 		expect(page).to have_content "succès."
 	end
 
-	# Un fournisseur ne peut pas créer de fnc sur les consultations ou il a un marché
-
 	scenario 'Un fournisseur ne peut pas créer' do
 		visit root_path
 		signin(@user_fourn.email, @user_fourn.password)
@@ -55,14 +53,13 @@ feature 'Fnc', :devise do
 		expect(page).to have_content "Accès interdit."
 	end
 
-	# Un fournisseur peut répondre à une fnc et si son statut est ouvert
 	scenario 'Un fournisseur peut répondre sauf si la fiche est cloturée' do
 		visit root_path
 		signin(@user_fourn.email, @user_fourn.password)
 		reponse_si_non_cloturee
 	end
 
-	# Un établissement peut répondre à une fnc et si sont statut est ouver
+	
 	scenario 'Un etablissement peut répondre sauf si la fiche est cloturée' do
 		visit root_path
 		signin(@user_etb.email, @user_etb.password)
@@ -70,7 +67,28 @@ feature 'Fnc', :devise do
 	end
 
 
-	# scenario "Un utilisateur de l'établissement créateur peut cloturer" do
+	scenario "Un utilisateur de l'établissement créateur peut cloturer" do
+		visit root_path
+		signin(@user_etb.email, @user_etb.password)
+		fnc = @marche.fncs.first
+		visit edit_fnc_path(fnc)
+		expect(page).to have_content "Cocher pour cloturer la fiche"
+		check "Cocher pour cloturer la fiche"
+		click_button 'Enregistrer'
+		expect(page).to have_content "succès."
+	end
+
+	scenario "Seuls les utilisateurs de l'établissement créateur peuvent cloturer" do
+		visit root_path
+		user2=@consultation.etablissements.last.users.first
+		signin(user2.email, user2.password)
+		fnc = @marche.fncs.first
+		visit edit_fnc_path(fnc)
+		expect(page).not_to have_content "Cocher pour cloturer la fiche"
+		#TODO ajouter un user_id sur la fnc afin de permettre une fermeture par le créateur et dans un premier temps par l'établissement de l'utilisateur
+	end
+
+
 	# scenario "Un utilisateur de l'établissement non créateur ne peut pas cloturer" do
 
 	# scenario "Un fournisseur ne peut pas cloturer une fnc" do
@@ -82,7 +100,7 @@ feature 'Fnc', :devise do
 		fnc=Fnc.find(fnc_id)
 		all(:xpath, "//tr/td/a")[0].click #1er lien
 
-		
+
 		expect(page).to have_content "Répondre"
 
 		# entrer une réponse
