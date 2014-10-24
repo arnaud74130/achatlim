@@ -17,10 +17,10 @@
     <% @fncs.each do |fnc| %>
       <tr>
         <td>
-          <% if fnc.etat %>
-            <span class="glyphicon glyphicon-ok"></span>
+          <% if fnc.cloturee %>
+            <span class="glyphicon glyphicon-ok"></span>(F)
           <% else %>
-            <span class="glyphicon glyphicon-pushpin"></span>
+            <span class="glyphicon glyphicon-pushpin">(O)</span>
           <% end %>
         </td>
         <td><%=link_to fnc.id, fnc_path(fnc) %></td>

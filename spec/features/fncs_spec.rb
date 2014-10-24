@@ -69,21 +69,21 @@ feature 'Fnc', :devise do
 		reponse_si_non_cloturee
 	end
 
-	# Un utilisateur de l'établissement créateur peut cloturer
-	
-	# Un utilisateur de l'établissement non créateur ne peut pas cloturer" 
 
-	# Un fournisseur ne peut pas cloturer une fnc
+	# scenario "Un utilisateur de l'établissement créateur peut cloturer" do
+	# scenario "Un utilisateur de l'établissement non créateur ne peut pas cloturer" do
+
+	# scenario "Un fournisseur ne peut pas cloturer une fnc" do
 
 	private
 	def reponse_si_non_cloturee
 		visit fncs_path
-		fnc_id=first(:xpath, "//tr/td/a").text 
+		fnc_id=first(:xpath, "//tr/td/a").text
 		fnc=Fnc.find(fnc_id)
 		all(:xpath, "//tr/td/a")[0].click #1er lien
 
-		# --  par défaut le statut est ouvert (etat = false) => cloturé = false
-		expect(page).to have_content "Répondre" 
+		
+		expect(page).to have_content "Répondre"
 
 		# entrer une réponse
 		visit edit_fnc_path(fnc)
@@ -93,8 +93,8 @@ feature 'Fnc', :devise do
 
 
 		# --- Cloture de la fiche ---
-		
-		fnc.etat=true # on cloture la fncs_path
+
+		fnc.cloturee=true
 		fnc.save
 
 		visit fncs_path

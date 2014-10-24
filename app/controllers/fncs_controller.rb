@@ -55,8 +55,7 @@ class FncsController < ApplicationController
 
   # POST fncs/marches/:market_id
   def create    
-    @fnc = @marche.fncs.new(fnc_params) 
-    @fnc.etat=false
+    @fnc = @marche.fncs.new(fnc_params)     
     authorize @fnc
     respond_to do |format|
       if @fnc.save
@@ -102,6 +101,6 @@ class FncsController < ApplicationController
   end
   # Never trust parameters from the scary internet, only allow the white list through.
   def fnc_params
-    params.require(:fnc).permit(:date_creation, :raison_litige, :numero_commande, :produits, :commande_passee, :livraison_demandee, :lot_ou_dlc, :observation_id, :instruction_avoir, :instruction_facture, :instruction_surv_prepa, :instruction_reprendre, :instruction_relivrer, :instruction_autre, :market, :respect_delais, :proprete_camion, :etat_emballage, :conformite_produit, :respect_dlc, :temperature_produit, :abs_tracabilite, :tarification, :market_id, :etat,:observations_attributes => [:id, :message, :user_id, :_destroy])
+    params.require(:fnc).permit(:date_creation, :raison_litige, :numero_commande, :produits, :commande_passee, :livraison_demandee, :lot_ou_dlc, :observation_id, :instruction_avoir, :instruction_facture, :instruction_surv_prepa, :instruction_reprendre, :instruction_relivrer, :instruction_autre, :market, :respect_delais, :proprete_camion, :etat_emballage, :conformite_produit, :respect_dlc, :temperature_produit, :abs_tracabilite, :tarification, :market_id, :cloturee,:observations_attributes => [:id, :message, :user_id, :_destroy])
   end
 end

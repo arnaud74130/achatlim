@@ -2,8 +2,8 @@
 <%= render 'shared/model_errors', modele: @fnc %>
 
 <strong>ETAT</strong>
-<% unless @fnc.etat %>
-    <%= f.check_box :etat, label: 'Cocher pour cloturer la fiche ' %>
+<% unless @fnc.cloturee %>
+    <%= f.check_box :cloturee, label: 'Cocher pour cloturer la fiche ' %>
 <% else %>
     <span class="glyphicon glyphicon-ok"></span>
 <% end %>
@@ -39,15 +39,15 @@
     <% else %>
         <%= render 'fixed_elements'%>
     <% end %>
-    <% unless @fnc.etat %>
-        <%= f.fields_for :observations %>
-        <span class="glyphicon glyphicon-plus"></span>
-        <%= f.link_to_add "Observation supplémentaire", :observations %>
-        <br/>
-        <br/>
-        <br/>
-        <%= f.hidden_field :market_id, value: "#{@fnc.market.id}" %>
 
-    <% end %>
+    <%= f.fields_for :observations %>
+    <span class="glyphicon glyphicon-plus"></span>
+    <%= f.link_to_add "Observation supplémentaire", :observations %>
+    <br/>
+    <br/>
+    <br/>
+    <%= f.hidden_field :market_id, value: "#{@fnc.market.id}" %>
     <%= f.submit "Enregistrer" %>
+
+
 <% end %>

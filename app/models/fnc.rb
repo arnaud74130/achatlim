@@ -15,9 +15,9 @@
 #     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class Fnc < ActiveRecord::Base
-	default_scope { order(:etat).order(:created_at)}
-	scope :ouvertes, ->{ where(etat: true).order(:created_at) }
-	scope :fermees, ->{ where(etat: false).order(:created_at) }
+	default_scope { order(:cloturee).order(:created_at)}
+	scope :ouvertes, ->{ where(cloturee: false).order(:created_at) }
+	scope :fermees, ->{ where(cloturee: true).order(:created_at) }
 
 	has_many :observations
 	belongs_to :market

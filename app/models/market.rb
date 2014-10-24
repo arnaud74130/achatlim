@@ -19,8 +19,8 @@ class Market < ActiveRecord::Base
 	belongs_to :consultation
 	has_many :fncs
 
-	scope :fnc_ouvertes,  -> {includes(:fncs).where(fncs: {etat: true})} 
-	scope :fnc_fermees,  -> {includes(:fncs).where(fncs: {etat: false})} 
+	scope :fnc_ouvertes,  -> {includes(:fncs).where(fncs: {cloturee: false})} 
+	scope :fnc_fermees,  -> {includes(:fncs).where(fncs: {cloturee: true})} 
 
 	validates :code, presence: true
 

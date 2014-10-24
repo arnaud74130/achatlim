@@ -18,7 +18,9 @@ class FncPolicy
 	end
 
 	def edit?
-		true
+		unless @fnc.cloturee
+		 	true
+		 end
 	end
 
 	def create?
@@ -26,7 +28,7 @@ class FncPolicy
 	end
 
 	def update?
-		 unless @fnc.etat
+		 unless @fnc.cloturee
 		 	true
 		 end
 	end
