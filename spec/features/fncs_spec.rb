@@ -1,3 +1,19 @@
+#     AchatLim - Plateforme Collaborative Achat du Limousin
+#     Copyright (C) 2014  Arnaud GARCIA - GCS EPSILIM
+#                         
+#     This program is free software: you can redistribute it and/or modify
+#     it under the terms of the GNU General Public License as published by
+#     the Free Software Foundation, either version 3 of the License, or
+#     (at your option) any later version.
+
+#     This program is distributed in the hope that it will be useful,
+#     but WITHOUT ANY WARRANTY; without even the implied warranty of
+#     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#     GNU General Public License for more details.
+
+#     You should have received a copy of the GNU General Public License
+#     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 feature 'Fnc', :devise do
 	before(:all) do
 		@consultation =  create(:consultation)
@@ -59,7 +75,7 @@ feature 'Fnc', :devise do
 		reponse_si_non_cloturee
 	end
 
-	
+
 	scenario 'Un etablissement peut répondre sauf si la fiche est cloturée' do
 		visit root_path
 		signin(@user_etb.email, @user_etb.password)
@@ -78,20 +94,23 @@ feature 'Fnc', :devise do
 		expect(page).to have_content "succès."
 	end
 
-	scenario "Seuls les utilisateurs de l'établissement créateur peuvent cloturer" do
+	scenario "Un utilisateur de l'établissement non créateur ne peut pas cloturer" do
 		visit root_path
 		user2=@consultation.etablissements.last.users.first
 		signin(user2.email, user2.password)
 		fnc = @marche.fncs.first
 		visit edit_fnc_path(fnc)
 		expect(page).not_to have_content "Cocher pour cloturer la fiche"
-		#TODO ajouter un user_id sur la fnc afin de permettre une fermeture par le créateur et dans un premier temps par l'établissement de l'utilisateur
 	end
 
 
-	# scenario "Un utilisateur de l'établissement non créateur ne peut pas cloturer" do
-
-	# scenario "Un fournisseur ne peut pas cloturer une fnc" do
+	scenario "Un fournisseur ne peut pas cloturer une fnc" do
+		visit root_path
+		signin(@user_fourn.email, @user_fourn.password)
+		fnc = @marche.fncs.first
+		visit edit_fnc_path(fnc)
+		expect(page).not_to have_content "Cocher pour cloturer la fiche"
+	end
 
 	private
 	def reponse_si_non_cloturee

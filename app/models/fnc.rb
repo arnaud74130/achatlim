@@ -23,6 +23,7 @@ class Fnc < ActiveRecord::Base
 	belongs_to :market
 	has_one :consultation, through: :market
 	has_one :fournisseur, through: :market
+	belongs_to :etablissement
 
 	validates :raison_litige, :numero_commande,
 		:produits, :commande_passee, :livraison_demandee, :lot_ou_dlc, presence: true

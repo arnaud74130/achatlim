@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141024131318) do
+ActiveRecord::Schema.define(version: 20141103160515) do
 
   create_table "consultations", force: true do |t|
     t.string   "code"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 20141024131318) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "cloturee",               default: false
+    t.integer  "etablissement_id"
   end
 
   add_index "fncs", ["market_id"], name: "index_fncs_on_market_id"

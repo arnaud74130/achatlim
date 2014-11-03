@@ -2,8 +2,12 @@
 <%= render 'shared/model_errors', modele: @fnc %>
 
 <strong>ETAT</strong>
+
 <% unless @fnc.cloturee %>
-    <%= f.check_box :cloturee, label: 'Cocher pour cloturer la fiche' %>
+    <% if current_user.entreprise == @fnc.etablissement %>
+        <%= f.check_box :cloturee, label: 'Cocher pour cloturer la fiche' %>
+    <% end %>
+
 <% else %>
     <span class="glyphicon glyphicon-ok"></span>
 <% end %>
