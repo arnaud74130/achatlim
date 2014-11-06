@@ -3,11 +3,11 @@
   <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <%= f.email_field :email, autofocus: true %>
       <% if devise_mapping.recoverable? %>
-        <%= link_to "Forgot password?", new_password_path(resource_name), class: 'right' %>
+        <%= link_to "Mot de passe oublié?", new_password_path(resource_name), class: 'right' %>
       <% end %>
     <%= f.password_field :password, autocomplete: "off" %>
     <% if devise_mapping.rememberable? -%>
-      <%= f.check_box :remember_me %>
+      <%= f.check_box :remember_me,label: 'Se souvenir de moi' %>
     <% end %>
     <%= f.submit "Connection" %>
   <% end %>
