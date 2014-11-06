@@ -1,6 +1,6 @@
 #     AchatLim - Plateforme Collaborative Achat du Limousin
 #     Copyright (C) 2014  Arnaud GARCIA - GCS EPSILIM
-#                         
+#
 #     This program is free software: you can redistribute it and/or modify
 #     it under the terms of the GNU General Public License as published by
 #     the Free Software Foundation, either version 3 of the License, or
@@ -27,11 +27,11 @@ class UsersController < ApplicationController
     entreprises = entreprises_etb + entreprises_f
     render :json => entreprises.map { |entreprise| {id: entreprise.id, label: entreprise.nom, value: entreprise.nom, entreprise_type: entreprise.class.name} }
   end
-  
+
   def autocomplete_user_fournisseur
     authorize current_user
-    term = params[:term]    
-    entreprises = Fournisseur.where('nom LIKE ?', "%#{term}%").order(:nom).all.to_a    
+    term = params[:term]
+    entreprises = Fournisseur.where('nom LIKE ?', "%#{term}%").order(:nom).all.to_a
     render :json => entreprises.map { |entreprise| {id: entreprise.id, label: entreprise.nom, value: entreprise.nom} }
   end
 
@@ -53,7 +53,11 @@ class UsersController < ApplicationController
     if @user.update_attributes(secure_params)
       redirect_to users_path, :notice => "User updated."
     else
-      redirect_to users_path, :alert => "Unable to update user."
+      unless @user.errors[:role].empty?        
+        redirect_to users_path, :alert => @user.errors[:role].first
+      else
+        redirect_to users_path, :alert => "Unable to update user."
+      end
     end
   end
 

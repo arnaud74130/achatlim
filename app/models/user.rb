@@ -15,6 +15,8 @@
 #     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class User < ActiveRecord::Base
+  default_scope {order('role').order('nom ASC')}
+
   enum role: [:visiteur, :etablissement, :fournisseur, :admin]
   after_initialize :set_default_role, :if => :new_record?
   belongs_to :entreprise, polymorphic: true
@@ -27,6 +29,7 @@ class User < ActiveRecord::Base
   validates_presence_of   :password, :on=>:create
   validates_confirmation_of   :password, :on=>:create
   validates_length_of :password, :within => Devise.password_length, :allow_blank => true
+  validate :validate_entreprise_role, :on => :update
   before_save :pretty_records
 
   def set_default_role
@@ -51,12 +54,17 @@ class User < ActiveRecord::Base
     else
       self.nom
     end
-
   end
 
   def pretty_records
     self.nom=nom.mb_chars.upcase.to_s unless self.nom.blank?
-    #self.nom= nom.upcase
     self.prenom=prenom.titleize if self.prenom
+  end
+
+  def validate_entreprise_role
+    if ((role == 'etablissement' && entreprise_type == 'Fournisseur') || 
+      (role == 'fournisseur' && entreprise_type == 'Etablissement'))         
+      self.errors.add(:role, "Attention le rôle et l'entreprise sont incohérents.")              
+    end    
   end
 end
