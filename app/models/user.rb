@@ -62,9 +62,27 @@ class User < ActiveRecord::Base
   end
 
   def validate_entreprise_role
-    if ((role == 'etablissement' && entreprise_type == 'Fournisseur') || 
-      (role == 'fournisseur' && entreprise_type == 'Etablissement'))         
-      self.errors.add(:role, "Attention le rôle et l'entreprise sont incohérents.")              
-    end    
+    if ((role == 'etablissement' && entreprise_type == 'Fournisseur') ||
+        (role == 'fournisseur' && entreprise_type == 'Etablissement'))
+      self.errors.add(:role, "Attention le rôle et l'entreprise sont incohérents.")
+    end
+  end
+
+  #Add these two methods to your user model, devise should pick them up automatically - you should NOT need to extend Devise::SessionsController
+  def active_for_authentication?
+    super && self.is_active # i.e. super && self.is_active
+  end
+
+  def is_active
+    self.active
+  end
+
+  def inactive_message
+    "Votre compte est inactif !"
+  end
+
+  def destroy
+    self.active=false    
+    save!
   end
 end

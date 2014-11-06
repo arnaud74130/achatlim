@@ -25,6 +25,14 @@ feature 'Sign in', :devise do
     expect(page).to have_content 'Connecté.'
   end
 
+scenario 'Utilisateur ne peut pas se connecter s il est inactif meme si login/password ok' do
+    user = create :user
+    user.destroy
+    signin(user.email, user.password)
+
+    expect(page).to have_content 'Votre compte est inactif !'
+  end
+
   # Scenario: User cannot sign in with wrong email
   #   Given I exist as a user
   #   And I am not signed in

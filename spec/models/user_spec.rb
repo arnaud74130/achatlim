@@ -11,3 +11,17 @@
 #   end
 
 # end
+require 'rails_helper'
+RSpec.describe User, :type => :model do
+	it "Un utilisateur effacé est inactif" do
+		user = FactoryGirl.create(:user)
+		id=user.id
+		expect(user.active).to be true
+		user.destroy
+		retrieve_deleted_user = User.find(id)
+		expect(retrieve_deleted_user).not_to be_nil
+		expect(retrieve_deleted_user.active).to be false
+	end
+
+
+end
