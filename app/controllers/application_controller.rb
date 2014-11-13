@@ -1,6 +1,6 @@
 #     AchatLim - Plateforme Collaborative Achat du Limousin
 #     Copyright (C) 2014  Arnaud GARCIA - GCS EPSILIM
-#                         
+#
 #     This program is free software: you can redistribute it and/or modify
 #     it under the terms of the GNU General Public License as published by
 #     the Free Software Foundation, either version 3 of the License, or
@@ -33,12 +33,15 @@ class ApplicationController < ActionController::Base
 		flash[:alert] = "Accès interdit."
 		redirect_to (request.referrer || root_path)
 	end
-	
-#	protected
 
-  # def configure_permitted_parameters
-  #   devise_parameter_sanitizer.for(:sign_up) << :nom << :prenom << :telephone
-  #   devise_parameter_sanitizer.for(:account_update) << :nom << :prenom << :telephone
-  # end
+	def after_sign_in_path_for(resource)
+		consultations_path
+	end
+	#	protected
+
+	# def configure_permitted_parameters
+	#   devise_parameter_sanitizer.for(:sign_up) << :nom << :prenom << :telephone
+	#   devise_parameter_sanitizer.for(:account_update) << :nom << :prenom << :telephone
+	# end
 
 end

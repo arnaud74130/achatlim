@@ -1,22 +1,69 @@
-<h3>AchatLim</h3>
+<div class="jumbotron">
+  <p class="text-center">
+    <H2>Plateforme collaborative achat du Limousin</H2>
+  </p>
+  <div class="row">
+  <div class="col-md-6">
+    <div class="embed-responsive embed-responsive-4by3">
+      <iframe width="420" height="315" src="//www.youtube.com/embed/Ak8ymrmRsws" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <% if current_user && current_user.visiteur? %>
+      <p>Veuillez prendre contact avec le Groupement Régional de Commande pour qu'il active vos droits d'accès</p>
+      <p>tel: 05.44.00.00.47</p>
+    <% end %>
+    <% unless current_user %>
+    <p>Dévelopée par le GCS EPSILIM avec l'appui métier du Groupement Régional de Commande, cette plateforme achat a pour objectif de simplifier les échanges entre fournisseurs et établissements</p>
+    <%= link_to "S'inscrire >>", new_user_registration_path, class: "btn btn-primary btn-lg" %>
+    <% end %>
+  </div>
+</div>
+</div>
 
-<% if current_user && current_user.visiteur? %>
-  <p>Veuillez prendre contact avec le Groupement Régional de Commande pour qu'il active vos droits d'accès</p>
-  <p>tel: 05.44.00.00.47</p>
-<% end %>
-<% unless current_user %>
-<p>Bienvenu sur la plateforme collaborative achat du Limousin.</p>
-<p>Dévelopée par le GCS EPSILIM avec l'appui métier du Groupement Régional de Commande, cette plateforme achat a pour objectif de simplifier les échanges entre fournisseurs et établissements</p>
-<p>Les premiers services en production sont :</p>
-<ul>
-    <li>Gestion des fiches de non conformité</li>
-    <li>Fiches logistiques</li>
-</ul>
-<p></p>
-<p>Pour rejoindre la plateforme régional, veuillez simplement renseigner vos coordonnées que nous validerons avec vous une fois que vous aurez confirmé votre email lors de l'inscription</p>
-<p>Ce service porté par le GCS EPSILIM est gratuit !</p>
 
-<p>
-    <%= link_to "S'inscrire", new_user_registration_path, class: "btn btn-primary" %>
-</p>
-<% end %>
+<div class="row">
+  <div class="col-md-4">
+
+       <div class="panel panel-info">
+          <div class="panel-heading"><span class="disabled"> Fiches de non conformité</span></div>
+          <div class="panel-body">
+            <p><%= image_tag("feuille.png", size: "50%", border: 0) %></p>
+            <ul>
+                <li>Déclaration</li>
+                <li>Echanges Etablissement-Fournisseur</li>
+                <li>Traçabilité des échanges</li>
+                <li>Historique</li>
+            </ul>
+          </div>
+        </div>
+      <p><a class="btn btn-default" href="#" role="button">Détails &raquo;</a></p>
+</div>
+  <div class="col-md-4">
+<div class="panel panel-info">
+          <div class="panel-heading">Fiches Logistique</div>
+          <div class="panel-body">
+            <ul>
+                <li>Définition des lieux de livraison</li>
+                <li>Echanges Etablissement-Fournisseur</li>
+                <li>Traçabilité des échanges</li>
+            </ul>
+          </div>
+        </div>
+      <p><a class="btn btn-default disabled" href="#" role="button">Détails &raquo;</a></p>
+
+  </div>
+  <div class="col-md-4">
+      <div class="panel panel-info">
+          <div class="panel-heading">A venir</div>
+          <div class="panel-body">
+            <p>N'hesitez pas à contacter le groupement de commande régional pour soumettre vos idées !</p>
+            <p></p>
+          </div>
+        </div>
+      <p><a class="btn btn-default disabled" href="#" role="button">Détails &raquo;</a></p>
+
+  </div>
+</div>
+
+
