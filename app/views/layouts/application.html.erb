@@ -30,7 +30,6 @@
         <%= current_user.email %><br/>
         <%= current_user.entreprise.nom %>, (<%= current_user.entreprise_type.upcase %>)<br/>
       <% end %>
-
       <%= render 'layouts/messages' %>
       <%= yield %>
     </main>

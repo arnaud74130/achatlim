@@ -22,3 +22,30 @@
 	height: 150%;
 	margin-top: -3px;
 }
+
+#signin_remember_me {
+	color: #CCCCCC;
+}
+
+a.forgot_password_nav:link {
+  color: #CCCCCC;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a.forgot_password_nav:visited {
+  color: #CCCCCC;
+  background-color: transparent;
+  text-decoration: underline;
+}
+a.forgot_password_nav:active {
+  color: #F19B3C;
+  background-color: transparent;
+  text-decoration: underline;
+}
+a.forgot_password_nav:hover {
+  color: #F19B3C;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
