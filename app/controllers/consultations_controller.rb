@@ -24,8 +24,8 @@ class ConsultationsController < ApplicationController
 	after_action :verify_authorized
 
 	def index
-		@consultations = current_user.entreprise.consultations
 		authorize Consultation
+		@consultations = current_user.entreprise.consultations		
 	end
 
 	def new
