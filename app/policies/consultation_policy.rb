@@ -6,7 +6,7 @@ class ConsultationPolicy
 	end
 
 	def index?
-		true #all authenticate users can access index page
+		true unless @user.visiteur? #all authenticate users can access index page
 	end
 
 	def new?
