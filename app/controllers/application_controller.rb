@@ -34,11 +34,12 @@ class ApplicationController < ActionController::Base
     redirect_to (request.referrer || root_path)
   end
 
-  def after_sign_in_path_for(resource)
-    #consultations_path
-    unless current_user.visitor?    
-      consultations_path
-    end
+  def after_sign_in_path_for(resource)        
+  	if current_user.visiteur? ||current_user.entreprise==nil || current_user.entreprise.consultations.empty? 		
+      root_path
+  	else
+  		consultations_path
+  	end
   end
 
   #	protected
