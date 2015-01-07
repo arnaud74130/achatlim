@@ -6,11 +6,11 @@ class FncPolicy
 	end
 
 	def index?
-		true #all authenticate users can access index page
+		true unless @user.visiteur? #all authenticate users can access index page
 	end
 
 	def show?
-		true
+		true unless @user.visiteur?
 	end
 
 	def new?
@@ -19,7 +19,7 @@ class FncPolicy
 
 	def edit?
 		unless @fnc.cloturee
-		 	true
+		 	true unless @user.visiteur?
 		 end
 	end
 
@@ -29,7 +29,7 @@ class FncPolicy
 
 	def update?
 		 unless @fnc.cloturee
-		 	true
+		 	true unless @user.visiteur?
 		 end
 	end
 

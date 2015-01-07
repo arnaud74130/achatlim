@@ -15,33 +15,37 @@
 #     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class ApplicationController < ActionController::Base
-	# Prevent CSRF attacks by raising an exception.
-	# For APIs, you may want to use :null_session instead.
-	protect_from_forgery with: :exception
+  # Prevent CSRF attacks by raising an exception.
+  # For APIs, you may want to use :null_session instead.
+  protect_from_forgery with: :exception
 
-	# DEVISE: Les "permitted parameters" de devise sont dans les "initializers"
-	# MAIS il semble/semblait que l'initialization ne se faisait pas ou mal
-	# si cela se produit, utiliser le code ci-dessous
+  # DEVISE: Les "permitted parameters" de devise sont dans les "initializers"
+  # MAIS il semble/semblait que l'initialization ne se faisait pas ou mal
+  # si cela se produit, utiliser le code ci-dessous
 
-	# before_action :configure_permitted_parameters, if: :devise_controller?
+  # before_action :configure_permitted_parameters, if: :devise_controller?
 
-	include Pundit
-	rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-	private
+  include Pundit
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  private
 
-	def user_not_authorized
-		flash[:alert] = "Accès interdit."
-		redirect_to (request.referrer || root_path)
-	end
+  def user_not_authorized
+    flash[:alert] = "Accès interdit."
+    redirect_to (request.referrer || root_path)
+  end
 
-	def after_sign_in_path_for(resource)
-		consultations_path
-	end
-	#	protected
+  def after_sign_in_path_for(resource)
+    #consultations_path
+    unless current_user.visitor?    
+      consultations_path
+    end
+  end
 
-	# def configure_permitted_parameters
-	#   devise_parameter_sanitizer.for(:sign_up) << :nom << :prenom << :telephone
-	#   devise_parameter_sanitizer.for(:account_update) << :nom << :prenom << :telephone
-	# end
+  #	protected
+
+  # def configure_permitted_parameters
+  #   devise_parameter_sanitizer.for(:sign_up) << :nom << :prenom << :telephone
+  #   devise_parameter_sanitizer.for(:account_update) << :nom << :prenom << :telephone
+  # end
 
 end

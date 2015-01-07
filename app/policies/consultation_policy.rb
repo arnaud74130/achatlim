@@ -14,7 +14,7 @@ class ConsultationPolicy
 	end
 
 	def show?
-		true		
+		true unless @user.visiteur?		
 	end
 
 	def edit?
