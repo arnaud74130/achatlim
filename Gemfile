@@ -14,7 +14,7 @@ gem 'spring',        group: :development
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 gem 'devise'
-# gem 'devise-i18n'
+gem 'devise-i18n'
 gem 'high_voltage'
 gem 'pundit', github: 'elabs/pundit'
 gem 'rails4-autocomplete', '~> 1.1.0'
