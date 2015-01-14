@@ -77,9 +77,11 @@ class User < ActiveRecord::Base
     self.active
   end
 
-  def inactive_message
-    "Votre compte est inactif !"
-  end
+  # surcharge le message d'erreur pour l'inactivité mais provoque une erreur de traduction
+  # missing translation : translation missing: fr.devise.registrations.user.signed_up_but_Votre compte est inactif !
+  # def inactive_message
+  #   "Votre compte est inactif !"
+  # end
 
   def destroy
     self.active=false    
