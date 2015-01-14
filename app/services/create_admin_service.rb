@@ -7,6 +7,8 @@ class CreateAdminService
         user.password = Rails.application.secrets.admin_password
         user.password_confirmation = Rails.application.secrets.admin_password
         user.telephone ="05.44.00.00.44"
+        user.nom = "GARCIA"
+        user.prenom= "Arnaud"
         user.confirmed_at = Date.today
         user.confirmation_sent_at = Date.today
         
