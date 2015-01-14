@@ -42,7 +42,7 @@ class FournisseursController < ApplicationController
     authorize @fournisseur 
     respond_to do |format|
       if @fournisseur.save
-        format.html { redirect_to @fournisseur, notice: 'Fournisseur was successfully created.' }
+        format.html { redirect_to @fournisseur, notice: 'Le fournisseur a été créé avec succès.' }
       else
         format.html { render :new }
       end
@@ -53,7 +53,7 @@ class FournisseursController < ApplicationController
     authorize @fournisseur 
     respond_to do |format|
       if @fournisseur.update(fournisseur_params)
-        format.html { redirect_to @fournisseur, notice: 'Fournisseur was successfully updated.' }
+        format.html { redirect_to @fournisseur, notice: 'Le fournisseur a été mis-à-jour avec succès.' }
       else
         format.html { render :edit }
       end
@@ -64,7 +64,7 @@ class FournisseursController < ApplicationController
     authorize @fournisseur 
     @fournisseur.destroy
     respond_to do |format|
-      format.html { redirect_to fournisseurs_url, notice: 'Fournisseur was successfully destroyed.' }
+      format.html { redirect_to fournisseurs_url, notice: 'Le fournisseur a été créé avec supprimé avec succès.' }
     end
   end
 
