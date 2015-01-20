@@ -45,6 +45,20 @@ feature 'Consultation', :devise do
 		expect(page).to have_content 'AZ12'		
 	end
 
+	# L etablissement de l utilisateur doit etre coché
+	scenario "L'établissement de l'utilsateur doit etre coché" do
+		visit root_path
+		signin(@eric.email, @eric.password)
+		visit consultations_path		
+		click_link 'Nouveau'		
+		fill_in 'consultation[code]', :with => 'AZ12'
+		
+		fill_in 'consultation[markets_attributes][0][code]', with: "M1"
+		fill_in 'consultation[markets_attributes][0][fournisseur_nom]', with: "#{@fournisseur1.nom}"				
+		first(:xpath,"//input[@name='consultation[markets_attributes][0][fournisseur_id]']").set @fournisseur1.id
+		click_button 'Créer'		
+		expect(page).to have_content 'Attention votre établissement doit être coché !'	
+	end
 	# Un fournisseur ne peut pas créer de consultation
 	scenario 'Un utilisateur fournisseur ne peut pas creer' do
 		visit root_path

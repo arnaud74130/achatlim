@@ -1,6 +1,6 @@
 #     AchatLim - Plateforme Collaborative Achat du Limousin
 #     Copyright (C) 2014  Arnaud GARCIA - GCS EPSILIM
-#                         
+#
 #     This program is free software: you can redistribute it and/or modify
 #     it under the terms of the GNU General Public License as published by
 #     the Free Software Foundation, either version 3 of the License, or
@@ -15,13 +15,12 @@
 #     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class Consultation < ActiveRecord::Base
-	has_and_belongs_to_many :etablissements
-	before_destroy {|consultation| consultation.etablissements.clear}
-	has_many :markets, :dependent => :delete_all
-	belongs_to :user
+  has_and_belongs_to_many :etablissements
+  before_destroy {|consultation| consultation.etablissements.clear}
+  has_many :markets, :dependent => :delete_all
+  belongs_to :user
 
-	
-	accepts_nested_attributes_for :markets, allow_destroy: true
-	validates :code, presence: true
 
+  accepts_nested_attributes_for :markets, allow_destroy: true
+  validates :code, presence: true
 end

@@ -5,7 +5,6 @@
   <%= f.date_field :debut %>
   <%= f.date_field :fin %>
   <%= f.collection_check_boxes(:etablissement_ids, @etablissements, :id, :nom) %>
-
   <%= f.fields_for :markets %>
   <span class="glyphicon glyphicon-plus"></span>
   <%= f.link_to_add "Marché supplémentaire", :markets %>
