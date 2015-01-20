@@ -29,7 +29,6 @@ scenario 'Utilisateur ne peut pas se connecter s il est inactif meme si login/pa
     user = create :user
     user.destroy
     signin(user.email, user.password)
-
     expect(page).to have_content 'Votre compte est inactif !'
   end
 

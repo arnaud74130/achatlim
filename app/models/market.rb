@@ -23,6 +23,7 @@ class Market < ActiveRecord::Base
 	scope :fnc_fermees,  -> {includes(:fncs).where(fncs: {cloturee: true})} 
 
 	validates :code, presence: true
+	validates :fournisseur, presence: true
 
 
 	accepts_nested_attributes_for :fournisseur

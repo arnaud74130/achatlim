@@ -36,6 +36,7 @@ class ConsultationsController < ApplicationController
 
 	def create		
 		@consultation = Consultation.new(consultation_params)
+		@consultation.user = current_user		
 		authorize @consultation
 		respond_to do |format|
 			if @consultation.save

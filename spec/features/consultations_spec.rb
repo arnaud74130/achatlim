@@ -32,13 +32,17 @@ feature 'Consultation', :devise do
 		expect(page).to have_content 'Consultations'
 		click_link 'Nouveau'
 		expect(page).to have_content "Ajout d'une consultation"
-		fill_in 'Code', :with => 'AZ12'
+		fill_in 'consultation[code]', :with => 'AZ12'
 		check "#{@etb1.nom}"
 		check "#{@etb2.nom}"
+
 		fill_in 'consultation[markets_attributes][0][code]', with: "M1"
-		fill_in 'consultation[markets_attributes][0][fournisseur_nom]', with: "#{@fournisseur1.nom}"		
+		fill_in 'consultation[markets_attributes][0][fournisseur_nom]', with: "#{@fournisseur1.nom}"				
+		first(:xpath,"//input[@name='consultation[markets_attributes][0][fournisseur_id]']").set @fournisseur1.id
 		click_button 'Créer'		
 		expect(page).to have_content 'La consultation a été créé avec succès.'
+		visit consultations_path
+		expect(page).to have_content 'AZ12'		
 	end
 
 	# Un fournisseur ne peut pas créer de consultation
