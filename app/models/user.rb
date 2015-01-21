@@ -61,10 +61,13 @@ class User < ActiveRecord::Base
     self.prenom=prenom.titleize if self.prenom
   end
 
-  def validate_entreprise_role
+  def validate_entreprise_role    
     if ((role == 'etablissement' && entreprise_type == 'Fournisseur') ||
         (role == 'fournisseur' && entreprise_type == 'Etablissement'))
       self.errors.add(:role, "Attention le rôle et l'entreprise sont incohérents.")
+    end
+    if ((role=='etablissement' || role=='fournisseur') && entreprise_type.blank?)
+      self.errors.add(:role, "Attention il faut renseigner une entreprise !")
     end
   end
 

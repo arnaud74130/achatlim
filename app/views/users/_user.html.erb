@@ -2,7 +2,8 @@
   <%= link_to user.email, user %>
 </td>
 <td>
-  <%= form_for(user, :html => { :role => 'form'}) do |f| %>
+  <% if user.confirmed? %>
+      <%= form_for(user, :html => { :role => 'form'}) do |f| %>
     <div class="form-group">
       <%= f.label :role, "Rôle" %>
       <%= f.select(:role, User.roles.keys.map {|role| [role.titleize,role]},{}, id: "select_entreprise_#{user.id}") %>
@@ -10,7 +11,11 @@
     <%= render 'fournisseur_autocomplete_field', f: f %>
 
     <%= f.submit 'Change Role', :class => 'btn btn-primary btn-xs', id: "submit_btn_user_#{user.id}" %>
+    <% end %>
+    <% else %>
+    Non confirmé
   <% end %>
+
 </td>
 
 <td>

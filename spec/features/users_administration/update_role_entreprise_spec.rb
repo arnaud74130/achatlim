@@ -6,12 +6,39 @@ feature "Mise à jour des roles", :devise do
 		@user_etb = @consultation.etablissements.first.users.first
 		@user_fournisseur = @consultation.markets.first.fournisseur.users.first
 	end
-	scenario "L'Admin peut mettre à jour les roles" do
+
+	scenario "Une entreprise doit être renseignée" do
 		signin(@eric.email, @eric.password)
 		visit users_path
-		select "Fournisseur", from: "select_entreprise_#{@visiteur.id}"
-		click_button "submit_btn_user_#{@eric.id}"
-		expect(page).to have_content 'User updated.'
+		within find(:xpath, "//form[@id='edit_user_#{@visiteur.id}']") do			
+			select "Fournisseur"			
+			click_button 'Change Role'
+		end		
+		expect(page).to have_content "Attention il faut renseigner une entreprise !"
+	end
+
+	scenario "L'Admin peut créer un fournisseur" do
+		signin(@eric.email, @eric.password)
+		visit users_path		
+		within find(:xpath, "//form[@id='edit_user_#{@visiteur.id}']") do			
+			select "Fournisseur"			
+			fill_in "user_entreprise_nom", with: @user_fournisseur.entreprise.nom
+			find("input[name='user[entreprise_id]']").set @user_fournisseur.entreprise.id
+			find("input[name='user[entreprise_type]']").set "Fournisseur"		
+			click_button 'Change Role'
+		end						
+	end
+
+	scenario "L'Admin peut créer un établissement" do
+		signin(@eric.email, @eric.password)
+		visit users_path		
+		within find(:xpath, "//form[@id='edit_user_#{@visiteur.id}']") do			
+			select "Etablissement"				
+			fill_in "user_entreprise_nom", with: @user_etb.entreprise.nom
+			find("input[name='user[entreprise_id]']").set @user_etb.entreprise.id
+			find("input[name='user[entreprise_type]']").set "Etablissement"	
+			click_button 'Change Role'
+		end						
 	end
 
 	scenario "Un utilisateur (Etablissement) ne peut pas accéder aux utilisateurs" do
