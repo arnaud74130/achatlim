@@ -2,6 +2,7 @@
 <%= bootstrap_nested_form_for(@consultation) do |f| %>
 <%= render 'shared/model_errors', modele: @consultation %>
   <%= f.text_field :code %>
+   <%= f.text_field :libelle %>
   <%= f.date_field :debut %>
   <%= f.date_field :fin %>
   <%= f.collection_check_boxes(:etablissement_ids, @etablissements, :id, :nom) %>

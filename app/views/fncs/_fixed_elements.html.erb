@@ -12,22 +12,22 @@
 <table class="table table-bordered">
   <tr>
     <td>ETABLISSEMENT</td>
-    <td><%= @etablissement.nom %> </td>
+    <td><%= @fnc.etablissement.nom %> </td>
   </tr>
   <tr>
     <td>TEL</td>
-    <td><%= @etablissement.telephone %> </td>
+    <td><%= @fnc.etablissement.telephone %> </td>
   </tr>
   <tr>
     <td>FAX</td>
-    <td><%= @etablissement.fax %></td>
+    <td><%= @fnc.etablissement.fax %></td>
   </tr>
   <tr>
     <td rowspan="2">EMETTEUR</td>
-    <td><%= current_user.full_name %></td>
+    <td><%= @fnc.observations.first.user.full_name %></td>
   </tr>
   <tr>
-    <td><%= current_user.email %></td>
+    <td><%= @fnc.observations.first.user.email %></td>
   </tr>
 </table>
 
