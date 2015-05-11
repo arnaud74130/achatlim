@@ -3,18 +3,11 @@
     <h3 class="panel-title">Marché et fournisseur associé</h3>
   </div>
   <div class="panel-body">
-<% market_fournisseur_id = SecureRandom.uuid %>
 <%= f.text_field :code, label: "Code du marché" %>
-
-
-<% fournisseur_id = SecureRandom.uuid %>
 <div class="form-group">
   <%= f.label :entreprise %>
-  <%= f.autocomplete_field :fournisseur_nom,  autocomplete_user_fournisseur_users_path, :update_elements => {:id => "##{fournisseur_id}"}, size: 75, class: 'form-control'%>
-  <%= f.hidden_field :fournisseur_id, id: "#{fournisseur_id}" %>
+  <%= f.autocomplete_field :fournisseur_nom,  autocomplete_user_fournisseur_users_path, size: 75, class: 'form-control'%>
 </div>
-
-
 <br/>
 <%= f.link_to_remove "Supprimer le marché" %>
 </div>

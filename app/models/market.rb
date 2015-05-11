@@ -28,7 +28,11 @@ class Market < ActiveRecord::Base
 
 	accepts_nested_attributes_for :fournisseur
 
+	def fournisseur_nom=(nom)
+		f = Fournisseur.where(nom: nom).first
+	 	self.fournisseur =  f if f
+	end
 	def fournisseur_nom
-		self.fournisseur.nom if fournisseur
+		fournisseur.nom if fournisseur
 	end
 end

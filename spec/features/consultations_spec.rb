@@ -38,7 +38,7 @@ feature 'Consultation', :devise do
 
 		fill_in 'consultation[markets_attributes][0][code]', with: "M1"
 		fill_in 'consultation[markets_attributes][0][fournisseur_nom]', with: "#{@fournisseur1.nom}"				
-		first(:xpath,"//input[@name='consultation[markets_attributes][0][fournisseur_id]']").set @fournisseur1.id
+		#first(:xpath,"//input[@name='consultation[markets_attributes][0][fournisseur_id]']").set @fournisseur1.id
 		click_button 'Créer'		
 		expect(page).to have_content 'La consultation a été créé avec succès.'
 		visit consultations_path
@@ -55,7 +55,7 @@ feature 'Consultation', :devise do
 		
 		fill_in 'consultation[markets_attributes][0][code]', with: "M1"
 		fill_in 'consultation[markets_attributes][0][fournisseur_nom]', with: "#{@fournisseur1.nom}"				
-		first(:xpath,"//input[@name='consultation[markets_attributes][0][fournisseur_id]']").set @fournisseur1.id
+		#first(:xpath,"//input[@name='consultation[markets_attributes][0][fournisseur_id]']").set @fournisseur1.id
 		click_button 'Créer'		
 		expect(page).to have_content 'Attention votre établissement doit être coché !'	
 	end
