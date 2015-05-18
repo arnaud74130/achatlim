@@ -25,7 +25,7 @@ FactoryGirl.define do
 		f.adresse_ligne1 {Faker::Address.street_address}
 		f.code_postal {Faker::Address.zip_code}
 		f.ville {Faker::Address.city}
-		ignore do
+		transient do
 			nbr_users 1
 		end
 		after(:create) do |fournisseur, evaluator|

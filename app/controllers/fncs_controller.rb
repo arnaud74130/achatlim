@@ -56,8 +56,7 @@ class FncsController < ApplicationController
 
   # POST fncs/marches/:market_id
   def create    
-    @fnc = @marche.fncs.new(fnc_params) 
-    @fnc.etablissement_id=current_user.entreprise.id    
+    @fnc =  FncCreator.build(@marche.fncs, current_user, fnc_params)    
     authorize @fnc
     respond_to do |format|
       if @fnc.save

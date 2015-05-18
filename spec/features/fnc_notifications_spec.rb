@@ -14,23 +14,23 @@
 #     You should have received a copy of the GNU General Public License
 #     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-class Fournisseur < ActiveRecord::Base
+require "rails_helper"
 
-	before_save :pretty_name
-	validates :nom, presence: true, uniqueness: true	
-
-	has_many :users, as: :entreprise, dependent: :delete_all
-	has_many :markets, dependent: :delete_all
-
-	def pretty_name
-		self.nom=nom.mb_chars.upcase.to_s if self.nom
+RSpec.feature "FNC Emails :" do
+	let(:consultation) {create(:consultation)}
+	let(:eric) {consultation.etablissements.first.users.first}
+	let(:fournisseur) {consultation.markets.first.fournisseur}
+	let(:fnc) {create(:fnc)}
+	before do
+		visit root_path
+		login_as(eric)	
 	end
-
-	def consultations
-		markets.inject([]) do |consults, market|
-			consults << market.consultation
-			consults
-		end
+	scenario "Fournisseur recoit automatiquement un email lors de l'ajout d'une FNC" do
+		market =  consultation.markets.first		
+		market.fncs << fnc
+		email = find_email!(fournisseur.users.first.email)		
+		expected_subject = "[ACHATLIM] Création d'une FNC sur le marché #{market.code}"
+		click_first_link_in_email(email)
+		expect(current_path).to eq market_fnc_path(fnc)
 	end
-
 end
