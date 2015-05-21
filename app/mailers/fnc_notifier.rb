@@ -16,12 +16,12 @@ class FncNotifier < ApplicationMailer
 
 	def notif_coordonnateur_created(fnc,user)
 		@fnc = fnc
-		subject = "[ACHATLIM] [FNC] déclaration de :#{@fnc.obersvations.first.user.entreprise.nom}, marché #{@fnc.market.code}"		
+		subject = "[ACHATLIM] [FNC] déclaration de :#{@fnc.observations.first.user.entreprise.nom}, marché #{@fnc.market.code}"		
 		mail(to: user.email, subject: subject)
 	end
 	def notif_coordonnateur_updated(fnc,user)
 		@fnc = fnc
-		subject = "[ACHATLIM][FNC] réponse de #{@fnc.obersvations.first.user.entreprise.nom}"		
+		subject = "[ACHATLIM][FNC] réponse de #{@fnc.observations.last.user.entreprise.nom}"		
 		mail(to: user.email, subject: subject)
 	end
 end

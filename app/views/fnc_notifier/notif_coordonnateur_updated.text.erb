@@ -8,7 +8,7 @@ Consultation : <%= @fnc.consultation.libelle %>, code : <%= @fnc.consultation.co
 
 Pour rappel, l'historique des messages échangés:
 
-<% @fnc.observations.each do |thing| %>
+<% @fnc.observations.each do |obser| %>
     <%= obser.user.full_name %> (<%= obser.user.entreprise.nom %>) le <%= l(obser.created_at) %>
     - <%= obser.message %>
 

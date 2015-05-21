@@ -96,11 +96,11 @@ class FncsController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_fnc
-    @fnc = Fnc.find(params[:id])
+    @fnc = Fnc.find(params[:id])    
   end
 
   def set_market
-    @marche = Market.find(params[:market_id])    
+    @marche = Market.find(params[:market_id])      
   end
   # Never trust parameters from the scary internet, only allow the white list through.
   def fnc_params

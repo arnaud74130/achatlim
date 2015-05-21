@@ -26,7 +26,7 @@ RSpec.feature "FNC Emails :" do
 		
 	end
 	scenario "Fournisseur recoit automatiquement un email lors de l'ajout d'une FNC" do		
-		login_as(eric)	
+	    login_as(eric)				
 		visit new_market_fnc_path(marche)
 		expect(page).to have_content "Fiche de non conformité"
 
@@ -54,7 +54,7 @@ RSpec.feature "FNC Emails :" do
 		#expect(current_path).to eq edit_fnc_path(fnc)
 	end
 	
-	scenario "Etablissement ajoute une observation" do
+	scenario "Etablissement ajoute une observation" do	
 		login_as(eric)	
 		fnc = marche.fncs.first
 		visit edit_fnc_path(fnc)

@@ -16,11 +16,12 @@ class FncCreator
 			@fnc.fournisseur.users.each do |user|					
 				FncNotifier.created(@fnc, user).deliver_later
 			end
-
-			Etablissement.coordonnateur.users do |user|
-				FncNotifier.notif_coordonnateur_created(@fnc,user).deliver_later
+			if @fnc.market.consultation.etablissements.include? Etablissement.coordonnateur
+				Etablissement.coordonnateur.users.each do |user|
+					FncNotifier.notif_coordonnateur_created(@fnc,user).deliver_later
+				end
 			end
-
+			true
 		end		
 	end
 
@@ -35,11 +36,12 @@ class FncCreator
 					FncNotifier.updated(@fnc, user).deliver_later
 				end
 			end
-
-			Etablissement.coordonnateur.users do |user|
-				FncNotifier.notif_coordonnateur_updated(@fnc,user).deliver_later
+			if @fnc.market.consultation.etablissements.include? Etablissement.coordonnateur							
+				Etablissement.coordonnateur.users.each do |user|
+					FncNotifier.notif_coordonnateur_updated(@fnc,user).deliver_later					
+				end
 			end
-
+			true
 		end
 	end
 	
