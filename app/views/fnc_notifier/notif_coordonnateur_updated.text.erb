@@ -1,0 +1,24 @@
+Bonjour,
+
+<%= @fnc.observations.last.user.entreprise.nom %> vient de répondre à la fiche de non conformité concernant :
+
+Le marché : <%= @fnc.market.code %>
+Consultation : <%= @fnc.consultation.libelle %>, code : <%= @fnc.consultation.code %>
+
+
+Pour rappel, l'historique des messages échangés:
+
+<% @fnc.observations.each do |thing| %>
+    <%= obser.user.full_name %> (<%= obser.user.entreprise.nom %>) le <%= l(obser.created_at) %>
+    - <%= obser.message %>
+
+<% end %>
+
+
+Vous pouvez répondre dès maintenant en vous rendant à l'adresse ci-dessous :
+
+<%= edit_fnc_url(@fnc) %>
+
+Cordialement,
+L’équipe AchatLim.
+GCS EPSILIM

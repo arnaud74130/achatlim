@@ -56,10 +56,11 @@ class FncsController < ApplicationController
 
   # POST fncs/marches/:market_id
   def create    
-    @fnc =  FncCreator.build(@marche.fncs, current_user, fnc_params)    
-    authorize @fnc
+    @creator =  FncCreator.build(@marche.fncs, current_user, fnc_params)    
+    authorize @creator.fnc
+    @fnc = @creator.fnc
     respond_to do |format|
-      if @fnc.save
+      if @creator.save        
         format.html { redirect_to @fnc, notice: 'La fiche de non confirmité a été créé avec succès.' }
         format.json { render :show, status: :created, location: @fnc }
       else
@@ -71,8 +72,9 @@ class FncsController < ApplicationController
 
   def update
     authorize @fnc
+    @creator = FncCreator.new(@fnc, current_user)
     respond_to do |format|
-      if @fnc.update(fnc_params)
+      if @creator.update(fnc_params)
         format.html { redirect_to @fnc, notice: 'La fiche de non confirmité a été modifié avec succès.' }
         format.json { render :show, status: :ok, location: @fnc }
       else

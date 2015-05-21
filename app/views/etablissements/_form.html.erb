@@ -3,6 +3,7 @@
     <%= render 'shared/model_errors', modele: @etablissement %>
 
     <%= f.text_field :nom %>
+    <%= f.check_box :is_coordonnateur, label: "Coordonnateur Régional" %>
     <%= f.text_field :code_adherent %>
     <%= f.telephone_field :telephone %>
     <%= f.telephone_field :fax %>

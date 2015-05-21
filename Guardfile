@@ -38,6 +38,7 @@ guard :rspec, cmd: 'bundle exec rspec' do
   # Capybara features specs
   watch(%r{^app/views/(.+)/.*\.(erb|haml|slim)$})     { |m| "spec/features/#{m[1]}_spec.rb" }
   watch(%r{^app/controllers/(.+)_(controller)\.rb$})  { |m| "spec/features/#{m[1]}_spec.rb" }
+  watch(%r{^app/mailers/(.+)_(notifier)\.rb$})  { |m| "spec/features/#{m[1]}_notifications_spec.rb" }
  
   # Turnip features and steps
   watch(%r{^spec/acceptance/(.+)\.feature$})

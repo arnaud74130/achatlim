@@ -75,6 +75,6 @@ class EtablissementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def etablissement_params
-      params.require(:etablissement).permit(:nom, :code_adherent, :telephone, :fax, :adresse_ligne1, :adresse_ligne2, :code_postal, :ville)
+      params.require(:etablissement).permit(:nom, :code_adherent, :telephone, :fax, :adresse_ligne1, :adresse_ligne2, :code_postal, :ville, :is_coordonnateur)
     end
 end

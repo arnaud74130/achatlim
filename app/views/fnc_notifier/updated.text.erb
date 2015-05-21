@@ -1,0 +1,16 @@
+Bonjour,
+
+<% if @user.entreprise_type == 'Fournisseur' %>
+L’établissement <%= @fnc.etablissement.nom %> vient de mettre à jour la fiche de non conformité du marché <%= @fnc.market.code %> de la consultation <%= @fnc.consultation.libelle %>.
+
+<% else %>
+ Le fournisseur <%= @fnc.fournisseur.nom %> vient de répondre à la fiche de non conformité du marché <%= @fnc.market.code %> de la consultation <%= @fnc.consultation.libelle %>.
+<% end %>
+
+Vous pouvez prendre connaissance des nouvelles observations et répondre dès maintenant en vous rendant à l'adresse ci-dessous :
+
+<%= edit_fnc_url(@fnc) %>
+
+Cordialement,
+L’équipe AchatLim.
+GCS EPSILIM

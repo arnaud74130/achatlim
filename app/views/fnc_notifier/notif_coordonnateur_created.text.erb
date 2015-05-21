@@ -1,0 +1,11 @@
+Bonjour,
+
+L’établissement <%= @fnc.etablissement.nom %> vient de déclarer une fiche de non conformité pour le marché <%= @fnc.market.code %> de la consultation <%= @fnc.consultation.libelle %> (<%= @fnc.consultation.code %>).
+
+Vous pouvez prendre connaissance de cette déclaration et répondre dès maintenant en vous rendant à l'adresse ci-dessous :
+
+<%= edit_fnc_url(@fnc) %>
+
+Cordialement,
+L’équipe AchatLim.
+GCS EPSILIM

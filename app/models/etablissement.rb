@@ -16,6 +16,7 @@
 
 class Etablissement < ActiveRecord::Base
 
+	scope :coordonnateur, ->{ where(is_coordonnateur: true).first }
 	has_and_belongs_to_many :consultations
 	has_many :users, as: :entreprise, dependent: :delete_all
 	has_many :fncs

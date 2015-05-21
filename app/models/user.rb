@@ -17,7 +17,10 @@
 class User < ActiveRecord::Base
   default_scope {order('role').order('nom ASC')}
   scope :actifs, ->{ where(active: true) }
+
   enum role: [:visiteur, :etablissement, :fournisseur, :admin]
+  
+
   after_initialize :set_default_role, :if => :new_record?
   belongs_to :entreprise, polymorphic: true
   has_one :consultation

@@ -5,6 +5,10 @@
 <p>
   <strong>Nom:</strong>
   <%= @etablissement.nom %>
+  <% if @etablissement.is_coordonnateur %>
+  <b>[Coordonnateur Régional]</b>
+<% end %>
+
 </p>
 
 <p>

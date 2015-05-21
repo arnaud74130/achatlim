@@ -11,81 +11,82 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141106141648) do
+ActiveRecord::Schema.define(version: 20150521071430) do
 
-  create_table "consultations", force: true do |t|
-    t.string   "code"
-    t.string   "libelle"
+  create_table "consultations", force: :cascade do |t|
+    t.string   "code",       limit: 255
+    t.string   "libelle",    limit: 255
     t.date     "debut"
     t.date     "fin"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.boolean  "statut",     default: true
+    t.boolean  "statut",                 default: true
   end
 
-  create_table "consultations_etablissements", id: false, force: true do |t|
+  create_table "consultations_etablissements", id: false, force: :cascade do |t|
     t.integer "etablissement_id", null: false
     t.integer "consultation_id",  null: false
   end
 
-  create_table "etablissements", force: true do |t|
-    t.string   "nom"
-    t.string   "code_adherent"
-    t.string   "telephone"
-    t.string   "fax"
-    t.string   "adresse_ligne1"
-    t.string   "adresse_ligne2"
-    t.string   "code_postal"
-    t.string   "ville"
+  create_table "etablissements", force: :cascade do |t|
+    t.string   "nom",              limit: 255
+    t.string   "code_adherent",    limit: 255
+    t.string   "telephone",        limit: 255
+    t.string   "fax",              limit: 255
+    t.string   "adresse_ligne1",   limit: 255
+    t.string   "adresse_ligne2",   limit: 255
+    t.string   "code_postal",      limit: 255
+    t.string   "ville",            limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_coordonnateur",             default: false
   end
 
-  create_table "fncs", force: true do |t|
-    t.string   "raison_litige"
-    t.string   "numero_commande"
-    t.string   "produits"
+  create_table "fncs", force: :cascade do |t|
+    t.string   "raison_litige",          limit: 255
+    t.string   "numero_commande",        limit: 255
+    t.string   "produits",               limit: 255
     t.date     "commande_passee"
     t.date     "livraison_demandee"
-    t.string   "lot_ou_dlc"
+    t.string   "lot_ou_dlc",             limit: 255
     t.boolean  "instruction_avoir"
     t.boolean  "instruction_facture"
     t.boolean  "instruction_surv_prepa"
     t.boolean  "instruction_reprendre"
     t.boolean  "instruction_relivrer"
-    t.string   "instruction_autre"
-    t.string   "respect_delais"
-    t.string   "proprete_camion"
-    t.string   "etat_emballage"
-    t.string   "conformite_produit"
-    t.string   "respect_dlc"
-    t.string   "temperature_produit"
-    t.string   "abs_tracabilite"
-    t.string   "tarification"
+    t.string   "instruction_autre",      limit: 255
+    t.string   "respect_delais",         limit: 255
+    t.string   "proprete_camion",        limit: 255
+    t.string   "etat_emballage",         limit: 255
+    t.string   "conformite_produit",     limit: 255
+    t.string   "respect_dlc",            limit: 255
+    t.string   "temperature_produit",    limit: 255
+    t.string   "abs_tracabilite",        limit: 255
+    t.string   "tarification",           limit: 255
     t.integer  "market_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "cloturee",               default: false
+    t.boolean  "cloturee",                           default: false
     t.integer  "etablissement_id"
   end
 
   add_index "fncs", ["market_id"], name: "index_fncs_on_market_id"
 
-  create_table "fournisseurs", force: true do |t|
-    t.string   "nom"
-    t.string   "telephone"
-    t.string   "fax"
-    t.string   "adresse_ligne1"
-    t.string   "adresse_ligne2"
-    t.string   "code_postal"
-    t.string   "ville"
+  create_table "fournisseurs", force: :cascade do |t|
+    t.string   "nom",            limit: 255
+    t.string   "telephone",      limit: 255
+    t.string   "fax",            limit: 255
+    t.string   "adresse_ligne1", limit: 255
+    t.string   "adresse_ligne2", limit: 255
+    t.string   "code_postal",    limit: 255
+    t.string   "ville",          limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "markets", force: true do |t|
-    t.string   "code"
+  create_table "markets", force: :cascade do |t|
+    t.string   "code",            limit: 255
     t.integer  "fournisseur_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -95,8 +96,8 @@ ActiveRecord::Schema.define(version: 20141106141648) do
   add_index "markets", ["consultation_id"], name: "index_markets_on_consultation_id"
   add_index "markets", ["fournisseur_id"], name: "index_markets_on_fournisseur_id"
 
-  create_table "observations", force: true do |t|
-    t.string   "message"
+  create_table "observations", force: :cascade do |t|
+    t.string   "message",    limit: 255
     t.integer  "fnc_id"
     t.integer  "user_id"
     t.datetime "created_at"
@@ -106,30 +107,30 @@ ActiveRecord::Schema.define(version: 20141106141648) do
   add_index "observations", ["fnc_id"], name: "index_observations_on_fnc_id"
   add_index "observations", ["user_id"], name: "index_observations_on_user_id"
 
-  create_table "users", force: true do |t|
-    t.string   "email",                  default: "",   null: false
-    t.string   "encrypted_password",     default: "",   null: false
-    t.string   "reset_password_token"
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                  limit: 255, default: "",   null: false
+    t.string   "encrypted_password",     limit: 255, default: "",   null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,    null: false
+    t.integer  "sign_in_count",                      default: 0,    null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "nom"
+    t.string   "nom",                    limit: 255
     t.integer  "role"
-    t.string   "prenom"
+    t.string   "prenom",                 limit: 255
     t.integer  "entreprise_id"
-    t.string   "entreprise_type"
-    t.string   "confirmation_token"
+    t.string   "entreprise_type",        limit: 255
+    t.string   "confirmation_token",     limit: 255
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email"
-    t.string   "telephone"
-    t.boolean  "active",                 default: true
+    t.string   "unconfirmed_email",      limit: 255
+    t.string   "telephone",              limit: 255
+    t.boolean  "active",                             default: true
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

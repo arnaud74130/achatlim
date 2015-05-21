@@ -3,24 +3,43 @@ class FncCreator
 	def self.build(scope, current_user, fnc_params)
 		fnc = scope.new(fnc_params) 
     	fnc.etablissement_id=current_user.entreprise.id  
-    	fnc  		
+    	new(fnc, current_user)  		
 	end
 	
-	def initialize(fnc)
+	def initialize(fnc, current_user)
 		@fnc = fnc
+		@current_user = current_user		
 	end
 	
-	def save
+	def save		
 		if @fnc.save
-			#FncNotifier
+			@fnc.fournisseur.users.each do |user|					
+				FncNotifier.created(@fnc, user).deliver_later
+			end
+
+			Etablissement.coordonnateur.users do |user|
+				FncNotifier.notif_coordonnateur_created(@fnc,user).deliver_later
+			end
+
 		end		
 	end
 
 	def update(fnc_params)
 		if @fnc.update(fnc_params)
-			#ObervationNotifier
-		else
-			false
+			if @current_user.entreprise_type == 'Fournisseur'
+				@fnc.etablissement.users.each do |user|
+					FncNotifier.updated(@fnc, user).deliver_later
+				end				
+			else
+				@fnc.fournisseur.users.each do |user|
+					FncNotifier.updated(@fnc, user).deliver_later
+				end
+			end
+
+			Etablissement.coordonnateur.users do |user|
+				FncNotifier.notif_coordonnateur_updated(@fnc,user).deliver_later
+			end
+
 		end
 	end
 	

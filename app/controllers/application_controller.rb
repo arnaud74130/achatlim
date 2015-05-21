@@ -35,11 +35,12 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)        
-  	if current_user.visiteur? ||current_user.entreprise==nil || current_user.entreprise.consultations.empty? 		
-      root_path
-  	else
-  		consultations_path
-  	end
+  	# if current_user.visiteur? ||current_user.entreprise==nil || current_user.entreprise.consultations.empty? 		
+   #    root_path
+  	# else
+  	# 	consultations_path
+  	# end
+     request.env['omniauth.origin'] || stored_location_for(resource) || root_path
   end
 
   #	protected
