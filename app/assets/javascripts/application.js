@@ -17,4 +17,6 @@
 //= require autocomplete-rails
 //= require turbolinks
 //= require jquery_nested_form
+//= require chosen-jquery
+//= require scaffold
 //= require_tree .

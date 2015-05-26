@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150521071430) do
+ActiveRecord::Schema.define(version: 20150526135512) do
 
   create_table "consultations", force: :cascade do |t|
     t.string   "code",       limit: 255
@@ -29,6 +29,11 @@ ActiveRecord::Schema.define(version: 20150521071430) do
     t.integer "consultation_id",  null: false
   end
 
+  create_table "consultations_famille_segments", id: false, force: :cascade do |t|
+    t.integer "consultation_id",    null: false
+    t.integer "famille_segment_id", null: false
+  end
+
   create_table "etablissements", force: :cascade do |t|
     t.string   "nom",              limit: 255
     t.string   "code_adherent",    limit: 255
@@ -41,6 +46,12 @@ ActiveRecord::Schema.define(version: 20150521071430) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "is_coordonnateur",             default: false
+  end
+
+  create_table "famille_segments", force: :cascade do |t|
+    t.string   "libelle"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "fncs", force: :cascade do |t|

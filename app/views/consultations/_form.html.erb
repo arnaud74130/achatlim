@@ -5,6 +5,13 @@
    <%= f.text_field :libelle %>
   <%= f.date_field :debut %>
   <%= f.date_field :fin %>
+  <%= f.select :famille_segment_ids,
+  FamilleSegment.all.map { |u| [u.libelle, u.id] },
+               { include_blank: true },
+               { multiple: true, class: 'chosen-select' }
+%>
+  <!-- %= f.collection_check_boxes(:famille_segment_ids, FamilleSegment.all.map, :id, :libelle) % -->
+
   <%= f.collection_check_boxes(:etablissement_ids, @etablissements, :id, :nom) %>
   <%= f.fields_for :markets %>
   <span class="glyphicon glyphicon-plus"></span>

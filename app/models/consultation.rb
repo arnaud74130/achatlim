@@ -16,11 +16,14 @@
 
 class Consultation < ActiveRecord::Base
   has_and_belongs_to_many :etablissements
+  has_and_belongs_to_many :famille_segments, uniq: true
+  
   before_destroy {|consultation| consultation.etablissements.clear}
   has_many :markets, :dependent => :delete_all
   belongs_to :user
-
+  
 
   accepts_nested_attributes_for :markets, allow_destroy: true
+  
   validates :code, presence: true
 end
