@@ -1,9 +1,11 @@
-<p id="notice"><%= notice %></p>
+<%= render "shared/bandeau", titre: "Segment", texte: "Attribut(s) du segment." %>
 
+<p id="notice"><%= notice %></p>
+<div class="container">
 <p>
-  <strong>Libelle:</strong>
+  <strong>Libellé:</strong>
   <%= @famille_segment.libelle %>
 </p>
-
-<%= link_to 'Edit', edit_famille_segment_path(@famille_segment) %> |
-<%= link_to 'Back', famille_segments_path %>
+ <%= back famille_segments_path %>
+ <%= edit edit_famille_segment_path(@famille_segment) %>
+</div>

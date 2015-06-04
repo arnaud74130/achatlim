@@ -14,19 +14,9 @@
 #     You should have received a copy of the GNU General Public License
 #     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-class Etablissement < ActiveRecord::Base
-
-	scope :coordonnateur, ->{ where(is_coordonnateur: true).first }
-	has_and_belongs_to_many :consultations
-	has_many :users, as: :entreprise, dependent: :delete_all
-	has_many :fncs
-	has_many :point_livraisons
-	validates :nom, :presence => true
-	
-	before_save :pretty_name
-	before_destroy {|etablissement| etablissement.consultations.clear}
-	def pretty_name
-
-		self.nom=nom.mb_chars.upcase.to_s unless self.nom.blank?
-	end
+class PointLivraison < ActiveRecord::Base
+  belongs_to :etablissement
+  has_many :horaire_livraisons
+  has_and_belongs_to_many :caracteristique_livraisons, uniq: true
+  has_and_belongs_to_many :famille_segments, uniq: true
 end

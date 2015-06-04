@@ -44,4 +44,13 @@ RSpec.configure do |config|
   # Configuring Warden for use in feature specs
   config.include Warden::Test::Helpers, type: :feature
   config.after(type: :feature) { Warden.test_reset! }
+
+  config.before(:suite) do
+    FactoryGirl.create(:famille_segment)
+    FactoryGirl.create(:famille_segment,:cereale)
+    FactoryGirl.create(:famille_segment)
+    FactoryGirl.create(:famille_segment)
+    FactoryGirl.create(:famille_segment)
+    FactoryGirl.create(:famille_segment)    
+  end
 end

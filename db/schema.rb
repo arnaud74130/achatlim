@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150526135512) do
+ActiveRecord::Schema.define(version: 20150602143848) do
+
+  create_table "caracteristique_livraisons", force: :cascade do |t|
+    t.string   "libelle"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "caracteristique_livraisons_point_livraisons", id: false, force: :cascade do |t|
+    t.integer "point_livraison_id",           null: false
+    t.integer "caracteristique_livraison_id", null: false
+    t.boolean "is_ok"
+  end
 
   create_table "consultations", force: :cascade do |t|
     t.string   "code",       limit: 255
@@ -52,6 +64,11 @@ ActiveRecord::Schema.define(version: 20150526135512) do
     t.string   "libelle"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "famille_segments_point_livraisons", id: false, force: :cascade do |t|
+    t.integer "point_livraison_id", null: false
+    t.integer "famille_segment_id", null: false
   end
 
   create_table "fncs", force: :cascade do |t|
@@ -96,6 +113,17 @@ ActiveRecord::Schema.define(version: 20150526135512) do
     t.datetime "updated_at"
   end
 
+  create_table "horaire_livraisons", force: :cascade do |t|
+    t.integer  "point_livraison_id"
+    t.string   "jour"
+    t.time     "debut"
+    t.time     "fin"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "horaire_livraisons", ["point_livraison_id"], name: "index_horaire_livraisons_on_point_livraison_id"
+
   create_table "markets", force: :cascade do |t|
     t.string   "code",            limit: 255
     t.integer  "fournisseur_id"
@@ -117,6 +145,20 @@ ActiveRecord::Schema.define(version: 20150526135512) do
 
   add_index "observations", ["fnc_id"], name: "index_observations_on_fnc_id"
   add_index "observations", ["user_id"], name: "index_observations_on_user_id"
+
+  create_table "point_livraisons", force: :cascade do |t|
+    t.string   "adresse_ligne1"
+    t.string   "adresse_ligne2"
+    t.string   "adresse_cp"
+    t.string   "adresse_ville"
+    t.string   "adresse_commentaire"
+    t.boolean  "is_principal"
+    t.integer  "etablissement_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "point_livraisons", ["etablissement_id"], name: "index_point_livraisons_on_etablissement_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "",   null: false

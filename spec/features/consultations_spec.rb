@@ -21,7 +21,7 @@ feature 'Consultation', :devise do
 		@etb1 = @consultation.etablissements.first
 		@etb2 = @consultation.etablissements.last
 		@fournisseur1 = @consultation.markets.first.fournisseur
-		@fournisseur2 = @consultation.markets.last.fournisseur
+		@fournisseur2 = @consultation.markets.last.fournisseur		
 	end
 
 	# Un établissement peut créer une consultation

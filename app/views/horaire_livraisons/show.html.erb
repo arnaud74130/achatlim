@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Jour:</strong>
+  <%= @horaire_livraison.jour %>
+</p>
+
+<p>
+  <strong>Debut:</strong>
+  <%= @horaire_livraison.debut %>
+</p>
+
+<p>
+  <strong>Fin:</strong>
+  <%= @horaire_livraison.fin %>
+</p>
+
+<%= link_to 'Edit', edit_horaire_livraison_path(@horaire_livraison) %> |
+<%= link_to 'Back', horaire_livraisons_path %>

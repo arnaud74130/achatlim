@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Adresse ligne1:</strong>
+  <%= @point_livraison.adresse_ligne1 %>
+</p>
+
+<p>
+  <strong>Adresse ligne2:</strong>
+  <%= @point_livraison.adresse_ligne2 %>
+</p>
+
+<p>
+  <strong>Adresse cp:</strong>
+  <%= @point_livraison.adresse_cp %>
+</p>
+
+<p>
+  <strong>Adresse ville:</strong>
+  <%= @point_livraison.adresse_ville %>
+</p>
+
+<p>
+  <strong>Adresse commentaire:</strong>
+  <%= @point_livraison.adresse_commentaire %>
+</p>
+
+<p>
+  <strong>Is principal:</strong>
+  <%= @point_livraison.is_principal %>
+</p>
+
+<p>
+  <strong>Etablissement:</strong>
+  <%= @point_livraison.etablissement %>
+</p>
+
+<%= link_to 'Edit', edit_point_livraison_path(@point_livraison) %> |
+<%= link_to 'Back', point_livraisons_path %>

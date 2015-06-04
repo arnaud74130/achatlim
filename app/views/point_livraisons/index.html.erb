@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Point Livraisons</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Adresse ligne1</th>
+      <th>Adresse ligne2</th>
+      <th>Adresse cp</th>
+      <th>Adresse ville</th>
+      <th>Adresse commentaire</th>
+      <th>Is principal</th>
+      <th>Etablissement</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @point_livraisons.each do |point_livraison| %>
+      <tr>
+        <td><%= point_livraison.adresse_ligne1 %></td>
+        <td><%= point_livraison.adresse_ligne2 %></td>
+        <td><%= point_livraison.adresse_cp %></td>
+        <td><%= point_livraison.adresse_ville %></td>
+        <td><%= point_livraison.adresse_commentaire %></td>
+        <td><%= point_livraison.is_principal %></td>
+        <td><%= point_livraison.etablissement %></td>
+        <td><%= link_to 'Show', point_livraison %></td>
+        <td><%= link_to 'Edit', edit_point_livraison_path(point_livraison) %></td>
+        <td><%= link_to 'Destroy', point_livraison, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Point livraison', new_point_livraison_path %>

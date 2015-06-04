@@ -1,0 +1,5 @@
+<%= bootstrap_form_for(@caracteristique_livraison) do |f| %>
+  <%= render 'shared/model_errors', modele: @caracteristique_livraison %>
+  <%= f.text_field :libelle %>
+  <%= f.submit nil, class: 'btn btn-primary' %>
+<% end %>

@@ -1,0 +1,26 @@
+<%= render "shared/bandeau_new",
+ titre: "Caractéristiques de Livraison",
+ texte: "Liste des caractéristiques concernant les points de livraisons.",
+ path: new_caracteristique_livraison_path %>
+
+<div class="container">
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Libellé</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @caracteristique_livraisons.each do |caracteristique| %>
+      <tr>
+        <td><%= link_to caracteristique.id, caracteristique_livraison_path(caracteristique) %></td>
+        <td><%= caracteristique.libelle %></td>
+        <td><%= edit_small edit_caracteristique_livraison_path(caracteristique) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

@@ -1,0 +1,11 @@
+<%= render "shared/bandeau", titre: "Caractéristique de livraison", texte: "" %>
+
+<p id="notice"><%= notice %></p>
+<div class="container">
+<p>
+  <strong>Libellé:</strong>
+  <%= @caracteristique_livraison.libelle %>
+</p>
+ <%= back caracteristique_livraisons_path %>
+ <%= edit edit_caracteristique_livraison_path(@caracteristique_livraison) %>
+</div>

@@ -1,27 +1,26 @@
-<p id="notice"><%= notice %></p>
+<%= render "shared/bandeau_new",
+ titre: "Famille de segments",
+ texte: "Module d'administration des segments de marché.",
+ path: new_famille_segment_path %>
 
-<h1>Listing Famille Segments</h1>
-
-<table>
+<div class="container">
+<table class="table table-hover">
   <thead>
     <tr>
-      <th>Libelle</th>
-      <th colspan="3"></th>
+      <th>ID</th>
+      <th>Libellé</th>
+      <th></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @famille_segments.each do |famille_segment| %>
+    <% @famille_segments.each do |segment| %>
       <tr>
-        <td><%= famille_segment.libelle %></td>
-        <td><%= link_to 'Show', famille_segment %></td>
-        <td><%= link_to 'Edit', edit_famille_segment_path(famille_segment) %></td>
-        <td><%= link_to 'Destroy', famille_segment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to segment.id, famille_segment_path(segment) %></td>
+        <td><%= segment.libelle %></td>
+        <td><%= edit_small edit_famille_segment_path(segment) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Famille segment', new_famille_segment_path %>
+</div>

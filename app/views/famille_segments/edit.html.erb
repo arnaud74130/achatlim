@@ -1,6 +1,5 @@
-<h1>Editing Famille Segment</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @famille_segment %> |
-<%= link_to 'Back', famille_segments_path %>
+<%= render "shared/bandeau", titre: "Modification", texte: "Mise à jour du segment" %>
+<div class="container">
+  <%= render 'form' %>
+  <%= destroy @famille_segment %>
+</div>

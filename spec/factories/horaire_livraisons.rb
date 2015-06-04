@@ -14,19 +14,12 @@
 #     You should have received a copy of the GNU General Public License
 #     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-class Etablissement < ActiveRecord::Base
+FactoryGirl.define do
+  factory :horaire_livraison do |h|
+    h.sequence(:jour) {|j| ["Lundi","Mardi","Mercredi", "Jeudi", "Vendredi"][(j-1) % 5]}
+	#h.jour {Faker::Name.jours}
+	h.debut {Faker::Name.heures.to_s+":"+Faker::Name.minutes.to_s}
+	h.fin {Faker::Name.heures.to_s+":"+Faker::Name.minutes.to_s}
+  end
 
-	scope :coordonnateur, ->{ where(is_coordonnateur: true).first }
-	has_and_belongs_to_many :consultations
-	has_many :users, as: :entreprise, dependent: :delete_all
-	has_many :fncs
-	has_many :point_livraisons
-	validates :nom, :presence => true
-	
-	before_save :pretty_name
-	before_destroy {|etablissement| etablissement.consultations.clear}
-	def pretty_name
-
-		self.nom=nom.mb_chars.upcase.to_s unless self.nom.blank?
-	end
 end

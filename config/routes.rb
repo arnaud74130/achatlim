@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :point_livraisons
+  resources :horaire_livraisons
+  resources :caracteristique_livraisons
   resources :famille_segments
   resources :observations
 

@@ -1,21 +1,5 @@
-<%= form_for(@famille_segment) do |f| %>
-  <% if @famille_segment.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@famille_segment.errors.count, "error") %> prohibited this famille_segment from being saved:</h2>
-
-      <ul>
-      <% @famille_segment.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :libelle %><br>
-    <%= f.text_field :libelle %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<%= bootstrap_form_for(@famille_segment) do |f| %>
+ <%= render 'shared/model_errors', modele: @famille_segment %>
+ <%= f.text_field :libelle %>
+ <%= f.submit nil, class: 'btn btn-primary' %>
 <% end %>

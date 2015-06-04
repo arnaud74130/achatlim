@@ -34,6 +34,8 @@ FactoryGirl.define do
 		end
 		after(:create) do |etablissement, evaluator|
 			etablissement.users = create_list(:user, evaluator.nbr_users, :etablissement)			
+			etablissement.point_livraisons << create(:point_livraison, :principal)
+			etablissement.point_livraisons << create(:point_livraison)			
 		end
 	end
 end
