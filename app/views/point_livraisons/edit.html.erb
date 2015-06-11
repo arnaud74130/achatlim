@@ -1,6 +1,5 @@
-<h1>Editing Point Livraison</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @point_livraison %> |
-<%= link_to 'Back', point_livraisons_path %>
+<%= render "shared/bandeau", titre: "Modification", texte: "Mise à jour d'un point de livraison" %>
+<div class="container">
+  <%= render 'form' %>
+ <%= destroy [@etablissement, @point_livraison] %>
+</div>

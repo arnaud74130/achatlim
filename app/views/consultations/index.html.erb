@@ -1,7 +1,7 @@
 <% if policy(Consultation.new).create? %>
 <%= render "shared/bandeau_new",
  titre: "Consultations",
- texte: "Module d'administration des consultations",
+ texte: h("Modification des consultations et déclarations des fiches de non conformité. Veuillez cliquer sur détail (icône) pour pouvoir faire la déclaration."),
  path: new_consultation_path %>
 
 <% else %>
@@ -11,9 +11,11 @@
 <% end %>
 
 <div class="container">
+
 <table class="table table-hover">
   <thead>
     <tr>
+      <th>Détail</th>
       <th>Code</th>
       <th>Libelle</th>
       <th>Debut</th>
@@ -23,14 +25,21 @@
     </tr>
   </thead>
   <tbody>
+    <% cpt=0 %>
     <% @consultations.each do |consultation| %>
     <% user = User.find(consultation.user_id) %>
+    <% if cpt % 2 == 0 %>
       <tr class="danger">
+     <% else %>
+     <tr>
+     <% end %>
+     <% cpt =cpt+1 %>
+        <td class=" clickable" data-toggle="collapse" id="<%= consultation.id  %>" data-target=".<%=consultation.id %>collapsed"> <span class="glyphicon glyphicon-collapse-down"></span></td>
         <td><%= link_to consultation.code, consultation %></td>
-        <td><%= consultation.libelle %></td>
-        <td><%= consultation.debut %></td>
-        <td><%= consultation.fin %></td>
-        <td><%= user.full_name %> <small><i>(<%= user.entreprise.nom %>)</i></small></td>
+        <td class=" clickable" data-toggle="collapse" id="<%= consultation.id  %>" data-target=".<%=consultation.id %>collapsed"><%= consultation.libelle %></td>
+        <td class=" clickable" data-toggle="collapse" id="<%= consultation.id  %>" data-target=".<%=consultation.id %>collapsed"><%= consultation.debut %></td>
+        <td class=" clickable" data-toggle="collapse" id="<%= consultation.id  %>" data-target=".<%=consultation.id %>collapsed"><%= consultation.fin %></td>
+        <td class=" clickable" data-toggle="collapse" id="<%= consultation.id  %>" data-target=".<%=consultation.id %>collapsed"><%= user.full_name %> <small><i>(<%= user.entreprise.nom %>)</i></small></td>
         <td>
            <% if consultation.user_id == current_user.id %>
           <%= edit edit_consultation_path(consultation) %>
@@ -40,7 +49,8 @@
       <% premier_passage=true %>
       <% consultation.markets.each do |marche| %>
       <% if premier_passage %>
-      <tr class="info">
+      <tr class="info collapse out budgets <%= consultation.id  %>collapsed">
+        <td></td>
         <td></td>
         <td></td>
         <td><strong>Marchés associés</strong></td>
@@ -54,7 +64,8 @@
       </tr>
       <% premier_passage=false %>
       <% end %>
-      <tr class="info">
+      <tr class="info collapse out budgets <%= consultation.id  %>collapsed">
+        <td></td>
         <td></td>
         <td></td>
         <td></td>

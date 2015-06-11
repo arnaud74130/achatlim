@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :point_livraisons
+  
   resources :horaire_livraisons
   resources :caracteristique_livraisons
   resources :famille_segments
@@ -16,7 +16,9 @@ Rails.application.routes.draw do
 
   resources :fournisseurs
 
-  resources :etablissements
+  resources :etablissements do
+    resources :point_livraisons
+  end
 
   resources :consultations
 

@@ -19,4 +19,6 @@ class PointLivraison < ActiveRecord::Base
   has_many :horaire_livraisons
   has_and_belongs_to_many :caracteristique_livraisons, uniq: true
   has_and_belongs_to_many :famille_segments, uniq: true
+
+  accepts_nested_attributes_for :horaire_livraisons, allow_destroy: true
 end

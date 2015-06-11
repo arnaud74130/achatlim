@@ -44,12 +44,13 @@
         <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
 
   </head>
-  <body>
+ <body data-no-turbolink="false">
     <header>
       <%= render 'layouts/navigation' %>
     </header>
     <main role="main">
       <%= render 'layouts/messages' %>
+
       <%= yield %>
     </main>
  <footer>

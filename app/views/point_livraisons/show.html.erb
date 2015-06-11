@@ -1,3 +1,4 @@
+<%= render "shared/bandeau", titre: "Informations du point de livraison", texte: "Liste des informations associées." %>
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -32,8 +33,17 @@
 
 <p>
   <strong>Etablissement:</strong>
-  <%= @point_livraison.etablissement %>
+  <%= @point_livraison.etablissement.nom %>
+</p>
+<p>
+  <strong>Famille de segments:</strong>
+  <ul>
+  <% @point_livraison.famille_segments do |seg| %>
+      <li><%= seg.libelle %></li>
+  <% end %>
+  </ul>
 </p>
 
-<%= link_to 'Edit', edit_point_livraison_path(@point_livraison) %> |
-<%= link_to 'Back', point_livraisons_path %>
+<%= back etablissement_point_livraisons_path(@etablissement) %>
+<%= edit edit_etablissement_point_livraison_path(@etablissement, @point_livraison) %>
+

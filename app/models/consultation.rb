@@ -15,6 +15,7 @@
 #     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class Consultation < ActiveRecord::Base
+  default_scope {order('libelle')}
   has_and_belongs_to_many :etablissements
   has_and_belongs_to_many :famille_segments, uniq: true
   
