@@ -1,5 +1,5 @@
 class PointLivraisonsController < ApplicationController
-  before_action :set_etablissement, :set_famille_segments
+  before_action :set_etablissement, :set_famille_segments, :set_caracteristiques
   before_action :set_point_livraison, only: [:show, :edit, :update, :destroy]
 
   # GET /point_livraisons
@@ -55,7 +55,7 @@ class PointLivraisonsController < ApplicationController
   def destroy
     @point_livraison.destroy
     respond_to do |format|
-      format.html { redirect_to point_livraisons_url, notice: 'Point livraison was successfully destroyed.' }
+      format.html { redirect_to etablissement_point_livraisons_url, notice: 'Point livraison was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -63,10 +63,13 @@ class PointLivraisonsController < ApplicationController
   private
 
   def set_etablissement
-    @etablissement = Etablissement.find(params[:etablissement_id])
+    @etablissement = Etablissement.find(params[:etablissement_id]) 
   end
   def set_famille_segments
     @famille_segments=FamilleSegment.all
+  end
+  def set_caracteristiques
+    @caracteristiques = CaracteristiqueLivraison.all
   end
     # Use callbacks to share common setup or constraints between actions.
     def set_point_livraison
@@ -75,6 +78,6 @@ class PointLivraisonsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def point_livraison_params
-      params.require(:point_livraison).permit(:adresse_ligne1, :adresse_ligne2, :adresse_cp, :adresse_ville, :adresse_commentaire, :is_principal, :etablissement_id, :famille_segment_ids => [], :horaire_livraisons_attributes => [:id, :jour, :debut, :fin])
+      params.require(:point_livraison).permit(:adresse_ligne1, :adresse_ligne2, :adresse_cp, :adresse_ville, :adresse_commentaire, :is_principal, :etablissement_id, :famille_segment_ids => [], :horaire_livraisons_attributes => [:id, :jour, :debut, :fin, :commentaire, :_destroy], :caracteristique_livraison_ids => [])
     end
 end

@@ -10,8 +10,10 @@
   <li><%= link_to 'Fiches', fncs_path %></li>
   <li><%= link_to 'Fournisseurs', fournisseurs_path %></li>
   <li><%= link_to 'Etablissements', etablissements_path %></li>
+  <li><%= link_to 'Points de livraison', etablissement_point_livraisons_path(current_user.entreprise) %></li>
   <% if current_user.admin? %>
     <li><%= link_to 'Utilisateurs', users_path %></li>
+    <li><%= link_to 'Caractéristiques', caracteristique_livraisons_path %></li>
   <% end %>
   <li><%= link_to 'Mon compte', edit_user_registration_path %></li>
 <% end %>

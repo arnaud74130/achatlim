@@ -1,5 +1,9 @@
 <%= render "shared/bandeau", titre: "Consultation", texte: "Liste des informations associées." %>
 <div class="container">
+    <p>
+    <strong>Publication en cours:</strong>
+    <%= @consultation.en_cours %>
+  </p>
   <p>
     <strong>Code:</strong>
     <%= @consultation.code %>

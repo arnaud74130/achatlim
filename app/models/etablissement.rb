@@ -26,7 +26,35 @@ class Etablissement < ActiveRecord::Base
 	before_save :pretty_name
 	before_destroy {|etablissement| etablissement.consultations.clear}
 	def pretty_name
-
 		self.nom=nom.mb_chars.upcase.to_s unless self.nom.blank?
+	end
+
+	#retourne le point de livraison principal
+	def point_livraison_principal
+		self.point_livraisons.where(is_principal: true).first	
+	end
+	
+	# on passe:  collection.famille_segments et on retourne une hash, famille => point livraison
+	def point_livraison_pour_segments(liste_famille)
+		fs= self.famille_segments
+		principal = self.point_livraison_principal
+		res = {}
+		liste_famille.each do |seg|			
+			indic = fs.index(seg)
+			if indic
+				p = fs[indic]
+				res[seg.libelle] = p.point_livraisons.first # il n'y a forcément qu'un seul point de livraison associé
+			else
+				res[seg.libelle]=principal			
+			end
+		end
+		res
+	end
+
+	def famille_segments
+		self.point_livraisons.inject([]) do |segs, pl|
+			pl.famille_segments.each {|seg| segs << seg}
+			segs
+		end		
 	end
 end

@@ -1,10 +1,21 @@
 
 <%= bootstrap_nested_form_for(@consultation) do |f| %>
 <%= render 'shared/model_errors', modele: @consultation %>
+<div class="bs-callout bs-callout-info">
+<h4>Publication en cours</h4>
+<p>En cochant la case <em>Publication en cours</em>, les annexes logistiques associées seront visibles par tous à l'url suivante <a href="<%= annexeslogistique_url %>"><%= annexeslogistique_url %></a></P>
+<p>Il est important de la décocher lorsque la publication est terminée.</p>
+</div>
+<%= f.check_box :en_cours, label: 'Publication en cours', checked: true %>
+
   <%= f.text_field :code %>
    <%= f.text_field :libelle %>
   <%= f.date_field :debut %>
   <%= f.date_field :fin %>
+<div class="bs-callout bs-callout-info">
+<h4>Famille de segments</h4>
+<p>Permet d'associer automatiquement les points de livraison des établissements en fonction des familles de segments et de construire ainsi les annexes logistique.</P>
+</div>
   <%= f.select :famille_segment_ids,
   FamilleSegment.all.map { |u| [u.libelle, u.id] },
                { include_blank: true },
@@ -12,7 +23,9 @@
 %>
   <!-- %= f.collection_check_boxes(:famille_segment_ids, FamilleSegment.all.map, :id, :libelle) % -->
 
-  <%= f.collection_check_boxes(:etablissement_ids, @etablissements, :id, :nom) %>
+  <%= f.collection_check_boxes(:etablissement_ids, @etablissements, :id, :nom)%>
+
+
   <%= f.fields_for :markets %>
   <span class="glyphicon glyphicon-plus"></span>
   <%= f.link_to_add "Marché supplémentaire", :markets %>

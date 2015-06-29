@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
   
-  resources :horaire_livraisons
+  get 'annexeslogistique', to: 'annexes_logistique#index'
+
+#  resources :horaire_livraisons
   resources :caracteristique_livraisons
   resources :famille_segments
-  resources :observations
+ # resources :observations
 
-  resources :markets
+ # resources :markets
   #
   #
   #resources :users, :except => [:new, :edit]

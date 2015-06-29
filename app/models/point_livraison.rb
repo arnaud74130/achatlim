@@ -21,4 +21,5 @@ class PointLivraison < ActiveRecord::Base
   has_and_belongs_to_many :famille_segments, uniq: true
 
   accepts_nested_attributes_for :horaire_livraisons, allow_destroy: true
+
 end

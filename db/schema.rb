@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150602143848) do
+ActiveRecord::Schema.define(version: 20150629144251) do
 
   create_table "caracteristique_livraisons", force: :cascade do |t|
     t.string   "libelle"
@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(version: 20150602143848) do
   create_table "caracteristique_livraisons_point_livraisons", id: false, force: :cascade do |t|
     t.integer "point_livraison_id",           null: false
     t.integer "caracteristique_livraison_id", null: false
-    t.boolean "is_ok"
   end
 
   create_table "consultations", force: :cascade do |t|
@@ -34,6 +33,7 @@ ActiveRecord::Schema.define(version: 20150602143848) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.boolean  "statut",                 default: true
+    t.boolean  "en_cours"
   end
 
   create_table "consultations_etablissements", id: false, force: :cascade do |t|
@@ -120,6 +120,7 @@ ActiveRecord::Schema.define(version: 20150602143848) do
     t.time     "fin"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.string   "commentaire"
   end
 
   add_index "horaire_livraisons", ["point_livraison_id"], name: "index_horaire_livraisons_on_point_livraison_id"
@@ -145,6 +146,18 @@ ActiveRecord::Schema.define(version: 20150602143848) do
 
   add_index "observations", ["fnc_id"], name: "index_observations_on_fnc_id"
   add_index "observations", ["user_id"], name: "index_observations_on_user_id"
+
+  create_table "photos", force: :cascade do |t|
+    t.string   "image_uid"
+    t.string   "title"
+    t.string   "image_size"
+    t.string   "image_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "fnc_id"
+  end
+
+  add_index "photos", ["fnc_id"], name: "index_photos_on_fnc_id"
 
   create_table "point_livraisons", force: :cascade do |t|
     t.string   "adresse_ligne1"

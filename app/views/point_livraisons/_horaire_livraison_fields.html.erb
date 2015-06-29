@@ -3,10 +3,26 @@
     <h3 class="panel-title">Horaires associés</h3>
   </div>
   <div class="panel-body">
-<%= f.select :jour, ["Lundi", "Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche"], { include_blank: true, label: "Choisir un jour" }, { class: "selectpicker" } %>
+    <div class="row">
+      <div class="col-md-4">
+        <%= f.select :jour, ["Lundi", "Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche"], { include_blank: true, label: "Choisir un jour" }, { class: "selectpicker" } %>
+      </div>
+      <div class="col-md-4">
+        <%= f.time_field :debut, label: "Ouverture", default:'8:30' %>
+      </div>
+      <div class="col-md-4">
+        <%= f.time_field :fin, label: "Fermeture" %>
+      </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+      <%= f.text_area :commentaire, label: "Commentaire concernant les horaires" %>
+    </div>
+  </div>
 
-<%= f.text_field :debut, label: "Heure de début", default:'8:30' %>
-<%= f.text_field :fin, label: "heure de fin" %>
+
+
+
 <br/>
 <%= f.link_to_remove "Supprimer l'horaire" %>
 </div>

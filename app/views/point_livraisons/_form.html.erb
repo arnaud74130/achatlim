@@ -1,17 +1,23 @@
 <%= bootstrap_nested_form_for([@etablissement, @point_livraison]) do |f| %>
  <%= render 'shared/model_errors', modele: @point_livraison %>
 
+
+  <%= f.check_box :is_principal, label: "Lieu de livraison par défaut" %>
+
   <%= f.text_field :adresse_ligne1, label: "Ligne 1" %>
   <%= f.text_field :adresse_ligne2, label: "Ligne 2" %>
   <%= f.text_field :adresse_cp, label: "Code postal" %>
   <%= f.text_field :adresse_ville, label: "Ville" %>
   <%= f.text_area :adresse_commentaire, label: "Commentaire sur l'adresse de livraison" %>
-  <%= f.check_box :is_principal, label: "Lieu de livraison par défaut" %>
+
+
   <%= f.select :famille_segment_ids,
   @famille_segments.map { |u| [u.libelle, u.id] },
                { include_blank: true, label: "Les familles de segments associés  :" },
                { multiple: true, class: 'chosen-select'}
 %>
+
+<%= f.collection_check_boxes(:caracteristique_livraison_ids, @caracteristiques, :id, :libelle) %>
 
  <%= f.fields_for :horaire_livraisons %>
  <span class="glyphicon glyphicon-plus"></span>

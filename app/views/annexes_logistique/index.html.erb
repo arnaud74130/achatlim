@@ -1,0 +1,27 @@
+<%= render "shared/bandeau",
+ titre: "Annexes Logistiques",
+ texte: "Liste des consultations en cours de publication avec les annexes logistiques des établissements."%>
+
+ <div class="container">
+  <% @consultations.each do |consultation| %>
+  <h1>[<%= consultation.code %>]<%= consultation.libelle %></h1>
+    <% fs = consultation.famille_segments %>
+    <% consultation.etablissements.each do |etb| %>
+    <h2> <%=etb.nom  %> </h2>
+      <% etb.point_livraison_pour_segments(fs).each do |segment, pl| %>
+      <h3> <%= segment %> </h3>
+      <% if pl %>
+      <ul>
+          <li><%= pl.adresse_ligne1 %></li>
+          <li><%= pl.adresse_ligne2 %></li>
+          <li><%= pl.adresse_ville %></li>
+          <li><%= pl.adresse_cp %></li>
+      </ul>
+      <% else %>
+      " - "
+      <% end %>
+
+      <% end %>
+    <% end %>
+  <% end %>
+ </div>
