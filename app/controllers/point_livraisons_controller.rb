@@ -5,6 +5,7 @@ class PointLivraisonsController < ApplicationController
   # GET /point_livraisons
   # GET /point_livraisons.json
   def index
+    
     @point_livraisons = @etablissement.point_livraisons
   end
 

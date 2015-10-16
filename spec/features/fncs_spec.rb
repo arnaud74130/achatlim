@@ -1,4 +1,4 @@
-#     AchatLim - Plateforme Collaborative Achat du Limousin
+
 #     Copyright (C) 2014  Arnaud GARCIA - GCS EPSILIM
 #                         
 #     This program is free software: you can redistribute it and/or modify
