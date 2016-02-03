@@ -16,20 +16,20 @@
 
 FactoryGirl.define do
   factory :point_livraison do
-    adresse_ligne1 {Faker::Address.street_address}
-	adresse_ligne2 ""
-	adresse_cp {Faker::Address.zip_code}
-	adresse_ville {Faker::Address.city}
-	adresse_commentaire {Faker::Lorem.sentence}
-	trait :principal do # create :point_livraison, :principal
-        is_principal true
+    adresse_ligne1 { Faker::Address.street_address }
+    adresse_ligne2 ""
+    adresse_cp { Faker::Address.zip_code }
+    adresse_ville { Faker::Address.city }
+    adresse_commentaire { Faker::Lorem.sentence }
+    trait :principal do # create :point_livraison, :principal
+      is_principal true
     end
     after(:create) do |point_livraison, evaluator|
-		point_livraison.horaire_livraisons = create_list(:horaire_livraison, 5)
-		point_livraison.caracteristique_livraisons = create_list(:caracteristique_livraison, 4)		
-		point_livraison.famille_segments << FamilleSegment.first
-		point_livraison.famille_segments << FamilleSegment.last
-		point_livraison.famille_segments << FamilleSegment.where(libelle: "Céréales").first		
-	end
+      point_livraison.horaire_livraisons = create_list(:horaire_livraison, 5)
+      point_livraison.caracteristique_livraisons = create_list(:caracteristique_livraison, 4)
+      point_livraison.famille_segments << FamilleSegment.first
+      point_livraison.famille_segments << FamilleSegment.last
+      point_livraison.famille_segments << FamilleSegment.where(libelle: "Céréales").first
+    end
   end
 end

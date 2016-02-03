@@ -17,8 +17,11 @@
 require 'rails_helper'
 RSpec.describe FamilleSegment, :type => :model do
 	it "L'établissement dispose d'un point de livraison pour les céréales" do
-   		 e = FactoryGirl.create(:etablissement)   		
-   		 cereale = FamilleSegment.where(libelle: "Céréales").first				   		 
-   		 expect(cereale.point_livraisons.first.etablissement).to eq(e)	   		 
-	end
+   		 e = FactoryGirl.create(:etablissement)
+   		 cereale = FamilleSegment.where(libelle: "Céréales").first
+
+   		 expect(e.famille_segments).to include(cereale)
+  end
+
+
 end

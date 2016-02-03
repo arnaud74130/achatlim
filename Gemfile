@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
-ruby '2.1.2'
-gem 'rails', '4.2.1'
+ruby '2.2.3'
+gem 'rails', '4.2.5'
 gem 'sqlite3'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -28,6 +28,8 @@ gem 'nested_form'
 gem "dynamic_form"
 gem 'dragonfly'
 gem 'remotipart', '~> 1.2'
+gem 'tzinfo-data'
+gem 'bcrypt-ruby', '3.1.1.rc1', :require => 'bcrypt'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]

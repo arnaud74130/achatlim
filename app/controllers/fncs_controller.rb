@@ -42,10 +42,11 @@ class FncsController < ApplicationController
     authorize Fnc  
     @fnc=@marche.fncs.new        
     @fnc.observations.build
-    @fnc.photos.build
+    # TODO -----> @fnc.photos.build
     @fnc.etablissement_id=current_user.entreprise.id
     
   end
+
 
   # GET /fncs/1/edit
   def edit
@@ -53,8 +54,8 @@ class FncsController < ApplicationController
     @etablissement = current_user.entreprise
     @consultation = @fnc.market.consultation
     @marche = @fnc.market    
-    @fnc.observations.build    
-    @fnc.photos.build
+    @fnc.observations.build
+    # TODO -----> @fnc.photos.build
   end
 
   # POST fncs/marches/:market_id

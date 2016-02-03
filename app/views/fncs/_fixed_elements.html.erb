@@ -1,13 +1,13 @@
 <table class="table table-bordered">
   <tr class="danger">
     <td><strong>CONSULTATION CONCERNEE</strong></td>
-    <td><%=@consultation.libelle  %> <br/> <i>(code: <%= @consultation.code %>)</i></td>
+    <td><%= @consultation.libelle %> <br/> <i>(code: <%= @consultation.code %>)</i></td>
   </tr>
   <tr>
     <td>Date d'émission</td>
     <td><%= l(@fnc.created_at) %> </td>
   </tr>
- </table>
+</table>
 
 <table class="table table-bordered">
   <tr>
@@ -32,10 +32,9 @@
 </table>
 
 <table class="table table-bordered">
-   </tr>
-    <tr>
+  <tr>
     <td><strong>TITUTLAIRE DU MARCHÉ</strong></td>
-    <td><%= @marche.fournisseur.nom %> <br/> <i>(tel: <%=  @marche.fournisseur.telephone %>)</i></td>
+    <td><%= @marche.fournisseur.nom %> <br/> <i>(tel: <%= @marche.fournisseur.telephone %>)</i></td>
   </tr>
   <tr>
     <td><strong>RAISON DU LITIGE</strong></td>
@@ -44,7 +43,7 @@
 </table>
 
 <table class="table table-bordered">
-    <tr class="info">
+  <tr class="info">
     <td>Numéro de marché</td>
     <td>Numéro de commande</td>
     <td>Produit(s) concerné(s)</td>
@@ -72,13 +71,13 @@
     <td>Faire un avoir</td>
     <td>
       <% if @fnc.instruction_avoir %>
-        <span class="glyphicon glyphicon-ok"></span>
+          <span class="glyphicon glyphicon-ok"></span>
       <% end %>
     </td>
     <td>Surveiller les preparations</td>
     <td>
       <% if @fnc.instruction_surv_prepa %>
-        <span class="glyphicon glyphicon-ok"></span>
+          <span class="glyphicon glyphicon-ok"></span>
       <% end %>
     </td>
   </tr>
@@ -86,13 +85,13 @@
     <td>Faire une facture</td>
     <td>
       <% if @fnc.instruction_facture %>
-        <span class="glyphicon glyphicon-ok"></span>
+          <span class="glyphicon glyphicon-ok"></span>
       <% end %>
     </td>
     <td>Marchandise à reprendre</td>
     <td>
       <% if @fnc.instruction_reprendre %>
-        <span class="glyphicon glyphicon-ok"></span>
+          <span class="glyphicon glyphicon-ok"></span>
       <% end %>
     </td>
   </tr>
@@ -102,14 +101,14 @@
     <td>Marchandise à relivrer</td>
     <td>
       <% if @fnc.instruction_relivrer %>
-        <span class="glyphicon glyphicon-ok"></span>
+          <span class="glyphicon glyphicon-ok"></span>
       <% end %>
     </td>
   </tr>
-<tr>
-  <td>Autre</td>
-  <td colspan="3"><%= @fnc.instruction_autre %></td>
-</tr>
+  <tr>
+    <td>Autre</td>
+    <td colspan="3"><%= @fnc.instruction_autre %></td>
+  </tr>
 </table>
 
 <table class="table table-bordered">
@@ -157,25 +156,13 @@
     <td>Tarification</td>
     <td><%= @fnc.tarification %> </td>
   </tr>
- <tr>
+  <tr>
     <td>Absence traçabilité</td>
     <td><%= @fnc.abs_tracabilite %> </td>
   </tr>
 </table>
-<ul class="row" id="photos-list">
-  <% @fnc.photos.each do |photo| %>
-      <li class="col-xs-3">
-        <%= link_to image_tag(photo.image.thumb('180x180#').url, alt: photo.image_name, class: 'img-thumbnail'),
-                    photo.image.remote_url, target: '_blank' %>
-        <% if photo.image_name.present? %>
-          <p><%= photo.image_name %></p>
-        <% end %>
 
-        <% if photo.title.present? %>
-          <p><b>Titre:</b> <%= photo.title %></p>
-        <% end %>
-      </li>
-  <% end %>
-</ul>
+<!-- %= render 'photos_list' % -->
+
 
 

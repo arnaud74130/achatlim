@@ -20,7 +20,7 @@ class Fnc < ActiveRecord::Base
 	scope :fermees, ->{ where(cloturee: true).order(:created_at) }
 
 	has_many :observations
-	has_many :photos
+	# TODO -----> PHOTO has_many :photos
 	belongs_to :market
 	has_one :consultation, through: :market
 	has_one :fournisseur, through: :market
@@ -30,7 +30,7 @@ class Fnc < ActiveRecord::Base
 		:produits, :commande_passee, :livraison_demandee, :lot_ou_dlc, presence: true
 
 	accepts_nested_attributes_for :observations, allow_destroy: true
-	accepts_nested_attributes_for :photos, allow_destroy: true
+	# TODO ----->	accepts_nested_attributes_for :photos, allow_destroy: true
 
 
 

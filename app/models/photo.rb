@@ -7,4 +7,5 @@ class Photo < ActiveRecord::Base
 
   validates_property :format, of: :image, in: [:jpeg, :jpg, :png, :bmp], case_sensitive: false,
                      message: "should be either .jpeg, .jpg, .png, .bmp", if: :image_changed?
+  belongs_to :fnc
 end
